@@ -1,18 +1,23 @@
+
+
 nav {
-    height: 10vh;
-    width: 100vh;
+    background-color: #E3E3E3;
+    height: 10vw;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-img {
-    height: 10vh;
+.logo img {
+    height: 8rem;
 }
 
-button{
+nav button{
+    border: none;
     background-color: #FF3535;
     color: white;
     border-radius: 20px;
+    padding: 1rem 2rem;
 }

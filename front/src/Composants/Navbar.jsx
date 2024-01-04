@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import Mailto from '../assets/LogoNotimail.jpg';
+import Mailto from '../assets/LogoNotimail.png';
 import "../Navbar.css";
+import "../index.css"
 
 export const NavBar = () => {
   return (
@@ -15,5 +16,5 @@ export const NavBar = () => {
         </div>
       </nav>
     </>
-  );
-};
+  )
+}
