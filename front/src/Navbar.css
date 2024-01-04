@@ -1,0 +1,18 @@
+nav {
+    height: 10vh;
+    width: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+img {
+    height: 10vh;
+}
+
+button{
+    background-color: #FF3535;
+    color: white;
+    border-radius: 20px;
+}

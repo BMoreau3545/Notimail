@@ -5,6 +5,19 @@
   text-align: center;
 }
 
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,600&display=swap');
+
+
+
+  :root {
+--VertBleu: #008787;
+--Bleu: #025892;
+--Gris: #E3E3E3;
+--Rouge: #010101;
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;
