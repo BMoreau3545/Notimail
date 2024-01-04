@@ -1,0 +1,24 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "Back de Notimail",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BMoreau3545/Notimail.git"
+  },
+  "author": "Ben et Max",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BMoreau3545/Notimail/issues"
+  },
+  "homepage": "https://github.com/BMoreau3545/Notimail#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.8",
+    "pg": "^8.11.3"
+  }
+}
