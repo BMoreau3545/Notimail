@@ -9,7 +9,8 @@
       "password": "motDePasse1",
       "last_received_mail": "2024-01-03T08:30:00Z",
       "last_picked_up": "2024-01-03T10:45:00Z",
-      "has_mail": true
+      "has_mail": true,
+      "is_admin": false
     },
     {
       "firm_name": "Entreprise2",
@@ -20,7 +21,9 @@
       "password": "motDePasse2",
       "last_received_mail": "2024-01-02T15:20:00Z",
       "last_picked_up": "2024-01-02T15:20:00Z",
-      "has_mail": false
+      "has_mail": false,
+      "is_admin": false
+
     },
     {
       "firm_name": "Entreprise3",
@@ -31,7 +34,8 @@
       "password": "motDePasse3",
       "last_received_mail": "2024-01-01T12:00:00Z",
       "last_picked_up": "2024-01-01T12:00:00Z",
-      "has_mail": true
+      "has_mail": true,
+      "is_admin": false
     },
     {
       "firm_name": "Entreprise4",
@@ -42,7 +46,8 @@
       "password": "motDePasse4",
       "last_received_mail": "2023-12-31T18:45:00Z",
       "last_picked_up": "2023-12-31T18:45:00Z",
-      "has_mail": false
+      "has_mail": false,
+      "is_admin": false
     },
     {
       "firm_name": "Entreprise5",
@@ -53,7 +58,8 @@
       "password": "motDePasse5",
       "last_received_mail": "2023-12-30T09:10:00Z",
       "last_picked_up": "2023-12-30T09:10:00Z",
-      "has_mail": true
+      "has_mail": true,
+      "is_admin": false
     },
     {
       "firm_name": "Entreprise6",
@@ -64,7 +70,8 @@
       "password": "motDePasse6",
       "last_received_mail": "2023-12-29T14:30:00Z",
       "last_picked_up": "2023-12-29T14:30:00Z",
-      "has_mail": false
+      "has_mail": false,
+      "is_admin": false
     },
     {
       "firm_name": "Entreprise7",
@@ -75,7 +82,8 @@
       "password": "motDePasse7",
       "last_received_mail": "2023-12-28T20:55:00Z",
       "last_picked_up": "2023-12-28T20:55:00Z",
-      "has_mail": true
+      "has_mail": true,
+      "is_admin": false
     },
     {
       "firm_name": "Entreprise8",
@@ -86,7 +94,8 @@
       "password": "motDePasse8",
       "last_received_mail": "2023-12-27T11:40:00Z",
       "last_picked_up": "2023-12-27T11:40:00Z",
-      "has_mail": false
+      "has_mail": false,
+      "is_admin": false
     },
     {
       "firm_name": "Entreprise9",
@@ -97,7 +106,8 @@
       "password": "motDePasse9",
       "last_received_mail": "2023-12-26T16:25:00Z",
       "last_picked_up": "2023-12-26T16:25:00Z",
-      "has_mail": true
+      "has_mail": true,
+      "is_admin": false
     },
     {
       "firm_name": "Entreprise10",
@@ -108,7 +118,20 @@
       "password": "motDePasse10",
       "last_received_mail": "2023-12-25T22:15:00Z",
       "last_picked_up": "2023-12-25T22:15:00Z",
-      "has_mail": false
+      "has_mail": false,
+      "is_admin": false
+    }   
+     {
+      "firm_name": "EntrepriseAdmin",
+      "first_name": "Contact10",
+      "last_name": "Nom10",
+      "email": "contact10@example.com",
+      "phone_number": "8889990000",
+      "password": "motDePasse10",
+      "last_received_mail": "2023-12-25T22:15:00Z",
+      "last_picked_up": "2023-12-25T22:15:00Z",
+      "has_mail": false,
+      "is_admin": true
     }
   ]
 }
