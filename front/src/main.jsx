@@ -8,6 +8,7 @@ import { AccueilEntreprise } from './Pages/AccueilEntreprise.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <FormDetails/>
+    <NavBar/>
+    <AccueilEntreprise/>
   </React.StrictMode>,
 )

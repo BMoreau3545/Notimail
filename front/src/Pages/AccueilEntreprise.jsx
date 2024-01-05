@@ -7,7 +7,6 @@ export const AccueilEntreprise = () => {
 
     return (
      <>
-        
         <section className="AccueilAucunMail">        
             <IoMail  style={{ fontSize: '8rem',color: '#025892'}} />
             <p>Aucun courrier en attente</p>

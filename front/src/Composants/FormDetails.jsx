@@ -11,10 +11,10 @@ export const FormDetails = () => {
   return (
     <>
     <section className='SectionForm'>
-            <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
+      <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
       <div className='row align'>
-        <button className='backBtn'><FaArrowLeftLong style={{ fontSize: '2rem',color: '#FFFF'}} /></button> 
-        <h2>Entreprise</h2>    
+      <button className='backBtn'><FaArrowLeftLong style={{ fontSize: '2rem',color: '#FFFF'}} /></button> 
+      <h2 className='NameEntr'>Entreprise</h2>    
       </div>
 
 
