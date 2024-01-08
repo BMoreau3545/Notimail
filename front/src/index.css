@@ -58,6 +58,26 @@ input {
   padding-left: 1vw;
 }
 
+#password {
+  font-size: 24px;
+  height: 74px;
+  min-width: 273px;
+  border-radius: 80.5px;
+  padding-left: 50px;
+  margin-bottom: 25px;
+  background-color: #E3E3E3;
+}
+
+select{
+  font-size: 24px;
+  height: 74px;
+  min-width: 340px;
+  border-radius: 80.5px;
+  padding-left: 50px;
+  margin-bottom: 25px;
+  background-color: #E3E3E3;
+}
+
 img {
   height: 12rem;
 }
