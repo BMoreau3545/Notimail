@@ -22,36 +22,36 @@ export const FormDetails = () => {
   
         <div className='row spaceBeetw'>
             <label htmlFor="entreprise">Entreprise:</label>
-            <input type="text" id="entreprise" name="entreprise" />
+            <input className='inputForm' type="text" id="entreprise" name="entreprise" />
         </div>
 
 
         <div className='row spaceBeetw'>
           <label htmlFor="contactNom">Contact:</label>
             <div className='column'>
-              <input type="text" id="contactNom" name="contactNom" placeholder='Nom' />
-              <input type="text" id="contactPrenom" name="contactPrenom" placeholder='Prénom'/>
+              <input className='inputForm' type="text" id="contactNom" name="contactNom" placeholder='Nom' />
+              <input className='inputForm' type="text" id="contactPrenom" name="contactPrenom" placeholder='Prénom'/>
             </div>
         </div>
       
         <div className='row spaceBeetw'>
           <label htmlFor="tel">Téléphone:</label>
-          <input type="tel" id="tel" name="tel" />
+          <input className='inputForm' type="tel" id="tel" name="tel" />
         </div>
         
         <div className='row spaceBeetw'>
           <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" />
+          <input className='inputForm' type="email" id="email" name="email" />
         </div>
 
         <div className='row spaceBeetw'>
           <label htmlFor="identifiant">Identifiant:</label>
-          <input type="text" id="identifiant" name="identifiant" />
+          <input className='inputForm' type="text" id="identifiant" name="identifiant" />
         </div>
 
         <div className='row'>
           <label htmlFor="isAdmin">Admin:</label>
-          <input type="checkbox" id="isAdmin" name="isAdmin" />
+          <input className='inputForm' type="checkbox" id="isAdmin" name="isAdmin" />
         </div>
         
         <div className='row'>

@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import Mailto from '../assets/LogoNotimail.png';
+import Cadena from '../assets/fermer.png';
 import "../index.css"
 import React, { useState } from 'react';
+import Mailto from '../assets/LogoNotimail.png';
 
 export const PasswordInput = () => {
   const [password, setPassword] = useState('');
@@ -12,16 +13,19 @@ export const PasswordInput = () => {
 
 
   return (
-    <div>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        value={password}
-        onChange={handlePasswordChange}
-      />
-      <br/>
-      <button id='login'></button>
-    </div>
+    <>
+        <div className='AreaPassword'>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder='Mot de passe'
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <img src={Cadena} id="login" alt="Logo du site" />
+      </div>
+    </>
+
   );
 };

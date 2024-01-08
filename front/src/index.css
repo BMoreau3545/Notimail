@@ -52,31 +52,12 @@ body{
   justify-content: center;
   gap: 5vw;
 }
-input {
+.inputForm {
   background-color: rgb(240, 240, 240);
   border-radius: 1rem;
   padding-left: 1vw;
 }
- /* Page de connexion */
-#password {
-  font-size: 24px;
-  height: 74px;
-  min-width: 273px;
-  border-radius: 80.5px;
-  padding-left: 50px;
-  margin-bottom: 25px;
-  background-color: #E3E3E3;
-}
 
-select{
-  font-size: 24px;
-  height: 74px;
-  min-width: 340px;
-  border-radius: 80.5px;
-  padding-left: 50px;
-  margin-bottom: 25px;
-  background-color: #E3E3E3;
-}
 
 img {
   height: 12rem;
@@ -151,7 +132,7 @@ justify-content: space-between;
   font-size: 1.2rem
 }
 
-
+/*    Fin de la page formulaire      */
 
 /* Icones modal reception courrier */
 
@@ -162,50 +143,52 @@ justify-content: space-between;
   gap: 5vh;
 }
 
-
-/*    Fin de la page formulaire      */
-
  /* Page de connexion */
- #password {
+
+#password {
   font-size: 24px;
-  height: 74px;
+  height: 79px;
   min-width: 273px;
-  border-radius: 80.5px;
+  border-radius: 3rem;
+  border-style: none;
+  border-bottom-right-radius: 0;
+  border-top-right-radius:0;
   padding-left: 50px;
-  margin-bottom: 25px;
   background-color: #E3E3E3;
 }
 
-select{
+select{ /* identifiants */
   font-size: 24px;
   height: 74px;
-  min-width: 340px;
+  border-style: none;
+  min-width: 420px;
   border-radius: 80.5px;
   padding-left: 50px;
   margin-bottom: 25px;
   background-color: #E3E3E3;
 }
 
-/*  fin page home */ 
+.AreaPassword {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
 #login{
-  width: 57px;
-  height: 57px;
-  background-image: url('./assets/fermer.png');
-  background-size: cover;
-  background-position: center; 
-  border: none;
+  height: 100%;
+  background-color:rgb(225, 225, 225);
+  padding: 9px;
+  border-style: none;
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius:3rem;
   cursor: pointer;
- 
-
 }
 
-#login:hover{
+ /* #login:hover{
   background-image: url('./assets/ouvert.png');
 }
 
 #login:active{
-  background-image: url('./assets/ouvert.png');
-  filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
-
-}
+  border-style: none;
+}  */
