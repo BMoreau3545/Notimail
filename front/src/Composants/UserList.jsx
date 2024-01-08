@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import Mailto from '../assets/LogoNotimail.png';
 import "../index.css"
 import React, { useState } from 'react';
+import {PasswordInput} from './PasswordInput'
 
 export const UserList = () => {
   const [UserList, setUserList] = useState('');
@@ -59,6 +60,9 @@ export const UserList = () => {
           <option value="entreprise40">Entreprise 40</option>
           <option value="Admin">Admin</option>
         </select>
+
+        {/* Ajout du composant MDP a la page home  */}
+        {<PasswordInput />}
       </div>
     </>
   );
