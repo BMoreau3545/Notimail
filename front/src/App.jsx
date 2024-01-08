@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import { Home } from './pages/home';
-// import { AccueilEntreprise } from './Pages/AccueilEntreprise'
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { UserList } from './composants/UserList.jsx';
+import { AccueilEntreprise } from './Pages/AccueilEntreprise.jsx';
+import { FormDetails } from './composants/UserList.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,11 +12,11 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/AccueilAdmin" element={<AccueilAdmin />} />
-        <Route path="/AccueilAdminDetails" element={<AccueilAdminDetails />} />
-        <Route path="/AccueilEntreprise" element={<AccueilEntreprise />} />
-        <Route path="/Entreprise/:id" element={<EntrepriseID />} />
+        <Route path="/home" element={<UserList />} />
+        {/* <Route path="/Admin" element={<AccueilAdmin />} /> */}
+        <Route path="/admindetails" element={<FormDetails />} />
+        <Route path="/entreprise" element={<AccueilEntreprise />} /> 
+        {/* <Route path="/Entreprise/:id" element={<EntrepriseID />} /> */}
       </Routes>
     </BrowserRouter>
     </>

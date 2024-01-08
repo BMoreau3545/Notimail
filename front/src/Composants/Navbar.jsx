@@ -7,7 +7,7 @@ export const NavBar = () => {
   return (
     <>
       <nav className='logo'>
-        {/* <NavLink to="/home"> ajout du retour home quand la route sera crée */}
+        {/* <NavLink to="/home"> */}
           <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
         {/* </NavLink> */}
         <div>

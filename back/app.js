@@ -1,6 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const { Pool } = require('pg');
+
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const port = 3000;
@@ -13,19 +14,11 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Définissez vos routes ici
-app.get('/users', async (req, res) => {
-    try {
-      const users = await pool.query('SELECT * FROM public."Users"');
-      res.json(users.rows);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Erreur serveur' });
-    }
-  });
+// Montez les routes pour les opérations CRUD liées à l'utilisateur
+app.use('/users', userRoutes);
 
 app.listen(port, () => {
   console.log(`Serveur en cours d'exécution sur le port ${port}`);
