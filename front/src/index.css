@@ -57,7 +57,7 @@ input {
   border-radius: 1rem;
   padding-left: 1vw;
 }
-
+ /* Page de connexion */
 #password {
   font-size: 24px;
   height: 74px;
@@ -151,7 +151,42 @@ justify-content: space-between;
   font-size: 1.2rem
 }
 
+
+
+/* Icones modal reception courrier */
+
+.centerIcons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+}
+
+
 /*    Fin de la page formulaire      */
+
+ /* Page de connexion */
+ #password {
+  font-size: 24px;
+  height: 74px;
+  min-width: 273px;
+  border-radius: 80.5px;
+  padding-left: 50px;
+  margin-bottom: 25px;
+  background-color: #E3E3E3;
+}
+
+select{
+  font-size: 24px;
+  height: 74px;
+  min-width: 340px;
+  border-radius: 80.5px;
+  padding-left: 50px;
+  margin-bottom: 25px;
+  background-color: #E3E3E3;
+}
+
+/*  fin page home */ 
 
 #login{
   width: 57px;
