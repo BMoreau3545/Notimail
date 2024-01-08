@@ -32,7 +32,7 @@ export const PasswordInput = () => {
           value={password}
           onChange={handlePasswordChange}
         />
-        <img  src={isMouseOver ? CadenaOuvert : CadenaFermer} id="login" class="glow" alt="Logo du site" onMouseEnter={handleMouseEnter}        onMouseLeave={handleMouseLeave}/>
+        <img  src={isMouseOver ? CadenaOuvert : CadenaFermer} id="login" alt="Logo du site" onMouseEnter={handleMouseEnter}        onMouseLeave={handleMouseLeave}/>
       </div>
     </>
 
