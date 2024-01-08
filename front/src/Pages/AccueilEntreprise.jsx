@@ -1,44 +1,54 @@
-
 import NewMail from '../assets/mail_rouge.png';
-import '../index.css'
+import '../index.css';
 import React, { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import { NavLink } from 'react-router-dom';
-
+import { IoMailOpen ,  IoCloseCircle } from "react-icons/io5";
+import { FaCheckCircle } from "react-icons/fa";
 
 export const AccueilEntreprise = () => {
     const [open, setOpen] = useState(false);
+    const [confirmReception, setConfirmReception] = useState(true);
 
+//Gestion de la modal
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
 
+//mail recu ? , pour le moment Forcé a oui
+    const handleConfirmation = () => {
+        setConfirmReception(false);
+        // Autres actions à effectuer lors de la confirmation (si nécessaire)
+    };
+
     return (
         <>
-            {/* <section className="AccueilAucunMail">        
-            <IoMail  style={{ fontSize: '8rem',color: '#025892'}} />
-            <p>Aucun courrier en attente</p>
-            <button className="noReceptionner">Réceptionner</button>
-        </section> */}
-
-
-            <section className="AccueilMailRecu">
-                <div className="IconeSuperposition">
-                    <img src={NewMail} alt="icone nouveau mail" id="iconeNewMail" />
-                </div>
-                <div>
-                    <p>Vous avez du courrier en attente</p>
-                    <button onClick={onOpenModal} className="Receptionner">Réceptionner</button>
-                    <Modal open={open} onClose={onCloseModal} center>
-                        <p>
-                         Confirmer la recpetion du courrier :
-                        </p>
-                        <button>X</button>
-                        <button>V</button>
-                    </Modal>
-                </div>
-
-            </section>
+            {confirmReception ? (
+                <section className="AccueilMailRecu">
+                    <div className="IconeSuperposition">
+                        <img src={NewMail} alt="icone nouveau mail" id="iconeNewMail" />
+                    </div>
+                    <div>
+                        <p>Vous avez du courrier en attente</p>
+                        <button onClick={onOpenModal} className="Receptionner">Réceptionner</button>
+                        <Modal open={open} onClose={onCloseModal} center closeIcon=" ">
+                            {/*Le close item est vide pour enlever son affichage par défaut du CSS importé par l'installation de react modal */}
+                            <p>
+                                Confirmer la réception du courrier :
+                            </p>
+                            <div className='centerIcons'>
+                                <IoCloseCircle style={{ fontSize: '60px', color: '#FF3535' }} onClick={onCloseModal}/>
+                                <FaCheckCircle style={{ fontSize: '50px', color: '#025892' }} onClick={handleConfirmation} disabled={!confirmReception}/>
+                            </div>
+                        </Modal>
+                    </div>
+                </section>
+            ) : (
+                <section className="AccueilAucunMail">
+                    <IoMailOpen style={{ fontSize: '8rem', color: '#025892' }} />
+                    <p>Aucun courrier en attente</p>
+                    <button className="noReceptionner">Réceptionner</button>
+                </section>
+            )}
         </>
-    )
-}
+    );
+};
