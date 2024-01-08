@@ -20,6 +20,8 @@ export const PasswordInput = () => {
         value={password}
         onChange={handlePasswordChange}
       />
+      <br/>
+      <button id='login'></button>
     </div>
   );
 };
