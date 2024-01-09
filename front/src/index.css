@@ -204,3 +204,6 @@ select{ /* identifiants */
   height: 46px;
   width: auto;
 }
+.icon:hover{
+  filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
+}
