@@ -13,9 +13,9 @@ export const Badpage = () => {
   return (
     <>
 
-        <div>
-        <img src={Envoie} alt="" />
-        <img src={Plus} alt="" />
+        <div id='badpage'>
+       <a href="">  <img src={Plus} class="icon" alt="" /> </a>
+       <a href=""> <img src={Envoie} class="icon" alt="" /> </a>
       </div>
     </>
 

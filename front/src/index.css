@@ -25,13 +25,6 @@ body{
   gap: 5vh;
 }
 
-.center{
-  display: flex;
-  flex-direction: column  ;
-  align-items: center;
-  justify-content: center;
-}
-
 .AccueilMailRecu button {
   padding: 1em 2em;
   color: #E3E3E3;
@@ -192,10 +185,21 @@ select{ /* identifiants */
   cursor: pointer;
 }
 
- /* #login:hover{
-  background-image: url('./assets/ouvert.png');
+
+/*
+#login:active{
+  filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
+}  
+*/
+
+#badpage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-inline: 334px;
 }
 
-#login:active{
-  border-style: none;
-}  */
+.icon{
+  height: 46px;
+  width: auto;
+}
