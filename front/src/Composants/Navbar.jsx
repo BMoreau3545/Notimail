@@ -10,7 +10,7 @@ export const NavBar = () => {
         {/* <NavLink to="/home"> */}
           <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
         {/* </NavLink> */}
-        <div className='center'>
+        <div className='center column'>
           <h3>User</h3>
           <button>Deconnexion</button>
         </div>
