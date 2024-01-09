@@ -1,6 +1,6 @@
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
-const sequelize = require('./index'); // Importe la connexion Sequelize depuis index.js
+const sequelize = require('./sequelize'); // Importe la connexion Sequelize depuis index.js
 
 const app = express();
 const port = 3000;

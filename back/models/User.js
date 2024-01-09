@@ -1,6 +1,6 @@
 // Importation des modules Sequelize et DataTypes à partir du package 'sequelize'
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../index');
+const sequelize = require('../sequelize');
 
 // Définition du modèle User représentant la table 'users' dans la base de données
 const User = sequelize.define('User', {
