@@ -1,9 +1,19 @@
 import "../adminPanel.css";
 import { FaRegEdit } from "react-icons/fa";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const CardEntreprise = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [jsonData, setJsonData] = useState([]);
+
+    useEffect(() => {
+        fetch('../json')
+            .then((res) => res.json())
+            .then((data) => {
+                setJsonData(data);
+            })
+            .catch((err) => console.error(err));
+    }, []);
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -14,9 +24,10 @@ export const CardEntreprise = () => {
             <section className={`cardPosition ${isDropdownOpen ? 'openDropdown' : ''}`} onClick={toggleDropdown}>
                 <div className="card openDefault">
                     <div className="coordonees column">
+
                         <h4 className="firm_name">Entreprise</h4>
                         <p className="first_name">Nom contact</p>
-                        <p className="ceived_mail">Date</p>
+                        <p className="received_mail">Date</p>
                     </div>
                     <div className="column center">
                         <label className="switch">
@@ -28,19 +39,21 @@ export const CardEntreprise = () => {
                 </div>
                 {isDropdownOpen && (
                     <div className="closeDefault">
-                        <div className="adresse"> 
+                        <div className="adresse">
                             <p className="pTexte">Email : </p>
                             <p className="pTexte">Téléphone : </p>
                             <p className="pTexte">identifiant : </p>
                         </div>
-                       <div className="column">
+                        <div className="column">
                             <p className="pTexte">adresse-email@exemple.com</p>
                             <p className="pTexte">+33601020304</p>
                             <p className="pTexte">1137</p>
-                       </div>
+                        </div>
                     </div>
                 )}
             </section>
         </>
     );
 };
+
+
