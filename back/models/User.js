@@ -30,7 +30,7 @@ const User = sequelize.define('User', {
     allowNull: false // La valeur ne peut pas être nulle
   },
   password: {
-    type: DataTypes.STRING(100), // Type de données STRING avec une limite de 25 caractères
+    type: DataTypes.STRING(60), // Type de données STRING avec une limite de 25 caractères
     allowNull: false // La valeur ne peut pas être nulle
   },
   last_received_mail: {
