@@ -1,6 +1,6 @@
 const express = require('express');
-const sequelize = require('./models/User.js');  // Assurez-vous que le chemin est correct
 const userRoutes = require('./routes/userRoutes');
+const sequelize = require('./index'); // Importe la connexion Sequelize depuis index.js
 
 const app = express();
 const port = 3000;
@@ -20,7 +20,6 @@ sequelize.authenticate()
   .catch(err => {
     console.error('Erreur de connexion à la base de données :', err);
   });
-
 
 // Montez les routes pour les opérations CRUD liées à l'utilisateur
 app.use('/users', userRoutes);
