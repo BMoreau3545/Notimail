@@ -5,6 +5,7 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { IoMailOpen ,  IoCloseCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
+import { NavBar } from '../Composants/Navbar';
 
 export const AccueilEntreprise = () => {
     const [open, setOpen] = useState(false);
@@ -22,6 +23,7 @@ export const AccueilEntreprise = () => {
 
     return (
         <>
+             { <NavBar />}
             {confirmReception ? (
                 <section className="AccueilMailRecu">
                     <div className="IconeSuperposition">
