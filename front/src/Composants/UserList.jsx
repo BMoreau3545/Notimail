@@ -12,9 +12,8 @@ export const UserList = () => {
   };
   return (
     <>
-      <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
-      <div>
-
+      <div className='center'>
+        <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
         <label className='flecheUser' htmlFor="dropdown"></label>
         <select id="dropdown" value={UserList} onChange={handleOptionChange}>
           <option value=""></option>
