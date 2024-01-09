@@ -18,7 +18,7 @@ export const CardEntreprise = () => {
                         <p className="first_name">Nom contact</p>
                         <p className="ceived_mail">Date</p>
                     </div>
-                    <div className="column">
+                    <div className="column center">
                         <label className="switch">
                             <input type="checkbox" className="checkbox"></input>
                             <div className="slider"></div>

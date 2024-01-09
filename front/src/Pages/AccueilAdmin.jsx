@@ -7,6 +7,5 @@ export const AccueilAdmin = () => {
     return (
         <>
             {<CardEntreprise />}
-    
         </>)
 }
