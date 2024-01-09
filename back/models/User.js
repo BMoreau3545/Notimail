@@ -1,11 +1,6 @@
 // Importation des modules Sequelize et DataTypes à partir du package 'sequelize'
 const { Sequelize, DataTypes } = require('sequelize');
-require('dotenv').config({
-  path: '../../.env',
-});
-const config = require('../config/config')
-// Création d'une instance Sequelize en spécifiant les informations de connexion à la base de données
-const sequelize = new Sequelize(config.development);
+
 
 // Définition du modèle User représentant la table 'users' dans la base de données
 const User = sequelize.define('User', {
