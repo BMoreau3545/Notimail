@@ -1,7 +1,7 @@
 module.exports = {
     development: {
         dialect: 'postgres',
-        username: 'bmore',
+        username: 'admin',
         password: '21323517',
         database: 'NotimailDB',
         host: 'localhost',

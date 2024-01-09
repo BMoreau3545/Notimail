@@ -11,7 +11,7 @@ async function login(req, res) {
         const passwordMatch = await bcrypt.compare(password, user.password);
 
         if (passwordMatch) {
-            const token = jwt.sign({ firm_name: user.firm_name, email: user.email}, 'CleSec', {expiresIn: '1h'});
+            const token = jwt.sign({ firm_name: user.firm_name, email: user.email}, process.env.JWT_SECRET, {expiresIn: '1h'});
             res.json({token});
         } else {
             res.status(401).json({error: 'Mot de passe incorrect.'});

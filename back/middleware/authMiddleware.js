@@ -10,7 +10,7 @@ function authToken(req, res, next) {
     if (!token) return res.status(401).json({ error: 'Accès non autorisé' });
 
     // Vérification de la validité du jeton d'authentification
-    jwt.verify(token, 'CleSec', (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         // En cas d'erreur lors de la vérification du jeton
         if (err) return res.status(403).json({ error: 'Jetons d\'authentification non valide.' });
 
