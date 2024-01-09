@@ -1,5 +1,8 @@
 const express = require('express');
 const { Pool } = require('pg');
+require('dotenv').config({
+  path: '../.env',
+});
 
 const userRoutes = require('./routes/userRoutes');
 
