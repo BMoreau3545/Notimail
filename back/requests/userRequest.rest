@@ -4,7 +4,7 @@ POST http://localhost:3000/users/create_user
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise4",
+  "firm_name": "Entreprise5",
   "first_name": "Contact4",
   "last_name": "Nom4",
   "email": "contact4@example.com",
@@ -46,3 +46,20 @@ GET http://localhost:3000/users/get_user/Entreprise1
 ###
 # Obtenir la liste de tous les utilisateurs
 GET http://localhost:3000/users/get_all_users
+
+###
+PUT http://localhost:3000/users/update_user
+Content-Type: application/json
+
+{
+  "firm_name": "Entreprise1",
+  "email": "benrei@hotmail.fr"
+}
+
+###
+POST http://localhost:3000/users/notify
+Content-Type: application/json
+
+{
+  "firm_name": "Entreprise1"
+}

@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 
 // Fonction pour créer un nouvel utilisateur
 const createUser = async (req, res) => {
@@ -121,11 +122,53 @@ const getAllUsers = async (req, res) => {
     }
   };
 
-  module.exports = {
-    createUser,
-    hashPassword,
-    updateUser,
-    deleteUser,
-    getUserByFirmName,
-    getAllUsers,
-  };
+// Fonction pour notifier plusieurs utilisateurs par courrier électronique et notification
+const has_mail = async (req, res) => {
+  try {
+    const { firm_name } = req.body;
+
+    const users = await User.findAll({ where: { firm_name } });
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: 'Aucun utilisateur trouvé.' });
+    }
+
+    // Simulation de l'envoi de courrier électronique pour chaque utilisateur
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'benjamin.moreau@institutsolacroup.com',
+        pass: 'nfgg elep zmxg xwfp',
+      },
+    });
+    
+    const mailPromises = users.map(user => {
+      const mailOptions = {
+        from: 'benjamin.moreau@institutsolacroup.com',
+        to: user.email,
+        subject: 'Nouveau courrier reçu',
+        text: 'Vous avez du courrier. Consultez votre boîte aux lettres.',
+      };
+
+      return transporter.sendMail(mailOptions);
+    });
+
+    // Attendez que toutes les promesses d'envoi de courrier soient résolues
+    await Promise.all(mailPromises);
+
+    res.json({ message: 'Utilisateurs notifiés avec succès.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur lors de la notification des utilisateurs.' });
+  }
+};
+
+// Exportation de la fonction
+module.exports = {
+  createUser,
+  hashPassword,
+  updateUser,
+  deleteUser,
+  getUserByFirmName,
+  getAllUsers,
+  has_mail, // Ajout de la fonction has_mail à l'exportation
+};
