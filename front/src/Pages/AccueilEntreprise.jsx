@@ -46,7 +46,7 @@ export const AccueilEntreprise = () => {
                 </section>
             ) : (
                 <section className="AccueilAucunMail">
-                    <IoMailOpen style={{ fontSize: '8rem', color: '#025892' }} />
+                    <IoMailOpen style={{ fontSize: '8rem', color: '#4597b574' }} />
                     <p>Aucun courrier en attente</p>
                     <button className="noReceptionner">Réceptionner</button>
                 </section>

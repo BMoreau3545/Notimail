@@ -7,12 +7,12 @@ export const NavBar = () => {
   return (
     <>
       <nav className='logo'>
-        {/* <NavLink to="/home"> */}
           <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
-        {/* </NavLink> */}
         <div className='center column'>
           <h3>User</h3>
-          <button>Deconnexion</button>
+          <NavLink to="/">
+            <button>Deconnexion</button>
+          </NavLink>
         </div>
       </nav>
     </>

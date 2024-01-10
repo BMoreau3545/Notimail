@@ -27,6 +27,7 @@ body{
 
 .AccueilMailRecu button {
   padding: 1em 2em;
+  margin-top: 40px;
   color: #E3E3E3;
   background-color: var(--Bleu);
   border-radius: 40px;
@@ -58,12 +59,9 @@ body{
   padding-left: 1vw;
 }
 
-
 img {
   height: 12rem;
 }
-
-
 
 .backBtn{
   background-color: var(--Bleu);
@@ -204,9 +202,16 @@ select{ /* identifiants */
   background-color: rgba(237, 232, 232, 0.83);
   height: 8vh;
   width: 100vw;
-  position: fixed ;
+  position: fixed;
   bottom: 0;
 }
+
+#badpage button {
+  border: none; 
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 .icon{
   height: 46px;
@@ -214,4 +219,23 @@ select{ /* identifiants */
 }
 .icon:hover{
   filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
+}
+.loupe button{
+  height: 100%;
+  width: 100%;
+}
+
+.loupe img{
+  width: 29px;
+  height: auto;
+}
+
+#recherche{
+  border-radius: 80.5px;
+  background-color: #E3E3E3 ;
+  color: white;
+}
+
+#recherche::placeholder{
+  color: white;
 }

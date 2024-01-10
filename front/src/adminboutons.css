@@ -1,0 +1,36 @@
+.mailList {
+    height: 12rem;
+    width: 20rem;
+    background-color: #E3E3E3;
+    margin: 10px 0;
+    border-radius: 50px;
+}
+
+.annuler{
+    background-color: red;
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem ;
+    border-style: none;
+    width: 120px;
+    cursor: pointer;
+    
+}
+
+.envoyer{
+    background-color: #025892;
+    padding: 1rem;
+    color: white;
+    border-radius: 1rem ;
+    border-style: none;
+    width: 120px;
+    cursor: pointer;
+
+}
+
+.boutonsModal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
