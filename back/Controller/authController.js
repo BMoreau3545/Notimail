@@ -33,6 +33,14 @@ async function login(req, res) {
     }
 }
 
+async function logout (req, res) {
+        // Suppression du cookie de session
+        res.clearCookie('token');
+
+        // Réponse indiquant la déconnexion réussie
+        res.json({ message: 'Déconnexion réussie.' });
+}
+
 // Exportation de la fonction de connexion pour qu'elle puisse être utilisée ailleurs
 module.exports = {
     login
