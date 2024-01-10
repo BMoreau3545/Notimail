@@ -3,7 +3,6 @@ p, h4 {
   margin: 0
 }
 
-
 .card {
   background-color: rgb(240, 240, 240);
   padding: 1vh;
@@ -15,6 +14,14 @@ p, h4 {
   border-radius: 5rem;
   justify-content: space-around;
   align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin: 50px;
 }
 
 .coordonees {
@@ -67,7 +74,7 @@ h4, p {
   min-width: 460px;
   border-top-right-radius: 4rem;
   border-top-left-radius: 4rem;
-  height: 26vh;
+  height: 28vh;
   border-bottom-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
 }
