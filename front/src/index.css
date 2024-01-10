@@ -220,3 +220,22 @@ select{ /* identifiants */
 .icon:hover{
   filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
 }
+.loupe button{
+  height: 100%;
+  width: 100%;
+}
+
+.loupe img{
+  width: 29px;
+  height: auto;
+}
+
+#recherche{
+  border-radius: 80.5px;
+  background-color: #E3E3E3 ;
+  color: white;
+}
+
+#recherche::placeholder{
+  color: white;
+}
