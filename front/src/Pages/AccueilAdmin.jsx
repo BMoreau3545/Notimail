@@ -15,6 +15,8 @@ export const AccueilAdmin = () => {
       .catch((err) => console.error(err));
   }, []);
 
+
+
   return (
     <>
     <NavBar/>
@@ -36,6 +38,7 @@ export const AccueilAdmin = () => {
       ) : (
         <li>Loading...</li>
       )}
+
       < AdminBoutons />
     </>
   );

@@ -18,7 +18,7 @@ function App() {
         <Route path="/admin" element={<AccueilAdmin />} /> 
         <Route path="/admindetails" element={<FormDetails />} />
         <Route path="/entreprise" element={<AccueilEntreprise />} /> 
-        <Route path='*' element={<Error />}></Route>
+        <Route path='*' element={<Error/>}></Route>
         {/* <Route path="/Entreprise/:id" element={<EntrepriseID />} /> */}
       </Routes>
     </BrowserRouter>

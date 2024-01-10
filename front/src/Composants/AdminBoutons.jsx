@@ -1,19 +1,36 @@
-import { NavLink } from 'react-router-dom';
-import Envoie from '../assets/envoie.png';
-import Plus from '../assets/plus.png';
-import "../index.css"
+import MailSelect from '../assets/envoie.png';
+import Newuser from '../assets/plus.png';
+import "../adminboutons.css"
 import React, { useState } from 'react';
+import Modal from 'react-responsive-modal';
 
 export const AdminBoutons = () => {
-  const [badpage, setBadpage] = useState('');
- 
+  const [open, setOpen] = useState(false);
+
+  // Gestion de la modal
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
   return (
     <>
       <div id='badpage'>
-        <a href="">  <img src={Plus} class="icon" alt="" /> </a>
-        <a href=""> <img src={Envoie} class="icon" alt="" /> </a>
+        <button><img src={Newuser} className="icon" alt="bouton pour ajouter un utilisateur" /></button>  
+        <button><img src={MailSelect} onClick={onOpenModal} className="icon" alt="bouton pour envoyer un mail au entreprise cocher" /></button>  
       </div>
-    </>
 
+      <Modal open={open} onClose={onCloseModal} center>
+        <p>
+          Vous vous apprêtez à notifier :
+        </p>
+        <div className='mailList'>
+          
+        </div>
+        <div className='boutonsModal'>
+          <button className='annuler'>Annuler</button>
+          <button className='envoyer'>Envoyer</button>
+        </div>
+
+      </Modal>
+    </>
   );
 };
