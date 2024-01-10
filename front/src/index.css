@@ -167,6 +167,8 @@ select{ /* identifiants */
   background-color: #E3E3E3;
 }
 
+
+
 .AreaPassword {
   display: flex;
   flex-direction: row;
@@ -179,6 +181,7 @@ select{ /* identifiants */
   background-color:rgb(225, 225, 225);
   padding: 9px;
   border-style: none;
+  border-left: solid 1px rgb(159, 158, 158);
   border-top-right-radius: 3rem;
   border-bottom-right-radius:3rem;
   cursor: pointer;
@@ -238,4 +241,13 @@ select{ /* identifiants */
 
 #recherche::placeholder{
   color: white;
+}
+
+#dropdown { /* enleve la fleche par defaut du input select*/
+  appearance: none;
+}
+
+#flechelog{ /* custom du svg */
+  background-color: #008787;
+  height: 60px;
 }

@@ -19,7 +19,7 @@ export const AccueilAdmin = () => {
     <>
       <NavBar/>
       <CardEntreprise/>
-      < AdminBoutons />
+      <AdminBoutons/>
     </>
   );
 };

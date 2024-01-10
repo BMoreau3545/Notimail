@@ -1,9 +1,7 @@
-import { NavLink } from 'react-router-dom';
 import CadenaFermer from '../assets/fermer.png';
 import CadenaOuvert from '../assets/ouvert.png';
 import "../index.css"
 import React, { useState } from 'react';
-import Mailto from '../assets/LogoNotimail.png';
 
 export const PasswordInput = () => {
   const [password, setPassword] = useState('');
@@ -32,7 +30,7 @@ export const PasswordInput = () => {
           value={password}
           onChange={handlePasswordChange}
         />
-        <img  src={isMouseOver ? CadenaOuvert : CadenaFermer} id="login" alt="Logo du site" onMouseEnter={handleMouseEnter}        onMouseLeave={handleMouseLeave}/>
+        <img src={isMouseOver ? CadenaOuvert : CadenaFermer} id="login" alt="Logo du site" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}/>
       </div>
     </>
 
