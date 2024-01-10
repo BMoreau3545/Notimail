@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 
 // Importation du module 'dotenv' pour charger les variables d'environnement depuis un fichier .env
 require('dotenv').config({
-    path: '../.env',  // Chemin spécifié pour le fichier .env
+    path: './.env',  // Chemin spécifié pour le fichier .env
 });
 
 // Importation de la configuration Sequelize depuis le fichier config.js
