@@ -6,7 +6,7 @@ p, h4 {
 .card {
   background-color: rgb(240, 240, 240);
   padding: 1vh;
-  width: 40vw;
+  width: 60vw;
   min-width: 440px;
   height: 12vh;
   display: flex;
@@ -21,7 +21,7 @@ p, h4 {
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  margin: 50px;
+  margin: 80px;
 }
 
 .coordonees {
@@ -70,7 +70,7 @@ h4, p {
 
 .openDropdown {
   background-color: #e7e6e6;
-  width: 41vw;
+  width: 60.9vw;
   min-width: 460px;
   border-top-right-radius: 4rem;
   border-top-left-radius: 4rem;

@@ -23,10 +23,12 @@ export const AdminBoutons = () => {
           Vous vous apprêtez à notifier :
         </p>
         <div className='mailList'>
-          
+          <ul>
+            <li></li>
+          </ul>
         </div>
         <div className='boutonsModal'>
-          <button className='annuler'>Annuler</button>
+          <button onClick={onCloseModal} className='annuler'>Annuler</button>
           <button className='envoyer'>Envoyer</button>
         </div>
 
