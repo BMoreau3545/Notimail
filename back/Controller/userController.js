@@ -162,6 +162,34 @@ const has_mail = async (req, res) => {
   }
 };
 
+const recupCourrier = async (req, res) => {
+  try {
+    const { firm_name } = req.params;
+
+    // Recherche de l'utilisateur dans la base de données
+    const user = await User.findOne({ where: { firm_name } });
+    if (!user) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+    }
+
+    // Vérification si l'utilisateur a déjà validé la récupération du courrier
+    if (user.has_mail) {
+      // Mise à jour des champs dans la base de données
+      await user.update({
+        has_mail: false, // has_mail devient false après la validation
+        last_picked_up: new Date(), // Enregistrement de la date et de l'heure de la validation
+      });
+
+      res.json({ message: 'Récupération du courrier validée avec succès.' });
+    } else {
+      res.status(400).json({ message: 'Le courrier a déjà été récupéré ou n\'existe pas.' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur lors de la validation de la récupération du courrier.' });
+  }
+};
+
 // Exportation de la fonction
 module.exports = {
   createUser,
@@ -171,4 +199,5 @@ module.exports = {
   getUserByFirmName,
   getAllUsers,
   has_mail, // Ajout de la fonction has_mail à l'exportation
+  recupCourrier,
 };
