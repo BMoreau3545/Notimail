@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { CardEntreprise } from "../Composants/CardEntreprise";
+import { NavBar } from "../Composants/Navbar";
+import { AdminBoutons } from "../Composants/AdminBoutons";
 
 export const AccueilAdmin = () => {
   const [jsonData, setJsonData] = useState([]);
@@ -15,6 +17,7 @@ export const AccueilAdmin = () => {
 
   return (
     <>
+    <NavBar/>
       {jsonData && jsonData.users ? (
         jsonData.users.map((user) => (
           <div key={user.email}>
@@ -33,6 +36,7 @@ export const AccueilAdmin = () => {
       ) : (
         <li>Loading...</li>
       )}
+      < AdminBoutons />
     </>
   );
 };
