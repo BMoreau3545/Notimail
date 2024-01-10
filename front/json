@@ -123,13 +123,13 @@
     },   
     {
       "firm_name": "EntrepriseAdmin",
-      "first_name": "Contact10",
-      "last_name": "Nom10",
-      "email": "contact10@example.com",
-      "phone_number": "8889990000",
-      "password": "motDePasse10",
-      "last_received_mail": "2023-12-25T22:15:00Z",
-      "last_picked_up": "2023-12-25T22:15:00Z",
+      "first_name": "Admin",
+      "last_name": "NomAdmin",
+      "email": "Admin@example.com",
+      "phone_number": "8889990011",
+      "password": "motDePasseAdmin",
+      "last_received_mail": "2023-12-25T22:15:00V",
+      "last_picked_up": "2023-12-25T22:15:00V",
       "has_mail": false,
       "is_admin": true
     }

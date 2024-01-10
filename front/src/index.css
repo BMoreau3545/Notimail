@@ -193,11 +193,19 @@ select{ /* identifiants */
 }  
 */
 
+
+
+/* Boutons administrateur , mail et ajouter une entreprise */
 #badpage {
   display: flex;
   flex-direction: row;
+  align-items: center ;
   justify-content: space-around;
-  padding-inline: 334px;
+  background-color: rgba(237, 232, 232, 0.83);
+  height: 8vh;
+  width: 100vw;
+  position: fixed ;
+  bottom: 0;
 }
 
 .icon{

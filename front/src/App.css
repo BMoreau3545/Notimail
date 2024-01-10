@@ -6,3 +6,11 @@
 --Gris: #E3E3E3;
 --Rouge: #010101;
 }
+
+
+.erreur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40vw;
+}
