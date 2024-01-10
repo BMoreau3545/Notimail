@@ -1,0 +1,48 @@
+###
+# Créer un nouvel utilisateur
+POST http://localhost:3000/users/create_user
+Content-Type: application/json
+
+{
+  "firm_name": "Entreprise4",
+  "first_name": "Contact4",
+  "last_name": "Nom4",
+  "email": "contact4@example.com",
+  "phone_number": "7778889999",
+  "password": "motDePasse4"
+}
+
+###
+#Mettre à jour le mot de passe d'un utilisateur existant
+PUT http://localhost:3000/users/hashPassword
+Content-Type: application/json
+
+{
+  "firm_name": "Entreprise4",
+  "password": "newsecurepassword"
+}
+
+###
+# Mettre à jour un utilisateur existant
+PUT http://localhost:3000/users/update_user
+Content-Type: application/json
+
+{
+  "firm_name": "Entreprise4",
+  "first_name": "Contact5",
+  "last_name": "Nom5",
+  "email": "contact5@example.com",
+  "phone_number": "1112223333"
+}
+
+###
+# Supprimer un utilisateur
+DELETE http://localhost:3000/users/delete_user/Entreprise2
+
+###
+# Obtenir un utilisateur par son nom d'entreprise
+GET http://localhost:3000/users/get_user/Entreprise1
+
+###
+# Obtenir la liste de tous les utilisateurs
+GET http://localhost:3000/users/get_all_users
