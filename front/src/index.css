@@ -206,6 +206,13 @@ select{ /* identifiants */
   bottom: 0;
 }
 
+#badpage button {
+  border: none; 
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 .icon{
   height: 46px;
   width: auto;

@@ -13,7 +13,8 @@
     border-radius: 1rem ;
     border-style: none;
     width: 120px;
-
+    cursor: pointer;
+    
 }
 
 .envoyer{
@@ -23,6 +24,8 @@
     border-radius: 1rem ;
     border-style: none;
     width: 120px;
+    cursor: pointer;
+
 }
 
 .boutonsModal {
