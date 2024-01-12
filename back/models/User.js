@@ -1,4 +1,5 @@
 // Importation des modules Sequelize et DataTypes à partir du package 'sequelize'
+
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../sequelize');
 
@@ -46,8 +47,6 @@ const User = sequelize.define('User', {
   }
 });
 
-// Synchronisation du modèle avec la base de données
-sequelize.sync();
 
 // Exportation du modèle User pour qu'il puisse être utilisé dans d'autres fichiers
 module.exports = User;

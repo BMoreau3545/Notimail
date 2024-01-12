@@ -16,6 +16,7 @@ router.delete('/delete_user/:firm_name', UserController.deleteUser);  // Route p
 router.get('/get_user/:firm_name', UserController.getUserByFirmName);  // Route pour récupérer un utilisateur par le nom de la société
 router.get('/get_all_users', UserController.getAllUsers);   // Route pour récupérer tous les utilisateurs
 router.post('/notify', UserController.has_mail);
+router.put('/recup_mail', UserController.recupCourrier);
 
 // Exportation du routeur pour qu'il puisse être utilisé dans d'autres parties de l'application
 module.exports = router;

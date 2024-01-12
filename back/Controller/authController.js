@@ -20,7 +20,7 @@ async function login(req, res) {
             const token = jwt.sign(
                 { firm_name: user.firm_name, email: user.email },
                 process.env.JWT_SECRET,  // Utilisation d'une clé secrète provenant de variables d'environnement
-                { expiresIn: '1h' }  // Spécification de la durée de validité du token (1 heure dans cet exemple)
+                { expiresIn: JWT_EXPIRES_IN }  // Spécification de la durée de validité du token (1 heure dans cet exemple)
             );
             res.json({ token });  // Envoyer le token comme réponse JSON
         } else {
