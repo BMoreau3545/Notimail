@@ -132,6 +132,13 @@ const has_mail = async (req, res) => {
       return res.status(404).json({ message: 'Aucun utilisateur trouvé.' });
     }
 
+    // Filtrer les utilisateurs dont has_mail est false
+    const usersToSendMail = users.filter(user => !user.has_mail);
+
+    if (usersToSendMail.length === 0) {
+      return res.status(200).json({ message: 'Aucun utilisateur à notifier.' });
+    }
+
     // Simulation de l'envoi de courrier électronique pour chaque utilisateur
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -144,16 +151,17 @@ const has_mail = async (req, res) => {
     const mailPromises = users.map(user => {
       const mailOptions = {
         from: 'benjamin.moreau@institutsolacroup.com',
-        to: user.email,
+        to: usersToSendMail.map(user => user.email).join(','), // Joindre les adresses e-mail avec une virgule
         subject: 'Nouveau courrier reçu',
         text: 'Vous avez du courrier. Consultez votre boîte aux lettres.',
       };
 
       return transporter.sendMail(mailOptions);
     });
-
-    // Attendez que toutes les promesses d'envoi de courrier soient résolues
-    await Promise.all(mailPromises);
+    // Mettez à jour la propriété has_mail à true et last_received_mail à la date actuelle pour les utilisateurs notifiés
+    const currentDate = new Date();
+    // Mettez à jour la propriété has_mail à true pour les utilisateurs notifiés
+    await Promise.all(usersToSendMail.map(user => user.update({ has_mail: true, last_received_mail: currentDate })));
 
     res.json({ message: 'Utilisateurs notifiés avec succès.' });
   } catch (error) {
