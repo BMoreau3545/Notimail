@@ -210,6 +210,21 @@ select{ /* identifiants */
   cursor: pointer;
 }
 
+#dropdown { /* enleve la fleche par defaut du input select*/
+  appearance: none;
+}
+
+#flechelog{ /* custom du svg */
+  background-color: rgb(225, 225, 225);
+  height: 69px;
+  border-radius: 5rem;
+  border-bottom-left-radius:0 ;
+  border-top-left-radius: 0;
+  border-left: solid 1px rgb(159, 158, 158);
+  padding: 5px;
+  margin-top: -26px;
+
+}
 .icon{
   height: 46px;
   width: auto;
@@ -267,20 +282,4 @@ button:hover{
 
 #recherche::placeholder{
   color: white;
-}
-
-#dropdown { /* enleve la fleche par defaut du input select*/
-  appearance: none;
-}
-
-#flechelog{ /* custom du svg */
-  background-color: rgb(225, 225, 225);
-  height: 69px;
-  border-radius: 5rem;
-  border-bottom-left-radius:0 ;
-  border-top-left-radius: 0;
-  border-left: solid 1px rgb(159, 158, 158);
-  padding: 5px;
-  margin-top: -26px;
-
 }
