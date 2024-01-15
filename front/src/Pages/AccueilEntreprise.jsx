@@ -1,6 +1,6 @@
 import NewMail from '../assets/mail_rouge.png';
 import '../index.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { IoMailOpen ,  IoCloseCircle } from "react-icons/io5";
@@ -16,11 +16,9 @@ export const AccueilEntreprise = () => {
     const onCloseModal = () => setOpen(false);
 
 //mail recu ? , pour le moment Forcé a oui
-    const handleConfirmation = () => {
-        setConfirmReception(false);
-        // Autres actions à effectuer lors de la confirmation (si nécessaire)
-    };
-
+const handleConfirmation = () => {
+    setConfirmReception(false);
+}
     return (
         <>
              { <NavBar />}

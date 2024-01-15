@@ -14,10 +14,10 @@ export const PasswordInput = () => {
   const handleMouseLeave = () => {
     setIsMouseOver(false);
   };
+  
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-
 
   return (
     <>

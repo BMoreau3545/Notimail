@@ -18,8 +18,8 @@ export const AccueilAdmin = () => {
   return (
     <>
       <NavBar/>
-      <CardEntreprise/>
-      <AdminBoutons/>
+      <CardEntreprise />
+      <AdminBoutons />
     </>
   );
 };

@@ -158,16 +158,16 @@ justify-content: space-between;
 
 select{ /* identifiants */
   font-size: 24px;
-  height: 74px;
+  height: 79px;
   border-style: none;
-  min-width: 420px;
+  min-width: 330px;
   border-radius: 80.5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   padding-left: 50px;
   margin-bottom: 25px;
   background-color: #E3E3E3;
 }
-
-
 
 .AreaPassword {
   display: flex;
@@ -187,13 +187,11 @@ select{ /* identifiants */
   cursor: pointer;
 }
 
-
 /*
 #login:active{
   filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
 }  
 */
-
 
 
 /* Boutons administrateur , mail et ajouter une entreprise */
@@ -214,7 +212,6 @@ select{ /* identifiants */
   text-decoration: none;
   cursor: pointer;
 }
-
 
 .icon{
   height: 46px;
@@ -248,6 +245,13 @@ select{ /* identifiants */
 }
 
 #flechelog{ /* custom du svg */
-  background-color: #008787;
-  height: 60px;
+  background-color: rgb(225, 225, 225);
+  height: 69px;
+  border-radius: 5rem;
+  border-bottom-left-radius:0 ;
+  border-top-left-radius: 0;
+  border-left: solid 1px rgb(159, 158, 158);
+  padding: 5px;
+  margin-top: -26px;
+
 }

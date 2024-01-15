@@ -5,65 +5,62 @@ import '../index.css'
 export const FormDetails = () => {
   const handleSubmit = (event) => {
     //retrait du comportement par defaut du bouton submit qui est de recharger la page
-    event.preventDefault(); 
+    event.preventDefault();
   }
 
   return (
     <>
-    <section className='SectionForm'>
-      <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
-      <div className='row align'>
-      <button className='backBtn'><FaArrowLeftLong style={{ fontSize: '2rem',color: '#FFFF'}} /></button> 
-      <h2 className='NameEntr'>Entreprise</h2>    
-      </div>
+      <section className='SectionForm'>
+        <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
+        <div className='row align'>
+          <button className='backBtn'><FaArrowLeftLong style={{ fontSize: '2rem', color: '#FFFF' }} /></button>
+          <h2 className='NameEntr'>Entreprise</h2>
+        </div>
+        
+        <form className='Formulaire' onSubmit={handleSubmit}>
 
-
-      <form className='Formulaire' onSubmit={handleSubmit}>
-  
-        <div className='row spaceBeetw'>
+          <div className='row spaceBeetw'>
             <label htmlFor="entreprise">Entreprise:</label>
-            <input className='inputForm' type="text" id="entreprise" name="entreprise" />
-        </div>
-
-
-        <div className='row spaceBeetw'>
-          <label htmlFor="contactNom">Contact:</label>
-            <div className='column'>
-              <input className='inputForm' type="text" id="contactNom" name="contactNom" placeholder='Nom' />
-              <input className='inputForm' type="text" id="contactPrenom" name="contactPrenom" placeholder='Prénom'/>
-            </div>
-        </div>
-      
-        <div className='row spaceBeetw'>
-          <label htmlFor="tel">Téléphone:</label>
-          <input className='inputForm' type="tel" id="tel" name="tel" />
-        </div>
-        
-        <div className='row spaceBeetw'>
-          <label htmlFor="email">Email:</label>
-          <input className='inputForm' type="email" id="email" name="email" />
-        </div>
-
-        <div className='row spaceBeetw'>
-          <label htmlFor="identifiant">Identifiant:</label>
-          <input className='inputForm' type="text" id="identifiant" name="identifiant" />
-        </div>
-
-        <div className='row'>
-          <label htmlFor="isAdmin">Admin:</label>
-          <input className='inputForm' type="checkbox" id="isAdmin" name="isAdmin" />
-        </div>
-        
-        <div className='row'>
-          <div className='row'>
-            <button type="button" className='deleteBtn'>Supprimer</button>
-            <button type="submit" className='submitForm'>Terminer</button>
+            <input className='inputForm' type="text" id="entreprise" name="firm_name" />
           </div>
-        </div>
-      </form>
-    </section>
+
+          <div className='row spaceBeetw'>
+            <label htmlFor="contactNom">Contact:</label>
+            <div className='column'>
+              <input className='inputForm' type="text" id="contactNom" name="first_name" placeholder='Nom' />
+              <input className='inputForm' type="text" id="contactPrenom" name="last_name" placeholder='Prénom' />
+            </div>
+          </div>
+
+          <div className='row spaceBeetw'>
+            <label htmlFor="tel">Téléphone:</label>
+            <input className='inputForm' type="tel" id="tel" name="phone_number" />
+          </div>
+
+          <div className='row spaceBeetw'>
+            <label htmlFor="email">Email:</label>
+            <input className='inputForm' type="email" id="email" name="email" />
+          </div>
+
+          <div className='row spaceBeetw'>
+            <label htmlFor="identifiant">Identifiant:</label>
+            <input className='inputForm' type="text" id="identifiant" name="password" />
+          </div>
+
+          <div className='row'>
+            <label htmlFor="isAdmin">Admin:</label>
+            <input className='inputForm' type="checkbox" id="isAdmin" name="isAdmin" />
+          </div>
+
+          <div className='row'>
+            <div className='row'>
+              <button type="button" className='deleteBtn'>Supprimer</button>
+              <button type="submit" className='submitForm'>Terminer</button>
+            </div>
+          </div>
+        </form>
+      </section>
 
     </>
   );
 };
-  

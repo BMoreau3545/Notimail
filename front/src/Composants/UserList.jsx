@@ -7,15 +7,17 @@ import { PasswordInput } from './PasswordInput'
 
 export const UserList = () => {
   const [UserList, setUserList] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleOptionChange = (event) => {
     setUserList(event.target.value);
   };
+
   return (
     <>
       <div className='center column'>
         <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
-        <div className="custom-select">
+        <div className="center">
           <label className='flecheUser' htmlFor="dropdown"> </label>
           <select id="dropdown" value={UserList} onChange={handleOptionChange}>
             <option value=""></option>
@@ -61,8 +63,8 @@ export const UserList = () => {
             <option value="entreprise40">Entreprise 40</option>
             <option value="Admin">Admin</option>
           </select>
+          <img src={FlecheLog} id='flechelog' alt="fleche select entreprise"/>
         </div>
-        {/* Ajout du composant MDP a la page home  */}
         {<PasswordInput />}
       </div>
     </>
