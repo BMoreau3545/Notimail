@@ -2,7 +2,7 @@
 module.exports = {
     development: {
         // Dialecte de la base de données (par exemple, 'mysql', 'postgres', 'sqlite', etc.)
-        dialect: 'postgres',
+        dialect: process.env.DB_DIALECT,
 
         // Nom d'utilisateur pour se connecter à la base de données
         username: process.env.DB_USER,
