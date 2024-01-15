@@ -5,7 +5,7 @@ const express = require('express');
 const userRoutes = require('./routes/userRoutes');
 
 // Importation de la connexion Sequelize depuis index.js
-const sequelize = require('./sequelize');
+const db = require('./models/index');
 
 // Création d'une instance de l'application Express
 const app = express();
@@ -20,14 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Vérification de la connexion à la base de données et synchronisation du modèle
-sequelize.authenticate()
+db.sequelize.sync({force: true})
   .then(() => {
     console.log('Connexion à la base de données établie avec succès.');
-    // Synchronisation du modèle avec la base de données (crée les tables si elles n'existent pas)
-    return sequelize.sync();
+    return db.sequelize.authenticate();
   })
   .then(() => {
-    console.log('Tables synchronisées avec succès.');
+    console.log('Authentification à la base de données réussie.');
   })
   .catch(err => {
     console.error('Erreur de connexion à la base de données :', err);
