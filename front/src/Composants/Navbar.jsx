@@ -28,7 +28,7 @@ export const NavBar = ({ loggedInUser, onLogout }) => {
             <div className='centerIcons'>
               <IoCloseCircle className='button-react' style={{ fontSize: '60px', color: '#FF3535' }} onClick={onCloseModal} />
               <NavLink to="/">
-                <FaCheckCircle className='button-react' style={{ fontSize: '50px', color: '#025892' }} onClick={onLogout} />
+                <FaCheckCircle className='button-react' style={{ fontSize: '50px', color: '#025892' }}/>
               </NavLink>
             </div>
           </Modal>
