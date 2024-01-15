@@ -18,7 +18,7 @@ PUT http://localhost:3000/users/hashPassword
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise4",
+  "firm_name": "Entreprise5",
   "password": "newsecurepassword"
 }
 
@@ -28,7 +28,7 @@ PUT http://localhost:3000/users/update_user
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise4",
+  "firm_name": "Entreprise5",
   "first_name": "Contact5",
   "last_name": "Nom5",
   "email": "contact5@example.com",
@@ -41,7 +41,7 @@ DELETE http://localhost:3000/users/delete_user/Entreprise2
 
 ###
 # Obtenir un utilisateur par son nom d'entreprise
-GET http://localhost:3000/users/get_user/Entreprise1
+GET http://localhost:3000/users/get_user/Entreprise5
 
 ###
 # Obtenir la liste de tous les utilisateurs
