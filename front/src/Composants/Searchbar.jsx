@@ -11,12 +11,15 @@ export const SearchBar = () => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    console.log('I SEARCH YOU !', searchQuery);
+    console.log('I SEARCH YOU : ', searchQuery);
   };
 
   return (
-    <form onSubmit={handleSearchSubmit}>
-       <button class='loupe' type="submit"><img src={Loupe} class='loupe'></img></button>
+    <>
+   
+    <form id="search" onSubmit={handleSearchSubmit}>
+    <div id="searchbar">
+       <button id='loupe_button' type="submit"><img src={Loupe} id="loupe_img"></img></button>
       <input
         type="text"
         value={searchQuery}
@@ -24,6 +27,9 @@ export const SearchBar = () => {
         placeholder="Rechercher"
         id='recherche'
       />
+          </div>
     </form>
+
+    </>
   );
 };
