@@ -220,20 +220,43 @@ select{ /* identifiants */
 .icon:hover{
   filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
 }
-.loupe button{
-  height: 100%;
-  width: 100%;
+#loupe_button{
+
+  background-color: #E3E3E3;
+  border-top-left-radius: 80.5px;
+  border-bottom-left-radius: 80.5px;
+  border: none;
+}
+#loupe_button:hover{
+  background-color: #e7ecf1;
+}
+#loupe_button:active{
+  background-color: #deebf8;
 }
 
-.loupe img{
+
+#loupe_img{
+  display: flex;
+  align-items: center;
   width: 29px;
-  height: auto;
+  height: 29px;
+}
+
+#searchbar{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+#search{
+  background-color: white;
 }
 
 #recherche{
-  border-radius: 80.5px;
-  background-color: #E3E3E3 ;
+  border-top-right-radius: 80.5px;
+  border-bottom-right-radius: 80.5px;
+    background-color: #E3E3E3 ;
   color: white;
+  border: none;
 }
 
 #recherche::placeholder{
