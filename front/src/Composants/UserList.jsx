@@ -29,7 +29,7 @@ export const UserList = () => {
             onChange={handleOptionChange}
             size={isDropdownOpen ? 5 : 1} // Changer la taille en fonction de l'état du menu déroulant
           >
-            <option value=""></option>
+           <option value=""></option>
             <option value="entreprise01">Entreprise 01</option>
             <option value="entreprise02">Entreprise 02</option>
             <option value="entreprise03">Entreprise 03</option>
