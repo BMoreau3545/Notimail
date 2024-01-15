@@ -4,13 +4,19 @@ import "../adminboutons.css"
 import React, { useState } from 'react';
 import Modal from 'react-responsive-modal';
 
-export const AdminBoutons = () => {
+export const AdminBoutons = ({ jsonData, newANotif }) => {
   const [open, setOpen] = useState(false);
 
   // Gestion de la modal
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
+  // Filtrer les entreprises notifiées (true dans newANotif)
+  const notifiedFirms = jsonData && jsonData.users
+    ? jsonData.users.filter((user, index) => newANotif[index])
+    : [];
+
+    console.log("notifiedFirms:", notifiedFirms);
   return (
     <>
       <div id='badpage'>
@@ -24,14 +30,15 @@ export const AdminBoutons = () => {
         </p>
         <div className='mailList'>
           <ul>
-            <li></li>
+            {notifiedFirms.map((user) => (
+              <li key={user.firm_name}>{user.firm_name}</li>
+            ))}
           </ul>
         </div>
         <div className='boutonsModal'>
           <button onClick={onCloseModal} className='annuler'>Annuler</button>
           <button className='envoyer'>Envoyer</button>
         </div>
-
       </Modal>
     </>
   );
