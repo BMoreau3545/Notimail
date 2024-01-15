@@ -39,15 +39,19 @@ export const LoginPage = ({ jsonData }) => {
       const user = jsonData.users.find(
         (user) => user.firm_name === selectedUser && user.password === password
       );
-
+  
       if (user) {
         // Connexion réussie
         console.log('Connexion réussie');
-
+  
+        // Stockez le nom de l'entreprise dans un état local
+        const loggedInFirmName = user.firm_name;
+  
         // Redirigez l'utilisateur vers la page appropriée après la connexion réussie
         navigate(user.is_admin ? '/admin' : '/entreprise');
+  
 
-        // Vous pouvez également stocker l'option sélectionnée dans un contexte global ou dans un état local pour le récupérer dans d'autres composants si nécessaire
+
       } else {
         // Connexion échouée, affichez un message d'erreur ou effectuez d'autres actions
         console.log('Nom d\'entreprise ou mot de passe incorrect');
