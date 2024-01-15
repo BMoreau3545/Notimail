@@ -16,6 +16,8 @@ const port = 3000;
 // Utilisation de middleware pour permettre à Express de traiter les requêtes au format JSON
 app.use(express.json());
 
+app.use(cors());
+
 // Utilisation de middleware pour permettre à Express de traiter les requêtes au format URL-encoded
 app.use(express.urlencoded({ extended: true }));
 
