@@ -187,11 +187,8 @@ select{ /* identifiants */
   cursor: pointer;
 }
 
-/*
-#login:active{
-  filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
-}  
-*/
+
+
 
 
 /* Boutons administrateur , mail et ajouter une entreprise */
@@ -220,6 +217,15 @@ select{ /* identifiants */
 .icon:hover{
   filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
 }
+button:hover{
+  filter: hue-rotate(0deg) saturate(90%) brightness(150%);
+
+}
+.button-react:hover{
+  filter: hue-rotate(0deg) saturate(90%) brightness(150%);
+
+}
+
 #loupe_button{
 
   background-color: #E3E3E3;
