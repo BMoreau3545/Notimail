@@ -7,7 +7,7 @@ import { IoMailOpen ,  IoCloseCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { NavBar } from '../Composants/Navbar';
 
-export const AccueilEntreprise = () => {
+export const AccueilEntreprise = ({ jsonData }) => {
     const [open, setOpen] = useState(false);
     const [confirmReception, setConfirmReception] = useState(true);
 

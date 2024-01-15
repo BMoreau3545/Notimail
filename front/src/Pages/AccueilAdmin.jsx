@@ -3,17 +3,8 @@ import { CardEntreprise } from "../Composants/CardEntreprise";
 import { NavBar } from "../Composants/Navbar";
 import { AdminBoutons } from "../Composants/AdminBoutons";
 
-export const AccueilAdmin = () => {
-  const [jsonData, setJsonData] = useState([]);
+export const AccueilAdmin = ({ jsonData }) => {
 
-  useEffect(() => {
-    fetch('../json')
-      .then((res) => res.json())
-      .then((data) => {
-        setJsonData(data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
 
   return (
     <>
