@@ -10,13 +10,11 @@ export const LoginPage = ({ jsonData }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [password, setPassword] = useState('');
   const [isMouseOver, setIsMouseOver] = useState(false);
-
-  const [loggedInUser, setLoggedInUser] = useState(null);
   const navigate = useNavigate(); // Utilisez useNavigate pour effectuer des redirections
 
- const handleOptionChange = (event) => {
+  const handleOptionChange = (event) => {
     const selectedValue = event.target.value;
-    setSelectedFirm(selectedValue);
+    setSelectedUser(selectedValue);
     console.log(`Option sélectionnée : ${selectedValue}`);
   };
 
