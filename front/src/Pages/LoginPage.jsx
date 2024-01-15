@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Mailto from '../assets/LogoNotimail.png';
 import FlecheLog from '../assets/flecheLogin.svg';
-import { PasswordInput } from './PasswordInput';
+import CadenaFermer from '../assets/fermer.png';
+import CadenaOuvert from '../assets/ouvert.png';
 
-export const UserList = () => {
+export const LoginPage = () => {
   const [selectedUser, setSelectedUser] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -15,6 +16,21 @@ export const UserList = () => {
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const [password, setPassword] = useState('');
+  const [isMouseOver, setIsMouseOver] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsMouseOver(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsMouseOver(false);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
 
   return (
@@ -29,7 +45,7 @@ export const UserList = () => {
             onChange={handleOptionChange}
             size={isDropdownOpen ? 5 : 1} // Changer la taille en fonction de l'état du menu déroulant
           >
-           <option value=""></option>
+            <option value=""></option>
             <option value="entreprise01">Entreprise 01</option>
             <option value="entreprise02">Entreprise 02</option>
             <option value="entreprise03">Entreprise 03</option>
@@ -80,7 +96,18 @@ export const UserList = () => {
             style={{ cursor: 'pointer' }}
           />
         </div>
-        {<PasswordInput />}
+
+        <div className='AreaPassword'>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder='Mot de passe'
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <img src={isMouseOver ? CadenaOuvert : CadenaFermer} id="login" alt="Logo du site" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+        </div>
       </div>
     </>
   );
