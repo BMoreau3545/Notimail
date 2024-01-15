@@ -3,6 +3,7 @@ import Newuser from '../assets/plus.png';
 import "../adminboutons.css"
 import React, { useState } from 'react';
 import Modal from 'react-responsive-modal';
+import { NavLink } from 'react-router-dom';
 
 export const AdminBoutons = ({ jsonData, newANotif }) => {
   const [open, setOpen] = useState(false);
@@ -16,12 +17,14 @@ export const AdminBoutons = ({ jsonData, newANotif }) => {
     ? jsonData.users.filter((user, index) => newANotif[index])
     : [];
 
-    console.log("notifiedFirms:", notifiedFirms);
+  console.log("notifiedFirms:", notifiedFirms);
   return (
     <>
       <div id='badpage'>
-        <button><img src={Newuser} className="icon" alt="bouton pour ajouter un utilisateur" /></button>  
-        <button><img src={MailSelect} onClick={onOpenModal} className="icon" alt="bouton pour envoyer un mail au entreprise cocher" /></button>  
+        <NavLink to="/adminDetails">
+          <button><img src={Newuser} className="icon" alt="bouton pour ajouter un utilisateur" /></button>
+        </NavLink>
+        <button><img src={MailSelect} onClick={onOpenModal} className="icon" alt="bouton pour envoyer un mail au entreprise cocher" /></button>
       </div>
 
       <Modal open={open} onClose={onCloseModal} center>
