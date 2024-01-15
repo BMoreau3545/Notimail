@@ -14,7 +14,7 @@ export const PasswordInput = () => {
   const handleMouseLeave = () => {
     setIsMouseOver(false);
   };
-  
+
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
@@ -28,8 +28,7 @@ export const PasswordInput = () => {
           name="password"
           placeholder='Mot de passe'
           value={password}
-          onChange={handlePasswordChange}
-        />
+          onChange={handlePasswordChange} />
         <img src={isMouseOver ? CadenaOuvert : CadenaFermer} id="login" alt="Logo du site" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}/>
       </div>
     </>

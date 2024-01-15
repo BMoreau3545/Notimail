@@ -7,7 +7,7 @@ import { PasswordInput } from './PasswordInput'
 
 export const UserList = () => {
   const [UserList, setUserList] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleOptionChange = (event) => {
     setUserList(event.target.value);

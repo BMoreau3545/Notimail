@@ -54,12 +54,10 @@ export const CardEntreprise = () => {
                                     </div>
                                     <div className="column center">
                                         <label className="switch">
-                                        <input
-                                                type="checkbox"
+                                        <input type="checkbox"
                                                 className="checkbox"
                                                 checked={aNotif[index]} // Définir l'état activé en fonction du tableau aNotif
-                                                onChange={() => Notifier(index)}
-                                            />
+                                                onChange={() => Notifier(index)} />
                                             <div className="slider"></div>
                                         </label>
                                         <FaRegEdit style={{ fontSize: '35px', color: '#025892' }} />

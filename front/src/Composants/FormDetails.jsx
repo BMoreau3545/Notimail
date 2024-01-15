@@ -1,6 +1,7 @@
 import Mailto from '../assets/LogoNotimail.png';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import '../index.css'
+import { NavLink } from 'react-router-dom';
 
 export const FormDetails = () => {
   const handleSubmit = (event) => {
@@ -13,7 +14,10 @@ export const FormDetails = () => {
       <section className='SectionForm'>
         <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
         <div className='row align'>
-          <button className='backBtn'><FaArrowLeftLong style={{ fontSize: '2rem', color: '#FFFF' }} /></button>
+        <NavLink to="/admin">
+         <button className='backBtn'><FaArrowLeftLong style={{ fontSize: '2rem', color: '#FFFF' }} /></button>     
+        </NavLink>
+          
           <h2 className='NameEntr'>Entreprise</h2>
         </div>
         
