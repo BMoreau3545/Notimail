@@ -1,9 +1,12 @@
-const User = require('../models/User');
+const db = require('../models/index');
+
+const User = db.User;
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 
 // Fonction pour créer un nouvel utilisateur
 const createUser = async (req, res) => {
+  console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params));
     try {
       const { firm_name, first_name, last_name, email, phone_number, password } = req.body;
   
