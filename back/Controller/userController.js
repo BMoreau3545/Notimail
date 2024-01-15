@@ -201,6 +201,32 @@ const recupCourrier = async (req, res) => {
   }
 };
 
+const updateUserRole = async (req, res) => {
+  try {
+    const { firm_name, is_admin } = req.body;
+
+    // Empêcher la modification du rôle si cela entraîne une absence d'administrateur
+    if (is_admin) {
+      const adminCount = await User.count({ where: { is_admin: true } });
+      if (adminCount === 1) {
+        return res.status(400).json({ message: 'Il doit toujours y avoir au moins un administrateur.' });
+      }
+    }
+
+    const existingUser = await User.findOne({ where: { firm_name } });
+    if (!existingUser) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+    }
+
+    await existingUser.update({ is_admin });
+
+    res.json({ message: 'Rôle utilisateur mis à jour avec succès.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur lors de la mise à jour du rôle utilisateur.' });
+  }
+};
+
 // Exportation de la fonction
 module.exports = {
   createUser,
@@ -211,4 +237,5 @@ module.exports = {
   getAllUsers,
   has_mail, // Ajout de la fonction has_mail à l'exportation
   recupCourrier,
+  updateUserRole,
 };
