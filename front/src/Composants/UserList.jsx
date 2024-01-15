@@ -1,16 +1,20 @@
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
 import Mailto from '../assets/LogoNotimail.png';
 import FlecheLog from '../assets/flecheLogin.svg';
-import "../index.css"
-import React, { useState } from 'react';
-import { PasswordInput } from './PasswordInput'
+import { PasswordInput } from './PasswordInput';
 
 export const UserList = () => {
-  const [UserList, setUserList] = useState('');
+  const [selectedUser, setSelectedUser] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleOptionChange = (event) => {
-    setUserList(event.target.value);
+    const selectedValue = event.target.value;
+    setSelectedUser(selectedValue);
+    console.log(`Option sélectionnée : ${selectedValue}`);
+  };
+
+  const handleToggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
@@ -18,8 +22,13 @@ export const UserList = () => {
       <div className='center column'>
         <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
         <div className="center">
-          <label className='flecheUser' htmlFor="dropdown"> </label>
-          <select id="dropdown" value={UserList} onChange={handleOptionChange}>
+          <label className='flecheUser' htmlFor="dropdown" onClick={handleToggleDropdown}></label>
+          <select
+            id="dropdown"
+            value={selectedUser}
+            onChange={handleOptionChange}
+            size={isDropdownOpen ? 5 : 1} // Changer la taille en fonction de l'état du menu déroulant
+          >
             <option value=""></option>
             <option value="entreprise01">Entreprise 01</option>
             <option value="entreprise02">Entreprise 02</option>
@@ -63,11 +72,16 @@ export const UserList = () => {
             <option value="entreprise40">Entreprise 40</option>
             <option value="Admin">Admin</option>
           </select>
-          <img src={FlecheLog} id='flechelog' alt="fleche select entreprise"/>
+          <img
+            src={FlecheLog}
+            id='flechelog'
+            alt="fleche select entreprise"
+            onClick={handleToggleDropdown} // Cliquer sur l'image doit également déclencher le changement d'état
+            style={{ cursor: 'pointer' }}
+          />
         </div>
         {<PasswordInput />}
       </div>
     </>
   );
 };
-
