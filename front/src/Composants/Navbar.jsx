@@ -26,9 +26,9 @@ export const NavBar = ({ loggedInFirmName }) => {
               Confirmer la déconnexion ?
             </p>
             <div className='centerIcons'>
-              <IoCloseCircle style={{ fontSize: '60px', color: '#FF3535' }} onClick={onCloseModal} />
+              <IoCloseCircle className='button-react' style={{ fontSize: '60px', color: '#FF3535' }} onClick={onCloseModal} />
               <NavLink to="/">
-                <FaCheckCircle style={{ fontSize: '50px', color: '#025892' }}/>
+                <FaCheckCircle className='button-react' style={{ fontSize: '50px', color: '#025892' }}/>
               </NavLink>
             </div>
           </Modal>
