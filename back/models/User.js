@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   // Définition du modèle User représentant la table 'users' dans la base de données
-  const User = sequelize.define('Users', {
+  const User = sequelize.define('users', {
     // Définition des colonnes de la table 'users' avec leurs types et contraintes
     firm_name: {
       type: Sequelize.DataTypes.STRING(25), // Type de données STRING avec une limite de 25 caractères

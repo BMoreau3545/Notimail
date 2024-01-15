@@ -36,8 +36,8 @@ const handleConfirmation = () => {
                                 Confirmer la réception du courrier :
                             </p>
                             <div className='centerIcons'>
-                                <IoCloseCircle style={{ fontSize: '60px', color: '#FF3535' }} onClick={onCloseModal}/>
-                                <FaCheckCircle style={{ fontSize: '50px', color: '#025892' }} onClick={handleConfirmation} disabled={!confirmReception}/>
+                                <IoCloseCircle className='button-react' style={{ fontSize: '60px', color: '#FF3535' }} onClick={onCloseModal}/>
+                                <FaCheckCircle className='button-react' style={{ fontSize: '50px', color: '#025892' }} onClick={handleConfirmation} disabled={!confirmReception}/>
                             </div>
                         </Modal>
                     </div>

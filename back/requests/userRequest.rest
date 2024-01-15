@@ -4,40 +4,12 @@ POST http://localhost:3000/users/create_user
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise1",
-  "first_name": "Contact1",
-  "last_name": "Nom1",
-  "email": "contact1@example.com",
-  "phone_number": "1234567890",
-  "password": "motDePasse1"
-}
-
-###
-# Créer un nouvel utilisateur
-POST http://localhost:3000/users/create_user
-Content-Type: application/json
-
-{
-  "firm_name": "Entreprise2",
-  "first_name": "Contact2",
-  "last_name": "Nom2",
-  "email": "contact2@example.com",
-  "phone_number": "9876543210",
-  "password": "motDePasse2"
-}
-
-###
-# Créer un nouvel utilisateur
-POST http://localhost:3000/users/create_user
-Content-Type: application/json
-
-{
-  "firm_name": "Entreprise3",
-  "first_name": "Contact3",
-  "last_name": "Nom3",
-  "email": "contact3@example.com",
-  "phone_number": "5551234567",
-  "password": "motDePasse3"
+  "firm_name": "Entreprise5",
+  "first_name": "Contact4",
+  "last_name": "Nom4",
+  "email": "contact4@example.com",
+  "phone_number": "7778889999",
+  "password": "motDePasse4"
 }
 
 ###

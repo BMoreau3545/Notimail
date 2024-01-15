@@ -7,7 +7,7 @@ import "../Navbar.css";
 import "../index.css"
 import { useState } from 'react';
 
-export const NavBar = ({ loggedInFirmName }) => {
+export const NavBar = ({ loggedInUser, onLogout }) => {
   const [open, setOpen] = useState(false);
 
   // Gestion de la modal
@@ -19,7 +19,7 @@ export const NavBar = ({ loggedInFirmName }) => {
       <nav className='logo'>
         <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
         <div className='center column'>
-          <h3>{loggedInFirmName}</h3>
+          <h3>{loggedInUser}</h3>
           <button onClick={onOpenModal}>Déconnexion</button>
           <Modal open={open} onClose={onCloseModal} center closeIcon=" ">
             <p>
