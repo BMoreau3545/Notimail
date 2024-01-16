@@ -8,7 +8,7 @@ import { Error } from './Pages/Error.jsx';
 import { FormDetails } from './Composants/FormDetails.jsx'
 
 function App() {
-  const [jsonData, setJsonData] = useState([]); 
+  const [dataFirmName, setDataFirmName] = useState([]); 
   //save data
   const [loggedInFirmName, setLoggedInFirmName] = useState('');
   //enrengistrement du nom de connexion
@@ -20,11 +20,11 @@ function App() {
 
   // Fetch base de données 
   useEffect(() => {
-    fetch('http://localhost:3000/users/get_all_firm_name  ')
+    fetch('http://localhost:3000/users/get_all_firm_name')
       .then((res) => res.json())
-      .then((data) => {
-        setJsonData(data);
-        console.log(data)
+      .then((dataFirmName) => {
+       setDataFirmName(dataFirmName);
+        console.log(dataFirmName)
       })
       .catch((err) => {
         console.error('Erreur de requête fetch :', err);
@@ -36,10 +36,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/" element={<LoginPage jsonData={jsonData} updateLoggedInFirmName={updateLoggedInFirmName} loggedInFirmName={loggedInFirmName} />} />
-        <Route path="/admin" element={<AccueilAdmin jsonData={jsonData} loggedInFirmName={loggedInFirmName} />} />
-        <Route path="/entreprise" element={<AccueilEntreprise jsonData={jsonData} loggedInFirmName={loggedInFirmName} />} />
-        <Route path="/adminDetails" element={<FormDetails jsonData={jsonData} />} />
+          path="/" element={<LoginPage dataFirmName={dataFirmName} updateLoggedInFirmName={updateLoggedInFirmName} loggedInFirmName={loggedInFirmName} />} />
+        <Route path="/admin" element={<AccueilAdmin dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
+        <Route path="/entreprise" element={<AccueilEntreprise dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
+        <Route path="/adminDetails" element={<FormDetails dataFirmName={dataFirmName} />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
