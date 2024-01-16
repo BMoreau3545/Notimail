@@ -23,6 +23,14 @@ export const LoginPage = ({ jsonData, updateLoggedInFirmName })=> {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleKeyDown = (event) => {
+    // Vérifie si la touche pressée est la touche "Entrée"
+    if (event.key === 'Enter') {
+      // Appelle la fonction de connexion
+      handleLogin();
+    }
+  }
+
   const handleMouseEnter = () => {
     setIsMouseOver(true);
   };
@@ -101,6 +109,7 @@ export const LoginPage = ({ jsonData, updateLoggedInFirmName })=> {
             placeholder='Mot de passe'
             value={password}
             onChange={handlePasswordChange}
+            onKeyDown={handleKeyDown}
           />
           <img
             src={isMouseOver ? CadenaOuvert : CadenaFermer}
