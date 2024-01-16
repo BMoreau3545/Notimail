@@ -1,8 +1,11 @@
 // Importation du module Express
 const express = require('express');
 
+const cookieParser = require('cookie-parser');
+
 // Importation des routes liées à l'utilisateur depuis le fichier userRoutes.js
 const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Importation de la connexion Sequelize depuis index.js
 const db = require('./models/index');
@@ -38,6 +41,7 @@ db.sequelize.sync({force: false})
 
 // Montage des routes pour les opérations CRUD liées à l'utilisateur sous le préfixe '/users'
 app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 
 // Mise en écoute du serveur sur le port spécifié
 app.listen(port, () => {

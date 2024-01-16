@@ -1,28 +1,47 @@
-// Importation du module jsonwebtoken pour gérer les jetons d'authentification
+// middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
+const { get_user_by_firm_name } = require('../Controller/userController');
 
-// Middleware pour vérifier le jeton d'authentification
-function authToken(req, res, next) {
-    // Récupération du jeton d'authentification depuis l'en-tête de la requête
-    const token = req.header('Authorization');
+const authenticateUser = async (req, res, next) => {
+    try {
+        const token = req.header('Authorization');
+        if (!token) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
 
-    // Vérification si le jeton d'authentification est présent
-    if (!token) return res.status(401).json({ error: 'Accès non autorisé' });
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await get_user_by_firm_name(decoded.firm_name);
 
-    // Vérification de la validité du jeton d'authentification
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        // En cas d'erreur lors de la vérification du jeton
-        if (err) return res.status(403).json({ error: 'Jetons d\'authentification non valide.' });
+        if (!user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
 
-        // Si la vérification est réussie, l'utilisateur (payload du jeton) est attaché à l'objet de requête (req)
-        req.user = user;
-
-        // Appel à la fonction next() pour passer au middleware ou à la route suivante dans la chaîne
-        next();
-    });
-}
-
-// Exportation du middleware pour qu'il puisse être utilisé dans d'autres fichiers
-module.exports = {
-    authToken
+        req.user = user; // Ajoute les informations de l'utilisateur au req pour une utilisation ultérieure
+        next(); // Passe au middleware ou au contrôleur suivant
+    } catch (error) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
 };
+
+const authenticateAdmin = async (req, res, next) => {
+    try {
+        const token = req.header('Authorization');
+        if (!token) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await get_user_by_firm_name(decoded.firm_name);
+
+        if (!user || !user.is_admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        req.admin = user; // Ajoute les informations de l'admin au req pour une utilisation ultérieure
+        next(); // Passe au middleware ou au contrôleur suivant
+    } catch (error) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+};
+
+module.exports = { authenticateUser, authenticateAdmin };

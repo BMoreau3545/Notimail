@@ -57,6 +57,7 @@ const hashPassword = async (req, res) => {
   
   // Fonction pour mettre à jour un utilisateur existant
 const updateUser = async (req, res) => {
+    console.log("update :", req.body, req.params);
     try {
       const { firm_name, first_name, last_name, email, phone_number } = req.body;
 
@@ -109,6 +110,7 @@ const deleteUser = async (req, res) => {
 const getUserByFirmName = async (req, res) => {
     try {
       const { firm_name } = req.params;
+      console.log("ok");
   
       const user = await User.findOne({ where: { firm_name } });
       if (!user) {
