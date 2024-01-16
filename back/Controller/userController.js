@@ -227,6 +227,18 @@ const updateUserRole = async (req, res) => {
   }
 };
 
+// Fonction pour obtenir tous les noms d'entreprise de tous les utilisateurs
+const getAllFirmName = async (req, res) => {
+  try {
+      const users = await User.findAll();
+      const firmNames = users.map(user => user.firm_name);
+      res.json(firmNames);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur serveur lors de la récupération des noms d\'entreprise.' });
+  }
+};
+
 // Exportation de la fonction
 module.exports = {
   createUser,
@@ -238,4 +250,5 @@ module.exports = {
   has_mail, // Ajout de la fonction has_mail à l'exportation
   recupCourrier,
   updateUserRole,
+  getAllFirmName,
 };

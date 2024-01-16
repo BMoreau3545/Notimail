@@ -63,3 +63,6 @@ Content-Type: application/json
 {
   "firm_name": "Entreprise1"
 }
+
+###
+GET http://localhost:3000/users/get_all_firm_name

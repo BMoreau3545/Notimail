@@ -12,7 +12,7 @@ const app = express();
 
 // Définition du port sur lequel le serveur écoutera les requêtes
 const port = 3000;
-
+const cors = require('cors');
 // Utilisation de middleware pour permettre à Express de traiter les requêtes au format JSON
 app.use(express.json());
 
