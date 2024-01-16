@@ -12,6 +12,7 @@ body{
   --Bleu: #025892;
   --Gris: #E3E3E3;
   --Rouge: #FF3535;
+  overflow-x: hidden;
 }
 /* Page Accueil Entreprise */
 
