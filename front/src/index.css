@@ -12,6 +12,7 @@ body{
   --Bleu: #025892;
   --Gris: #E3E3E3;
   --Rouge: #FF3535;
+  overflow-x: hidden;
 }
 /* Page Accueil Entreprise */
 
@@ -285,6 +286,11 @@ button:hover{
   width: 50vh;
   color: white;
   border: none;
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  font-size: 18px;
+
 }
 
 #recherche::placeholder{

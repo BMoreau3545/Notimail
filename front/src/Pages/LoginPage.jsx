@@ -23,6 +23,14 @@ export const LoginPage = ({ jsonData, updateLoggedInFirmName })=> {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleKeyDown = (event) => {
+    // Vérifie si la touche pressée est la touche "Entrée"
+    if (event.key === 'Enter') {
+      // Appelle la fonction de connexion
+      handleLogin();
+    }
+  }
+
   const handleMouseEnter = () => {
     setIsMouseOver(true);
   };
@@ -36,8 +44,8 @@ export const LoginPage = ({ jsonData, updateLoggedInFirmName })=> {
   };
 
   const handleLogin = () => {
-    if (jsonData && jsonData.users) {
-      const user = jsonData.users.find(
+    if (jsonData && jsonData.length > 0) {
+      const user = jsonData.find(
         (user) => user.firm_name === selectedUser && user.password === password
       );
   
@@ -47,14 +55,13 @@ export const LoginPage = ({ jsonData, updateLoggedInFirmName })=> {
   
         // Stockez le nom de l'entreprise dans un état local
         const loggedInFirmName = user.firm_name;
-        console.log(loggedInFirmName)
+        console.log(loggedInFirmName);
   
         // Réinitialisez le message d'erreur en cas de connexion réussie
         setErrorMessage('');
-
+  
         // Redirigez l'utilisateur vers la page appropriée après la connexion réussie
         navigate(user.is_admin ? '/admin' : '/entreprise');
-  
       } else {
         // Connexion échouée, affichez un message d'erreur ou effectuez d'autres actions
         setErrorMessage('Nom d\'entreprise ou mot de passe incorrect');
@@ -78,7 +85,7 @@ export const LoginPage = ({ jsonData, updateLoggedInFirmName })=> {
             size={isDropdownOpen ? 5 : 1}
           >
             <option value=""></option>
-            {jsonData && jsonData.users && jsonData.users.map((user) => (
+            {jsonData && jsonData.map(() => (
               <option key={user.firm_name} value={user.firm_name}>
                 {user.firm_name}
               </option>
@@ -101,6 +108,7 @@ export const LoginPage = ({ jsonData, updateLoggedInFirmName })=> {
             placeholder='Mot de passe'
             value={password}
             onChange={handlePasswordChange}
+            onKeyDown={handleKeyDown}
           />
           <img
             src={isMouseOver ? CadenaOuvert : CadenaFermer}
