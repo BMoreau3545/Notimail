@@ -285,6 +285,11 @@ button:hover{
   width: 50vh;
   color: white;
   border: none;
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  font-size: 18px;
+
 }
 
 #recherche::placeholder{
