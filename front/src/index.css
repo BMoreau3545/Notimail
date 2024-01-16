@@ -266,16 +266,23 @@ button:hover{
 #searchbar{
   display: flex;
   flex-direction: row;
+  justify-content:center ;
   background-color: white;
 }
 #search{
   background-color: white;
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  justify-content:center ;
 }
 
 #recherche{
   border-top-right-radius: 80.5px;
   border-bottom-right-radius: 80.5px;
-    background-color: #E3E3E3 ;
+  background-color: #E3E3E3 ;
+  height: 8vh;
+  width: 50vh;
   color: white;
   border: none;
 }

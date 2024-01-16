@@ -16,18 +16,17 @@ export const SearchBar = () => {
 
   return (
     <>
-   
-    <form id="search" onSubmit={handleSearchSubmit}>
-    <div id="searchbar">
-       <button id='loupe_button' type="submit"><img src={Loupe} id="loupe_img"></img></button>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchChange}
-        placeholder="Rechercher"
-        id='recherche'
-      />
-          </div>
+      <form id="search" onSubmit={handleSearchSubmit}>
+      <div id="searchbar">
+        <button id='loupe_button' type="submit"><img src={Loupe} id="loupe_img"></img></button>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          placeholder="Rechercher"
+          id='recherche'
+        />
+      </div>
     </form>
 
     </>

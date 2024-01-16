@@ -13,6 +13,7 @@ export const NavBar = ({ loggedInFirmName, jsonData }) => {
   // Gestion de la modal
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+  console.log(loggedInFirmName)
 
   return (
     <>
