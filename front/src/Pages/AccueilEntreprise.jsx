@@ -7,7 +7,7 @@ import { IoMailOpen ,  IoCloseCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { NavBar } from '../Composants/Navbar';
 
-export const AccueilEntreprise = ({ loggedInFirmName, jsonData }) => {
+export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
     const [open, setOpen] = useState(false);
     const [confirmReception, setConfirmReception] = useState(true);
 
@@ -21,7 +21,7 @@ const handleConfirmation = () => {
 }
     return (
         <>
-             <NavBar jsonData={jsonData} loggedInFirmName={loggedInFirmName}/>
+             <NavBar dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName}/>
             {confirmReception ? (
                 <section className="AccueilMailRecu">
                     <div className="IconeSuperposition">

@@ -3,7 +3,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import '../index.css'
 import { NavLink } from 'react-router-dom';
 
-export const FormDetails = ({ jsonData }) => {
+export const FormDetails = ({ dataFirmName }) => {
   const handleSubmit = (event) => {
     //retrait du comportement par defaut du bouton submit qui est de recharger la page
     event.preventDefault();

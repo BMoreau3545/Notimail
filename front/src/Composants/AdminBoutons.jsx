@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Modal from 'react-responsive-modal';
 import { NavLink } from 'react-router-dom';
 
-export const AdminBoutons = ({ jsonData, newANotif }) => {
+export const AdminBoutons = ({ cardData, newANotif }) => {
   const [open, setOpen] = useState(false);
 
   // Gestion de la modal
@@ -13,8 +13,8 @@ export const AdminBoutons = ({ jsonData, newANotif }) => {
   const onCloseModal = () => setOpen(false);
 
   // Filtrer les entreprises notifiées (true dans newANotif)
-  const notifiedFirms = jsonData && jsonData.users
-    ? jsonData.users.filter((user, index) => newANotif[index])
+  const notifiedFirms = cardData && cardData
+    ? cardData.filter((user, index) => newANotif[index])
     : [];
 
   console.log("notifiedFirms:", notifiedFirms);
