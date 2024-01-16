@@ -237,8 +237,16 @@ button:hover{
   filter: hue-rotate(0deg) saturate(90%) brightness(150%);
 
 }
+button:active{
+  filter: hue-rotate(0deg) saturate(80%) brightness(220%);
+
+}
 .button-react:hover{
   filter: hue-rotate(0deg) saturate(90%) brightness(150%);
+
+}
+.button-react:active{
+  filter: hue-rotate(0deg) saturate(80%) brightness(220%);
 
 }
 
