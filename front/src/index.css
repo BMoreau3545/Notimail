@@ -249,10 +249,10 @@ button:hover{
   border: none;
 }
 #loupe_button:hover{
-  background-color: #e7ecf1;
+  background-color: #6f7e7d;
 }
 #loupe_button:active{
-  background-color: #deebf8;
+  background-color: #0084ff;
 }
 
 
@@ -289,4 +289,6 @@ button:hover{
 
 #recherche::placeholder{
   color: white;
+  font-size: 18px;
+  
 }
