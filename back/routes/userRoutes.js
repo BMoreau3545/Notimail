@@ -14,6 +14,7 @@ router.put('/update_user', UserController.updateUser);    // Route pour mettre �
 router.delete('/delete_user/:firm_name', UserController.deleteUser);  // Route pour supprimer un utilisateur par le nom de la société
 router.get('/get_user/:firm_name', UserController.getUserByFirmName);  // Route pour récupérer un utilisateur par le nom de la société
 router.get('/get_all_users', UserController.getAllUsers);   // Route pour récupérer tous les utilisateurs
+router.get('/get_all_firm_name', UserController.getAllFirmName);
 router.post('/notify', UserController.has_mail);
 router.put('/recup_mail', UserController.recupCourrier);
 router.put('/update_user_role', UserController.updateUserRole);
