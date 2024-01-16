@@ -1,5 +1,5 @@
 const db = require('../models/index');
-
+const axios = require('axios');
 const User = db.User;
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
@@ -166,6 +166,40 @@ const has_mail = async (req, res) => {
     // Mettez à jour la propriété has_mail à true pour les utilisateurs notifiés
     await Promise.all(usersToSendMail.map(user => user.update({ has_mail: true, last_received_mail: currentDate })));
 
+     // Envoyer des SMS aux utilisateurs nonifiés
+     const smsPromises = usersToSendMail.map(async user => {
+
+      const formattedPhoneNumber = `+33${user.phone_number.slice(1)}`;
+
+      // Ajoutez la logique d'envoi de SMS avec AllMySMS ici
+      const smsOptions = {
+        method: 'POST',
+        url: 'https://api.allmysms.com/sms/send',
+        headers: {
+          'cache-control': 'no-cache',
+          'Authorization': `Basic ${process.env.CLE_SMS}`, // Remplacez par votre auth token
+          'Content-Type': 'application/json',
+        },
+        data: {
+          from: 'allmysms',
+          to: formattedPhoneNumber,
+          text: 'Vous avez du courrier à récupérer. Consultez votre boîte aux lettres.',
+          // Ajoutez d'autres paramètres si nécessaire, comme la date
+        },
+      };
+
+      const smsResponse = await axios(smsOptions);
+
+      if (smsResponse.data.success) {
+        // Mettez à jour la propriété has_mail à true pour les utilisateurs notifiés
+        await user.update({ has_mail: true, last_received_mail: new Date() });
+      }
+    });
+
+    // Attendre la résolution de toutes les promesses
+    await Promise.all(smsPromises);
+
+
     res.json({ message: 'Utilisateurs notifiés avec succès.' });
   } catch (error) {
     console.error(error);
@@ -175,7 +209,7 @@ const has_mail = async (req, res) => {
 
 const recupCourrier = async (req, res) => {
   try {
-    const { firm_name } = req.params;
+    const { firm_name } = req.query;
 
     // Recherche de l'utilisateur dans la base de données
     const user = await User.findOne({ where: { firm_name } });
@@ -190,6 +224,8 @@ const recupCourrier = async (req, res) => {
         has_mail: false, // has_mail devient false après la validation
         last_picked_up: new Date(), // Enregistrement de la date et de l'heure de la validation
       });
+
+      
 
       res.json({ message: 'Récupération du courrier validée avec succès.' });
     } else {

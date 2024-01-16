@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/BMoreau3545/Notimail#readme",
   "dependencies": {
+    "axios": "^1.6.5",
     "bcrypt": "^5.1.1",
     "cookie": "^0.6.0",
     "cors": "^2.8.5",
