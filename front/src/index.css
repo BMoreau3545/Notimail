@@ -209,6 +209,9 @@ select{ /* identifiants */
   border: none; 
   text-decoration: none;
   cursor: pointer;
+  border-radius: 180px;
+  filter: none;
+  background-color: rgb(0, 0, 0, 0);
 }
 
 #dropdown { /* enleve la fleche par defaut du input select*/
@@ -237,8 +240,19 @@ button:hover{
   filter: hue-rotate(0deg) saturate(90%) brightness(150%);
 
 }
+button:active{
+  filter: hue-rotate(0deg) saturate(80%) brightness(220%);
+
+}
+.button-react{
+  border-radius: 90px;
+}
 .button-react:hover{
   filter: hue-rotate(0deg) saturate(90%) brightness(150%);
+
+}
+.button-react:active{
+  filter: hue-rotate(0deg) saturate(80%) brightness(220%);
 
 }
 
@@ -251,9 +265,12 @@ button:hover{
 }
 #loupe_button:hover{
   background-color: #6f7e7d;
+  filter: hue-rotate(0deg) saturate(120%) brightness(120%);
+
 }
 #loupe_button:active{
   background-color: #0084ff;
+    filter: hue-rotate(0deg) saturate(120%) brightness(150%);
 }
 
 
@@ -268,6 +285,7 @@ button:hover{
   display: flex;
   flex-direction: row;
   justify-content:center ;
+  padding-right: 140px;
   background-color: white;
 }
 #search{

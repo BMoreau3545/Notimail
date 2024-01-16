@@ -69,7 +69,7 @@ DELETE http://localhost:3000/users/delete_user/Entreprise2
 
 ###
 # Obtenir un utilisateur par son nom d'entreprise
-GET http://localhost:3000/users/get_user/Entreprise5
+GET http://localhost:3000/users/get_user/Entreprise6
 
 ###
 # Obtenir la liste de tous les utilisateurs

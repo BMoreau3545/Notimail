@@ -7,32 +7,39 @@ import { AccueilAdmin } from './Pages/AccueilAdmin.jsx';
 import { Error } from './Pages/Error.jsx';
 import { FormDetails } from './Composants/FormDetails.jsx'
 
-function App() {
-  const [jsonData, setJsonData] = useState([]);
+function App(cardData) {
+  const [dataFirmName, setDataFirmName] = useState([]); 
+  //save data
   const [loggedInFirmName, setLoggedInFirmName] = useState('');
+  //enrengistrement du nom de connexion
 
   const updateLoggedInFirmName = (firmName) => {
     setLoggedInFirmName(firmName);
   };
 
+
+  // Fetch base de données 
   useEffect(() => {
-    fetch('../json')
+    fetch('http://localhost:3000/users/get_all_firm_name')
       .then((res) => res.json())
-      .then((data) => {
-        setJsonData(data);
+      .then((dataFirmName) => {
+       setDataFirmName(dataFirmName);
+        console.log(dataFirmName)
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error('Erreur de requête fetch :', err);
+      });
+      
   }, []);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
-          element={<LoginPage jsonData={jsonData} updateLoggedInFirmName={updateLoggedInFirmName} loggedInFirmName={loggedInFirmName} />} />
-        <Route path="/admin" element={<AccueilAdmin jsonData={jsonData} loggedInFirmName={loggedInFirmName} />} />
-        <Route path="/entreprise" element={<AccueilEntreprise jsonData={jsonData} loggedInFirmName={loggedInFirmName} />} />
-        <Route path="/adminDetails" element={<FormDetails jsonData={jsonData} />} />
+          path="/" element={<LoginPage dataFirmName={dataFirmName} updateLoggedInFirmName={updateLoggedInFirmName} loggedInFirmName={loggedInFirmName} />} />
+        <Route path="/admin" element={<AccueilAdmin dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
+        <Route path="/entreprise" element={<AccueilEntreprise dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
+        <Route path="/adminDetails" element={<FormDetails cardData={cardData} dataFirmName={dataFirmName} />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>

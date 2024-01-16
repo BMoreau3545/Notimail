@@ -7,7 +7,7 @@ import "../Navbar.css";
 import "../index.css"
 import { useState } from 'react';
 
-export const NavBar = ({ loggedInFirmName, jsonData }) => {
+export const NavBar = ({ loggedInFirmName, dataFirmName , cardData}) => {
   const [open, setOpen] = useState(false);
 
   // Gestion de la modal
