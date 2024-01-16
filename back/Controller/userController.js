@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 
 // Fonction pour créer un nouvel utilisateur
 const createUser = async (req, res) => {
+  console.log('createUser route reached');
   console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params));
     try {
       const { firm_name, first_name, last_name, email, phone_number, password } = req.body;
@@ -58,6 +59,13 @@ const hashPassword = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
       const { firm_name, first_name, last_name, email, phone_number } = req.body;
+
+       // Ajouter une vérification du rôle de l'utilisateur
+       const loggedInUser = await User.findOne({ where: { is_admin: req.params.is_admin === 'true' } });
+
+       if (!loggedInUser.is_admin) {
+           return res.status(403).json({ message: 'Vous n\'êtes pas autorisé à effectuer cette opération.' });
+       }
   
       const existingUser = await User.findOne({ where: { firm_name } });
       if (!existingUser) {
@@ -240,6 +248,13 @@ const recupCourrier = async (req, res) => {
 const updateUserRole = async (req, res) => {
   try {
     const { firm_name, is_admin } = req.body;
+
+    // Ajouter une vérification du rôle de l'utilisateur
+    const loggedInUser = await User.findOne({ where: { is_admin: req.params.is_admin === 'true' } });
+
+    if (!loggedInUser.is_admin) {
+        return res.status(403).json({ message: 'Vous n\'êtes pas autorisé à effectuer cette opération.' });
+    }
 
     // Empêcher la modification du rôle si cela entraîne une absence d'administrateur
     if (is_admin) {
