@@ -7,7 +7,7 @@ import { AccueilAdmin } from './Pages/AccueilAdmin.jsx';
 import { Error } from './Pages/Error.jsx';
 import { FormDetails } from './Composants/FormDetails.jsx'
 
-function App() {
+function App(cardData) {
   const [dataFirmName, setDataFirmName] = useState([]); 
   //save data
   const [loggedInFirmName, setLoggedInFirmName] = useState('');
@@ -39,7 +39,7 @@ function App() {
           path="/" element={<LoginPage dataFirmName={dataFirmName} updateLoggedInFirmName={updateLoggedInFirmName} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/admin" element={<AccueilAdmin dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/entreprise" element={<AccueilEntreprise dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
-        <Route path="/adminDetails" element={<FormDetails dataFirmName={dataFirmName} />} />
+        <Route path="/adminDetails" element={<FormDetails cardData={cardData} dataFirmName={dataFirmName} />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>

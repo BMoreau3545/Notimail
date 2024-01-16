@@ -2,6 +2,7 @@ import "../adminPanel.css";
 import { FaRegEdit } from "react-icons/fa";
 import React, { useState, useEffect } from 'react';
 import { AdminBoutons } from "./AdminBoutons";
+import { NavLink } from "react-router-dom";
 
 export const CardEntreprise = () => {
     const [cardData, setCardData] = useState([]);
@@ -56,7 +57,9 @@ export const CardEntreprise = () => {
                                             />
                                             <div className="slider"></div>
                                         </label>
+                                        <NavLink to={`/adminDetails/${nom.firm_Name}`}>
                                         <FaRegEdit style={{ fontSize: '35px', color: '#025892' }} />
+                                        </NavLink>
                                     </div>
                                 </div>
                                 {isOpenArray[index] && (
