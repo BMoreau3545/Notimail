@@ -7,19 +7,20 @@ import "../Navbar.css";
 import "../index.css"
 import { useState } from 'react';
 
-export const NavBar = ({ loggedInUser, onLogout }) => {
+export const NavBar = ({ loggedInFirmName, jsonData }) => {
   const [open, setOpen] = useState(false);
 
   // Gestion de la modal
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+  console.log(loggedInFirmName)
 
   return (
     <>
       <nav className='logo'>
         <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
         <div className='center column'>
-          <h3>{loggedInUser}</h3>
+          <h3>{loggedInFirmName}</h3>
           <button onClick={onOpenModal}>Déconnexion</button>
           <Modal open={open} onClose={onCloseModal} center closeIcon=" ">
             <p>

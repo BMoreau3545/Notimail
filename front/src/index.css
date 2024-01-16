@@ -249,10 +249,10 @@ button:hover{
   border: none;
 }
 #loupe_button:hover{
-  background-color: #e7ecf1;
+  background-color: #6f7e7d;
 }
 #loupe_button:active{
-  background-color: #deebf8;
+  background-color: #0084ff;
 }
 
 
@@ -266,20 +266,34 @@ button:hover{
 #searchbar{
   display: flex;
   flex-direction: row;
+  justify-content:center ;
   background-color: white;
 }
 #search{
   background-color: white;
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  justify-content:center ;
 }
 
 #recherche{
   border-top-right-radius: 80.5px;
   border-bottom-right-radius: 80.5px;
-    background-color: #E3E3E3 ;
+  background-color: #E3E3E3 ;
+  height: 8vh;
+  width: 50vh;
   color: white;
   border: none;
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  font-size: 18px;
+
 }
 
 #recherche::placeholder{
   color: white;
+  font-size: 18px;
+  
 }

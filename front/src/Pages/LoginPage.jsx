@@ -5,12 +5,13 @@ import CadenaFermer from '../assets/fermer.png';
 import CadenaOuvert from '../assets/ouvert.png';
 import { useNavigate } from 'react-router-dom';
 
-export const LoginPage = ({ jsonData }) => {
-  const [selectedUser, setSelectedUser] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [password, setPassword] = useState('');
-  const [isMouseOver, setIsMouseOver] = useState(false);
+export const LoginPage = ({ jsonData, updateLoggedInFirmName })=> {
+  const [selectedUser, setSelectedUser] = useState(''); // entreprise selectionner dans la liste
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); //fenetre login liste entreprise
+  const [password, setPassword] = useState('');  // 
+  const [isMouseOver, setIsMouseOver] = useState(false); // gestion des images cadenas log In
   const navigate = useNavigate(); // Utilisez useNavigate pour effectuer des redirections
+  const [errorMessage, setErrorMessage] = useState(''); // message d'erreur si MDP mauvais
 
   const handleOptionChange = (event) => {
     const selectedValue = event.target.value;
@@ -21,6 +22,14 @@ export const LoginPage = ({ jsonData }) => {
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const handleKeyDown = (event) => {
+    // Vérifie si la touche pressée est la touche "Entrée"
+    if (event.key === 'Enter') {
+      // Appelle la fonction de connexion
+      handleLogin();
+    }
+  }
 
   const handleMouseEnter = () => {
     setIsMouseOver(true);
@@ -46,14 +55,17 @@ export const LoginPage = ({ jsonData }) => {
   
         // Stockez le nom de l'entreprise dans un état local
         const loggedInFirmName = user.firm_name;
+        console.log(loggedInFirmName)
   
+        // Réinitialisez le message d'erreur en cas de connexion réussie
+        setErrorMessage('');
+
         // Redirigez l'utilisateur vers la page appropriée après la connexion réussie
         navigate(user.is_admin ? '/admin' : '/entreprise');
   
-
-
       } else {
         // Connexion échouée, affichez un message d'erreur ou effectuez d'autres actions
+        setErrorMessage('Nom d\'entreprise ou mot de passe incorrect');
         console.log('Nom d\'entreprise ou mot de passe incorrect');
       }
     } else {
@@ -97,6 +109,7 @@ export const LoginPage = ({ jsonData }) => {
             placeholder='Mot de passe'
             value={password}
             onChange={handlePasswordChange}
+            onKeyDown={handleKeyDown}
           />
           <img
             src={isMouseOver ? CadenaOuvert : CadenaFermer}
@@ -107,7 +120,11 @@ export const LoginPage = ({ jsonData }) => {
             onClick={handleLogin}
             style={{ cursor: 'pointer' }}
           />
+
         </div>
+        {errorMessage && (
+            <div style={{ color: 'red', marginTop: '10px' }}>{errorMessage}</div>
+          )}
       </div>
     </>
   );

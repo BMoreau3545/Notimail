@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<LoginPage jsonData={jsonData} updateLoggedInFirmName={updateLoggedInFirmName} />} />
+          element={<LoginPage jsonData={jsonData} updateLoggedInFirmName={updateLoggedInFirmName} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/admin" element={<AccueilAdmin jsonData={jsonData} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/entreprise" element={<AccueilEntreprise jsonData={jsonData} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/adminDetails" element={<FormDetails jsonData={jsonData} />} />
