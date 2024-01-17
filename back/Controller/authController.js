@@ -8,14 +8,14 @@ const db = require('../models/index');
 
 
 // Fonction de gestion de la connexion
-async function login(req, res) {
+async function login (req, res) {
     try {
         // Extraction des données du corps de la requête
         const { firm_name, password } = req.body;
         console.log(firm_name, password);
 
         // Récupération des informations de l'utilisateur à partir de la base de données en utilisant le nom de la société
-        const user = await db.User.findOne({firm_name: firm_name});
+        const user = await db.User.findOne({where :{firm_name: firm_name}});
 
         // Comparaison du mot de passe fourni avec le mot de passe haché stocké dans la base de données
         const passwordMatch = await bcrypt.compare(password, user.password);
