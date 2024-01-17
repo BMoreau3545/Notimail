@@ -18,6 +18,7 @@ export const CardEntreprise = () => {
         setCardData(cardData);
         setIsOpenArray(new Array(cardData.length).fill(false));
         setANotif(new Array(cardData.length).fill(false));
+        setSearchResult(cardData.map((nom) => nom.firm_name)); // affiche toute les entreprise par defaut
       })
       .catch((err) => console.error(err));
   }, []);
