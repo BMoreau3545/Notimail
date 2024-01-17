@@ -1,3 +1,4 @@
+// config.js
 // Configuration Sequelize pour l'environnement de développement
 module.exports = {
     development: {
