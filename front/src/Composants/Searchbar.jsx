@@ -15,8 +15,9 @@ export const SearchBar = ( {dataFirmName} ) => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     console.log('I SEARCH YOU : ', searchQuery);
-    const SearchFirm = dataFirmName.filter(({firm_name})=>
-      firm_name.toLowerCase().include(searchQuery.toLowerCase())
+    
+    const SearchFirm = dataFirmName.filter((firm_name)=>
+      firm_name.toLowerCase().includes(searchQuery.toLowerCase())
       
     );
     setSearchResult(SearchFirm)
@@ -36,6 +37,14 @@ export const SearchBar = ( {dataFirmName} ) => {
         />
       </div>
     </form>
+    <div>
+        {dataFirmName.map((firm_name, index) => (
+          <div key={index} style={{ display: searchResult.includes(firm_name) ? 'flex' : 'none' }}>
+            {/* Votre contenu ici */}
+            {firm_name}
+          </div>
+            ))}
+            </div>
 
     </>
   );
