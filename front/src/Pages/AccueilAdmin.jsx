@@ -4,13 +4,13 @@ import { NavBar } from "../Composants/Navbar";
 import { SearchBar } from "../Composants/Searchbar";
 import { AdminBoutons } from "../Composants/AdminBoutons";
 
-export const AccueilAdmin = ({ loggedInFirmName, cardData }) => {
+export const AccueilAdmin = ({ loggedInFirmName, cardData, dataFirmName }) => {
 
 
   return (
     <>
       <NavBar cardData={cardData} loggedInFirmName={loggedInFirmName}/>
-      <SearchBar />
+      <SearchBar dataFirmName={dataFirmName} />
       <CardEntreprise />
     </>
   );

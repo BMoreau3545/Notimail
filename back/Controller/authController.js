@@ -10,7 +10,7 @@ const db = require('../models/index'); // importation du model index avec l'obje
 
 
 // Fonction de gestion de la connexion
-async function login(req, res) {
+async function login (req, res) {
     try {
         // Extraction des données du corps de la requête
         const { firm_name, password } = req.body;
