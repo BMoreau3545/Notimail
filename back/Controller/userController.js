@@ -34,6 +34,37 @@ const createUser = async (req, res) => {
     }
   };
 
+// Fonction pour créer un nouvel utilisateur
+const createAdmin = async (req, res) => {
+  console.log('createAdmin route reached');
+  console.log('createAdmin', JSON.stringify(req.body), JSON.stringify(res.params));
+    try {
+      const { firm_name, first_name, last_name, email, phone_number, password, is_admin } = req.body;
+  
+      const existingUser = await User.findOne({ where: { firm_name } });
+      if (existingUser) {
+        return res.status(400).json({ message: 'Un utilisateur avec ce nom d\'entreprise existe déjà.' });
+      }
+  
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      await User.create({
+        firm_name,
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        password: hashedPassword,
+        is_admin: true,
+      });
+  
+      res.status(201).json({ message: 'Utilisateur créé avec succès.' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' });
+    }
+  };
+
   // Fonction pour hacher le mot de passe
 const hashPassword = async (req, res) => {
     try {
@@ -295,6 +326,7 @@ const getAllFirmName = async (req, res) => {
 // Exportation de la fonction
 module.exports = {
   createUser,
+  createAdmin,
   hashPassword,
   updateUser,
   deleteUser,
