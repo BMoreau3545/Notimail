@@ -9,7 +9,7 @@ import { FormDetails } from './Composants/FormDetails.jsx'
 
 function App(cardData) {
   const [dataFirmName, setDataFirmName] = useState([]); 
-  //save data
+  //save data fetch
   const [loggedInFirmName, setLoggedInFirmName] = useState('');
   //enrengistrement du nom de connexion
 
