@@ -18,6 +18,7 @@ export const CardEntreprise = () => {
         setCardData(cardData);
         setIsOpenArray(new Array(cardData.length).fill(false));
         setANotif(new Array(cardData.length).fill(false));
+        setSearchResult(cardData.map((nom) => nom.firm_name)); // Set initial state here
       })
       .catch((err) => console.error(err));
   }, []);
