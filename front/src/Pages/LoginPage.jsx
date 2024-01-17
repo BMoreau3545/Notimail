@@ -8,7 +8,10 @@ import { useNavigate } from 'react-router-dom';
 export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
   const [selectedUser, setSelectedUser] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [loginFirm, setLoginFirm] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
   const [password, setPassword] = useState('');
+
   const [isMouseOver, setIsMouseOver] = useState(false);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
@@ -29,6 +32,17 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
     }
   }
 
+  const handleFirmChange = (event) => {
+    //Login envoyer au serv
+    setLoginFirm(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    //login mdp envoyer au serv
+    setLoginPassword(event.target.value);
+  };
+
+
   const handleMouseEnter = () => {
     setIsMouseOver(true);
   };
@@ -37,27 +51,34 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
     setIsMouseOver(false);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
 
-  const handleLogin = () => {
-    if (dataFirmName && dataFirmName.length > 0) {
-      const user = dataFirmName.find(
-        (user) => user.firm_name === selectedUser && user.password === password
-      );
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/users/get_all_users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firm_name: selectedUser,
+          password: loginPassword,
+        }),
+      });
 
-      if (user) {
-        const loggedInFirmName = user.firm_name;
-        console.log(loggedInFirmName);
-        setErrorMessage('');
+      if (response.ok) {
+        const user = await response.json();
+
+        // Mise à jour de l'état dans le composant parent
+        updateLoggedInFirmName(user.firm_name);
+
+        // Navigation vers la page appropriée
         navigate(user.is_admin ? '/admin' : '/entreprise');
       } else {
         setErrorMessage('Nom d\'entreprise ou mot de passe incorrect');
-        console.log('Nom d\'entreprise ou mot de passe incorrect');
       }
-    } else {
-      console.error('Données JSON non disponibles');
+    } catch (error) {
+      console.error('Erreur lors de la connexion :', error);
+      setErrorMessage('Une erreur s\'est produite lors de la connexion');
     }
   };
 
@@ -79,7 +100,6 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
                 {index}
               </option>
             ))}
-
           </select>
           <img
             src={FlecheLog}
@@ -96,7 +116,7 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
             id="password"
             name="password"
             placeholder='Mot de passe'
-            value={password}
+            value={loginPassword}
             onChange={handlePasswordChange}
             onKeyDown={handleKeyDown}
           />
@@ -109,7 +129,6 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
             onClick={handleLogin}
             style={{ cursor: 'pointer' }}
           />
-
         </div>
         {errorMessage && (
           <div style={{ color: 'red', marginTop: '10px' }}>{errorMessage}</div>
