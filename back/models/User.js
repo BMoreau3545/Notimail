@@ -1,3 +1,4 @@
+//User.js
 module.exports = (sequelize, Sequelize) => {
   // Définition du modèle User représentant la table 'Users' dans la base de données
   const User = sequelize.define('Users', {
