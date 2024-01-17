@@ -38,7 +38,10 @@ export const CardEntreprise = () => {
 
   const handleSearchResultChange = (result) => {
     setSearchResult(result);
+    // Mettez à jour isOpenArray pour réinitialiser l'état d'ouverture
+    setIsOpenArray(new Array(result.length).fill(false));
   };
+  
 
   return (
     <>
