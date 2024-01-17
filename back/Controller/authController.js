@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');  // Module pour le hachage des mots de passe
 const jwt = require('jsonwebtoken');  // Module pour la création et la vérification des tokens JWT
 const db = require('../models/index');
 
+
 // Fonction de gestion de la connexion
 async function login(req, res) {
     try {

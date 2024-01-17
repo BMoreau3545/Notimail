@@ -108,3 +108,7 @@ Content-Type: application/json
     "firm_name": "Entreprise1",
     "password": "motDePasse1"
 }
+
+###
+POST http://localhost:3000/auth/logout
+Content-Type: application/json
