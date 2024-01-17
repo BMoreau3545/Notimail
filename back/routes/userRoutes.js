@@ -12,7 +12,7 @@ router.put('/update_user', authMiddleware.authenticateAdmin, UserController.upda
 router.delete('/delete_user/:firm_name', authMiddleware.authenticateAdmin, UserController.deleteUser);
 router.get('/get_user/:firm_name', authMiddleware.authenticateUser, UserController.getUserByFirmName);
 router.get('/get_all_users', authMiddleware.authenticateAdmin, UserController.getAllUsers);
-router.get('/get_all_firm_name', authMiddleware.authenticateAdmin, UserController.getAllFirmName);
+router.get('/get_all_firm_name', UserController.getAllFirmName);
 router.post('/notify', authMiddleware.authenticateAdmin, UserController.has_mail);
 router.put('/recup_mail', authMiddleware.authenticateUser, UserController.recupCourrier);
 router.put('/update_user_role', authMiddleware.authenticateAdmin, UserController.updateUserRole);

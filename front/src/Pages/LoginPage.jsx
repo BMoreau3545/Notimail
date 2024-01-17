@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Mailto from '../assets/LogoNotimail.png';
 import FlecheLog from '../assets/flecheLogin.svg';
@@ -5,6 +6,7 @@ import CadenaFermer from '../assets/fermer.png';
 import CadenaOuvert from '../assets/ouvert.png';
 import { useNavigate } from 'react-router-dom';
 
+// eslint-disable-next-line react/prop-types
 export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
   const [selectedUser, setSelectedUser] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -54,7 +56,7 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:3000/users/get_all_users', {
+      const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

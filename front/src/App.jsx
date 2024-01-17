@@ -1,5 +1,5 @@
 // App.js (ou tout autre composant parent)
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { LoginPage } from './Pages/LoginPage.jsx';
 import { AccueilEntreprise } from './Pages/AccueilEntreprise.jsx';
@@ -22,9 +22,9 @@ function App(cardData) {
   useEffect(() => {
     fetch('http://localhost:3000/users/get_all_firm_name')
       .then((res) => res.json())
-      .then((dataFirmName) => {
-       setDataFirmName(dataFirmName);
-        console.log(dataFirmName)
+      .then((data) => {
+       setDataFirmName(data);
+        console.log(data)
       })
       .catch((err) => {
         console.error('Erreur de requête fetch :', err);
