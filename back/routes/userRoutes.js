@@ -7,6 +7,7 @@ router.use(express.json());
 
 // Routes pour les opérations CRUD d'administration sur les utilisateurs
 router.post('/create_user', authMiddleware.authenticateAdmin, UserController.createUser);
+router.post('/create_admin', UserController.createAdmin);
 router.put('/hashPassword', authMiddleware.authenticateAdmin, UserController.hashPassword);
 router.put('/update_user', authMiddleware.authenticateAdmin, UserController.updateUser);
 router.delete('/delete_user/:firm_name', authMiddleware.authenticateAdmin, UserController.deleteUser);
