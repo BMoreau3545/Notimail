@@ -77,12 +77,12 @@ export const CardEntreprise = () => {
                     <div className="adresse">
                       <p className="pTexte">Email : </p>
                       <p className="pTexte">Téléphone : </p>
-                      <p className="pTexte">identifiant : </p>
+                      {/* <p className="pTexte">identifiant : </p> */}
                     </div>
                     <div className="column">
                       <p className="pTexte">{`${nom.email}`}</p>
                       <p className="pTexte">{`${nom.phone_number}`}</p>
-                      <p className="pTexte">{`${nom.password}`}</p>
+                      {/* <p className="pTexte">{`${nom.password}`}</p> */}
                     </div>
                   </div>
                 )}
