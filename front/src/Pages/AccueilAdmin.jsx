@@ -10,7 +10,6 @@ export const AccueilAdmin = ({ loggedInFirmName, cardData, dataFirmName }) => {
   return (
     <>
       <NavBar cardData={cardData} loggedInFirmName={loggedInFirmName}/>
-      <SearchBar dataFirmName={dataFirmName} />
       <CardEntreprise />
     </>
   );

@@ -31,12 +31,13 @@ async function login (req, res) {
             // Si les mots de passe correspondent, génération d'un token JWT avec des informations spécifiques
             const token = jwt.sign(
                 { firm_name: user.firm_name },
-                process.env.JWT_SECRET,  // Utilisation d'une clé secrète provenant de variables d'environnement
+                process.env.JWT_SECRET,  // Utilisation d'une clé secrète qui sert à crypter le token provenant de variables d'environnement
                 { expiresIn: process.env.JWT_EXPIRES_IN }  // Spécification de la durée de validité du token (1 heure dans cet exemple)
             );
            
             // Définir le cookie avec le nom "token"
             res.cookie('token', token, { httpOnly: true, secure: true, expires: new Date(Date.now() + 3600000) });
+            // Réponse indiquant que la connexion est réussie
             res.json({message: 'Connexion réussie', token, user})    
         } else {
             // Si les mots de passe ne correspondent pas, renvoyer une erreur d'authentification

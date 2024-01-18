@@ -12,7 +12,6 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [loginFirm, setLoginFirm] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  const [password, setPassword] = useState('');
 
   const [isMouseOver, setIsMouseOver] = useState(false);
   const navigate = useNavigate();
@@ -71,10 +70,11 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
         const user = await response.json();
 
         // Mise à jour de l'état dans le composant parent
-        updateLoggedInFirmName(user.firm_name);
+        updateLoggedInFirmName(user.user.firm_name);
 
         // Navigation vers la page appropriée
-        navigate(user.is_admin ? '/admin' : '/entreprise');
+        navigate(user.user.is_admin ? '/admin' : '/entreprise');
+        console.log(user.user.is_admin)
       } else {
         setErrorMessage('Nom d\'entreprise ou mot de passe incorrect');
       }
