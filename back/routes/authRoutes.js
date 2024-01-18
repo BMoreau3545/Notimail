@@ -7,7 +7,7 @@ const router = express.Router();
 // Importation de la fonction de connexion depuis le contrôleur d'authentification
 const { login, logout } = require('../Controller/authController');
 router.use(express.json());
-router.use('/logout', cookieParser)
+router.use('/logout', cookieParser);
 // Définition de la route POST '/login', qui appelle la fonction login du contrôleur d'authentification
 router.post('/login', login);
 router.post('/logout', logout);

@@ -14,15 +14,15 @@ Content-Type: application/json
 ###
 # Créer un nouvel utilisateur
 POST http://localhost:3000/users/create_user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTUwMDQ3MCwiZXhwIjoxNzEzMjc2NDcwfQ.DNztKCui6iIQSNCDVoQ4V8dFAz8nfq9vM8Ar3hC-pz0
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise1",
-  "first_name": "Contact1",
-  "last_name": "Nom1",
-  "email": "contact1@example.com",
-  "phone_number": "1234567890",
-  "password": "motDePasse1"
+  "firm_name": "Entreprise5",
+  "first_name": "Contact5",
+  "last_name": "Nom5",
+  "email": "benrei@hotmail.fr",
+  "phone_number": "1234567890"
 }
 
 ###
@@ -90,10 +90,11 @@ GET http://localhost:3000/users/get_all_users
 
 ###
 PUT http://localhost:3000/users/update_user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTUwMDQ3MCwiZXhwIjoxNzEzMjc2NDcwfQ.DNztKCui6iIQSNCDVoQ4V8dFAz8nfq9vM8Ar3hC-pz0
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise4",
+  "firm_name": "Entreprise3",
   "email": "benrei@hotmail.fr"
 }
 
@@ -118,8 +119,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "firm_name": "Entreprise1",
-    "password": "motDePasse1"
+    "firm_name": "admin",
+    "password": "MDPadmin"
 }
 
 ###

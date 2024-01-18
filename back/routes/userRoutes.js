@@ -3,6 +3,7 @@ const router = express.Router();
 const UserController = require('../Controller/userController');
 const authMiddleware = require('../middleware/authMiddleware');
 
+
 router.use(express.json());
 
 // Routes pour les opérations CRUD d'administration sur les utilisateurs

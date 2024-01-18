@@ -15,14 +15,14 @@ async function login (req, res) {
         // Extraction des données du corps de la requête
         const { firm_name, password } = req.body;
         
-
-        
         // Récupération des informations de l'utilisateur à partir de la base de données en utilisant le nom de la société
         // Utilisation du modèle User (défini dans le fichier User.js) pour rechercher un enregistrement dans la table des utilisateurs.
         // La méthode findOne est utilisée pour trouver un seul enregistrement qui correspond aux critères spécifiés.
 
         // Utilisation de l'opération asynchrone avec le mot-clé 'await' pour attendre que la requête se termine.
-        const user = await db.User.findOne({where: {firm_name: firm_name}}); // Spécification des critères de recherche (utilisation de where). Dans ce cas, on cherche un utilisateur dont la valeur dans la colonne 'firm_name' correspond à la variable 'firm_name'.
+        const user = await db.User.findOne({where: {firm_name: firm_name}}); 
+        // Spécification des critères de recherche (utilisation de where). 
+        // Dans ce cas, on cherche un utilisateur dont la valeur dans la colonne 'firm_name' correspond à la variable 'firm_name'.
         console.log(user)
         // Comparaison du mot de passe fourni avec le mot de passe haché stocké dans la base de données
         const passwordMatch = await bcrypt.compare(password, user.password);
@@ -34,7 +34,7 @@ async function login (req, res) {
                 process.env.JWT_SECRET,  // Utilisation d'une clé secrète provenant de variables d'environnement
                 { expiresIn: process.env.JWT_EXPIRES_IN }  // Spécification de la durée de validité du token (1 heure dans cet exemple)
             );
-            // res.json({ token });  // Envoyer le token comme réponse JSON
+           
             // Définir le cookie avec le nom "token"
             res.cookie('token', token, { httpOnly: true, secure: true, expires: new Date(Date.now() + 3600000) });
             res.json({message: 'Connexion réussie', token, user})    

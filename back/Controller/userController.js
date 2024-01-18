@@ -2,37 +2,48 @@ const db = require('../models/index');
 const axios = require('axios');
 const User = db.User;
 const bcrypt = require('bcrypt');
-const nodemailer = require('nodemailer');
+const transporter= require('../config/mailer');
 
 // Fonction pour créer un nouvel utilisateur
 const createUser = async (req, res) => {
-  console.log('createUser route reached');
-  console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params));
-    try {
-      const { firm_name, first_name, last_name, email, phone_number, password } = req.body;
-  
-      const existingUser = await User.findOne({ where: { firm_name } });
-      if (existingUser) {
-        return res.status(400).json({ message: 'Un utilisateur avec ce nom d\'entreprise existe déjà.' });
-      }
-  
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      await User.create({
-        firm_name,
-        first_name,
-        last_name,
-        email,
-        phone_number,
-        password: hashedPassword,
-      });
-  
-      res.status(201).json({ message: 'Utilisateur créé avec succès.' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' });
-    }
-  };
+  console.log('createUser route reached'); // Affiche un message dans la console pour indiquer que la route createUser a été atteinte
+  console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params)); // Affiche les données de la requête et des paramètres dans la console
+
+  try {
+    const { firm_name, first_name, last_name, email, phone_number } = req.body; // Extraction des données de la requête
+
+    // Génération d'un mot de passe aléatoire de 4 chiffres
+    let password;
+    do {
+      // Génération d'un nombre aléatoire entre 0000 et 9999, conversion en chaîne de caractères
+      password = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+    } while (await User.findOne({ where: { password } })); // Vérification de l'unicité du mot de passe dans la base de données
+
+    const hashedPassword = await bcrypt.hash(password, 10); // Hachage du mot de passe
+
+    // Création de l'utilisateur dans la base de données
+    const newUser = await User.create({
+      firm_name,
+      first_name,
+      last_name,
+      email,
+      phone_number,
+      password: hashedPassword, // Stockage du mot de passe haché
+    });
+    
+    await transporter.sendMail({
+      from: process.env.ADMIN_MAIL,
+      to: newUser.email,
+      subject: 'Votre mot de passse',
+      text:`Votre mot de passe est ${password}`
+    })
+
+    res.status(201).json({ message: 'Utilisateur créé avec succès.' }); // Réponse JSON indiquant que l'utilisateur a été créé avec succès
+  } catch (error) {
+    console.error(error); // Affichage de l'erreur dans la console en cas d'échec
+    res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' }); // Réponse JSON en cas d'erreur serveur lors de la création de l'utilisateur
+  }
+};
 
 // Fonction pour créer un nouvel utilisateur
 const createAdmin = async (req, res) => {
@@ -90,12 +101,11 @@ const hashPassword = async (req, res) => {
 const updateUser = async (req, res) => {
     console.log("update :", req.body, req.params);
     try {
-      const { firm_name, first_name, last_name, email, phone_number } = req.body;
+      const { firm_name } = req.body;
 
        // Ajouter une vérification du rôle de l'utilisateur
-       const loggedInUser = await User.findOne({ where: { is_admin: req.params.is_admin === 'true' } });
 
-       if (!loggedInUser.is_admin) {
+       if (!req.admin) {
            return res.status(403).json({ message: 'Vous n\'êtes pas autorisé à effectuer cette opération.' });
        }
   
@@ -105,10 +115,10 @@ const updateUser = async (req, res) => {
       }
   
       await existingUser.update({
-        first_name: first_name || existingUser.first_name,
-        last_name: last_name || existingUser.last_name,
-        email: email || existingUser.email,
-        phone_number: phone_number || existingUser.phone_number,
+        first_name: req.body.first_name ?? existingUser.first_name,
+        last_name: req.body.last_name || existingUser.last_name,
+        email: req.body.email || existingUser.email,
+        phone_number: req.body.phone_number || existingUser.phone_number,
       });
   
       res.json({ message: 'Utilisateur mis à jour avec succès.' });
@@ -183,14 +193,7 @@ const has_mail = async (req, res) => {
       return res.status(200).json({ message: 'Aucun utilisateur à notifier.' });
     }
 
-    // Simulation de l'envoi de courrier électronique pour chaque utilisateur
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'benjamin.moreau@institutsolacroup.com',
-        pass: 'nfgg elep zmxg xwfp',
-      },
-    });
+    
     
     const mailPromises = users.map(user => {
       const mailOptions = {
