@@ -3,6 +3,11 @@ const express = require('express');
 
 const cookieParser = require('cookie-parser');
 
+const corsOptions = {
+  allowHeaders: ['authorization'],
+  origin: '*',
+}
+
 // Importation des routes liées à l'utilisateur depuis le fichier userRoutes.js
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -21,7 +26,7 @@ const cors = require('cors');
 // Utilisation de middleware pour permettre à Express de traiter les requêtes au format JSON
 app.use(express.json());
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Utilisation de middleware pour permettre à Express de traiter les requêtes au format URL-encoded
 app.use(express.urlencoded({ extended: true }));

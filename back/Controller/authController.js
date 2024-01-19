@@ -37,6 +37,7 @@ async function login (req, res) {
            
             // Définir le cookie avec le nom "token"
             res.cookie('token', token, { httpOnly: true, secure: true, expires: new Date(Date.now() + 3600000) });
+            console.log(res.cookie);
             // Réponse indiquant que la connexion est réussie
             res.json({message: 'Connexion réussie', token, user})    
         } else {
