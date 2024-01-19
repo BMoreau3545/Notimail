@@ -3,6 +3,7 @@ const axios = require('axios');
 const User = db.User;
 const bcrypt = require('bcrypt');
 const transporter= require('../config/mailer');
+const smsSender = require('../config/smsSender');
 
 // Fonction pour créer un nouvel utilisateur
 const createUser = async (req, res) => {
@@ -119,7 +120,7 @@ const hashPassword = async (req, res) => {
       }
 
       const hashedPassword = await bcrypt.hash(updatePassword, 10); // Hachage du mot de passe
-      
+
       await existingUser.update({
         first_name: req.body.first_name ?? existingUser.first_name,
         last_name: req.body.last_name ?? existingUser.last_name,
@@ -208,52 +209,37 @@ const has_mail = async (req, res) => {
       return res.status(200).json({ message: 'Aucun utilisateur à notifier.' });
     }
 
-    
-    
-    const mailPromises = users.map(user => {
-      const mailOptions = {
-        from: 'benjamin.moreau@institutsolacroup.com',
-        to: usersToSendMail.map(user => user.email).join(','), // Joindre les adresses e-mail avec une virgule
-        subject: 'Nouveau courrier reçu',
-        text: 'Vous avez du courrier. Consultez votre boîte aux lettres.',
-      };
+    // Configuration du courrier électronique une seule fois en utilisant le transporteur
+    const mailOptions = {
+      from: process.env.ADMIN_MAIL,
+      subject: 'Nouveau courrier reçu',
+      text: 'Vous avez du courrier. Consultez votre boîte aux lettres.',
+    };
 
-      return transporter.sendMail(mailOptions);
-    });
+    // Configuration des destinataires en utilisant les adresses e-mail des utilisateurs à notifier
+    mailOptions.to = usersToSendMail.map(user => user.email).join(',');
+
+    // Envoi du courrier électronique en une seule fois avec tous les destinataires
+    await transporter.sendMail(mailOptions);
+
     // Mettez à jour la propriété has_mail à true et last_received_mail à la date actuelle pour les utilisateurs notifiés
     const currentDate = new Date();
     // Mettez à jour la propriété has_mail à true pour les utilisateurs notifiés
     await Promise.all(usersToSendMail.map(user => user.update({ has_mail: true, last_received_mail: currentDate })));
 
-     // Envoyer des SMS aux utilisateurs nonifiés
-     const smsPromises = usersToSendMail.map(async user => {
-
+    // Envoyer des SMS aux utilisateurs nonifiés
+    const smsPromises = usersToSendMail.map(async user => {
       const formattedPhoneNumber = `+33${user.phone_number.slice(1)}`;
+      try {
+        // Appel de la fonction sensSMS du module smsSender
+        await smsSender.sendSMS(formattedPhoneNumber, 'Vous avez du courrier à récupérer. Consultez votre boîte aux lettres.');
 
-      // Ajoutez la logique d'envoi de SMS avec AllMySMS ici
-      const smsOptions = {
-        method: 'POST',
-        url: 'https://api.allmysms.com/sms/send',
-        headers: {
-          'cache-control': 'no-cache',
-          'Authorization': `Basic ${process.env.CLE_SMS}`, // Remplacez par votre auth token
-          'Content-Type': 'application/json',
-        },
-        data: {
-          from: 'allmysms',
-          to: formattedPhoneNumber,
-          text: 'Vous avez du courrier à récupérer. Consultez votre boîte aux lettres.',
-          // Ajoutez d'autres paramètres si nécessaire, comme la date
-        },
-      };
-
-      const smsResponse = await axios(smsOptions);
-
-      if (smsResponse.data.success) {
-        // Mettez à jour la propriété has_mail à true pour les utilisateurs notifiés
-        await user.update({ has_mail: true, last_received_mail: new Date() });
+        await user.update({ has_mail: true, last_received_mail: new DataTransfer() });
+      } catch (error) {
+        console.error(error.message);
       }
     });
+    
 
     // Attendre la résolution de toutes les promesses
     await Promise.all(smsPromises);
