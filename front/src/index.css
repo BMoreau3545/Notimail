@@ -321,8 +321,12 @@ button:active{
     background-color: rgb(240, 240, 240);
     border-radius: 1rem;
     padding-left: 1vw;
+    height: 24px;
+    width : 100%;
+    word-wrap: break-word;
   }
-  form{
+  .Formulaire{
+    overflow:initial;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -332,5 +336,13 @@ button:active{
     border-radius: 1rem;
     padding: 5vw;
     width: 50vw;
+  }
+  .deleteBtn{
+    width: 100%;
+    word-wrap: break-word;
+  }
+  .submitForm{
+    width : 100%;
+    word-wrap: break-word;
   }
 }
