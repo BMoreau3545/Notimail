@@ -1,6 +1,5 @@
 // middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
-const { getUserByFirmName } = require('../Controller/userController');
 const db = require('../models/index');
 
 const authenticateUser = async (req, res, next) => {
@@ -12,7 +11,7 @@ const authenticateUser = async (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await getUserByFirmName(decoded.firm_name);
+        const user = await db.User.findOne({where: {firm_name:decoded.firm_name}});
 
         if (!user) {
             return res.status(401).json({ message: 'Unauthorized' });
@@ -28,7 +27,7 @@ const authenticateUser = async (req, res, next) => {
 const authenticateAdmin = async (req, res, next) => {
     try {
         const token = req.headers['authorization'];
-        console.log(req.headers);
+        console.log("authenticateAdmin headers: ", req.headers, req.body);
         if (!token) {
             return res.status(401).json({ message: 'Unauthorized1' });
         }

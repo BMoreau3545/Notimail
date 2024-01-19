@@ -14,6 +14,7 @@ async function login (req, res) {
     try {
         // Extraction des données du corps de la requête
         const { firm_name, password } = req.body;
+        console.log("login_body: ", req.body, "login_params: ", req.params); 
         
         // Récupération des informations de l'utilisateur à partir de la base de données en utilisant le nom de la société
         // Utilisation du modèle User (défini dans le fichier User.js) pour rechercher un enregistrement dans la table des utilisateurs.
