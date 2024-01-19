@@ -6,12 +6,14 @@ import CadenaFermer from '../assets/fermer.png';
 import CadenaOuvert from '../assets/ouvert.png';
 import { useNavigate } from 'react-router-dom';
 
+
 // eslint-disable-next-line react/prop-types
 export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
   const [selectedUser, setSelectedUser] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [loginFirm, setLoginFirm] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  
 
   const [isMouseOver, setIsMouseOver] = useState(false);
   const navigate = useNavigate();

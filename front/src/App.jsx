@@ -17,20 +17,20 @@ function App(cardData) {
     setLoggedInFirmName(firmName);
   };
 
-  const [loginFirm, setLoginFirm] = useState('');
+  // const [loginFirm, setLoginFirm] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
   
-fetch('http://localhost:3000/auth/login', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    firm_name: loginFirm,
-    password: loginPassword,
-  }),
-})
+// fetch('http://localhost:3000/auth/login', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify({
+//     firm_name: loginFirm,
+//     password: loginPassword,
+//   }),
+// })
 
 
   // Fetch base de données 
@@ -51,7 +51,7 @@ fetch('http://localhost:3000/auth/login', {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/" element={<LoginPage loginPassword={loginPassword} loginFirm={loginFirm} dataFirmName={dataFirmName} updateLoggedInFirmName={updateLoggedInFirmName} loggedInFirmName={loggedInFirmName} />} />
+          path="/" element={<LoginPage loginPassword={loginPassword}  dataFirmName={dataFirmName} updateLoggedInFirmName={updateLoggedInFirmName} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/admin" element={<AccueilAdmin dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/entreprise" element={<AccueilEntreprise dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/adminDetails" element={<FormDetails cardData={cardData} dataFirmName={dataFirmName} />} />
