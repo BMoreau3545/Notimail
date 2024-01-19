@@ -5,7 +5,7 @@ const db = require('../models/index');
 
 const authenticateUser = async (req, res, next) => {
     try {
-        const token = req.header('Authorization');
+        const token = req.headers['authorization'];
         
         if (!token) {
             return res.status(401).json({ message: 'Unauthorized' });

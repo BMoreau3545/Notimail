@@ -94,7 +94,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise3",
+  "firm_name": "Entreprise2",
   "email": "benrei@hotmail.fr"
 }
 
