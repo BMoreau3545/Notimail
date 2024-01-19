@@ -41,7 +41,7 @@ export const CardEntreprise = () => {
     // Mettez à jour isOpenArray pour réinitialiser l'état d'ouverture
     setIsOpenArray(new Array(result.length).fill(false));
   };
-  
+
 
   return (
     <>
@@ -67,11 +67,11 @@ export const CardEntreprise = () => {
                       />
                       <div className="slider"></div>
                     </label>
-                    <NavLink to={`/adminDetails/${nom.firm_Name}`}>
+                    <NavLink to={`/adminDetails/${nom.firm_name}`}>
                       <FaRegEdit style={{ fontSize: '35px', color: '#025892' }} />
                     </NavLink>
                   </div>
-                  </div>
+                </div>
                 {isOpenArray[index] && (
                   <div className="closeDefault">
                     <div className="adresse">

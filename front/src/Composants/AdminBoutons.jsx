@@ -1,6 +1,6 @@
 import MailSelect from '../assets/envoie.png';
 import Newuser from '../assets/plus.png';
-import "../adminboutons.css"
+import "../adminboutons.css";
 import React, { useState } from 'react';
 import Modal from 'react-responsive-modal';
 import { NavLink } from 'react-router-dom';
@@ -17,15 +17,17 @@ export const AdminBoutons = ({ cardData, newANotif }) => {
     ? cardData.filter((user, index) => newANotif[index])
     : [];
 
-  console.log("notifiedFirms:", notifiedFirms);
-  
   return (
     <>
       <div id='badpage'>
         <NavLink to="/adminDetails">
-          <button><img src={Newuser} className="icon" alt="bouton pour ajouter un utilisateur" /></button>
+          <button>
+            <img src={Newuser} className="icon" alt="Bouton pour ajouter un utilisateur" />
+          </button>
         </NavLink>
-        <button><img src={MailSelect} onClick={onOpenModal} className="icon" alt="bouton pour envoyer un mail au entreprise cocher" /></button>
+        <button>
+          <img src={MailSelect} onClick={onOpenModal} className="icon" alt="Bouton pour envoyer un mail aux entreprises cochées" />
+        </button>
       </div>
 
       <Modal open={open} onClose={onCloseModal} center>
