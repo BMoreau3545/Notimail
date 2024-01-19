@@ -35,7 +35,7 @@ router.put('/update_user', authMiddleware.authenticateAdmin, UserController.upda
 router.delete('/delete_user/:firm_name', authMiddleware.authenticateAdmin, UserController.deleteUser);
 
 // Obtention des informations d'un utilisateur par son nom de société, accessible uniquement par un utilisateur authentifié
-router.get('/get_user/:firm_name', authMiddleware.authenticateUser, UserController.getUserByFirmName);
+router.get('/get_user/:firm_name', authMiddleware.authenticateAdmin, UserController.getUserByFirmName);
 
 // Obtention de la liste de tous les utilisateurs
 router.get('/get_all_users', UserController.getAllUsers);
