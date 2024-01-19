@@ -339,10 +339,10 @@ button:active{
   }
   .deleteBtn{
     width: 100%;
-    word-wrap: break-word;
+    box-sizing: border-box;
   }
   .submitForm{
-    width : 100%;
-    word-wrap: break-word;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
