@@ -18,6 +18,7 @@ export const AdminBoutons = ({ cardData, newANotif }) => {
     : [];
 
   console.log("notifiedFirms:", notifiedFirms);
+  
   return (
     <>
       <div id='badpage'>

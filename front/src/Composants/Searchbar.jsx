@@ -19,7 +19,6 @@ export const SearchBar = ({ dataFirmName, onSearchResultChange }) => {
     );
     setSearchResult(SearchFirm);
 
-    // Call the function provided by the parent to update searchResult in the parent component
     if (onSearchResultChange) {
       onSearchResultChange(SearchFirm);
     }
@@ -41,7 +40,6 @@ export const SearchBar = ({ dataFirmName, onSearchResultChange }) => {
           />
         </div>
       </form>
-      {/* Omitted rest of the SearchBar component */}
     </>
   );
 };
