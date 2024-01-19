@@ -95,7 +95,8 @@ Content-Type: application/json
 
 {
   "firm_name": "Entreprise2",
-  "email": "benrei@hotmail.fr"
+  "email": "benrei@hotmail.fr",
+  "generate_password": true
 }
 
 ###

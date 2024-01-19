@@ -42,6 +42,7 @@ const createUser = async (req, res) => {
   } catch (error) {
     console.error(error); // Affichage de l'erreur dans la console en cas d'échec
     res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' }); // Réponse JSON en cas d'erreur serveur lors de la création de l'utilisateur
+  
   }
 };
 
@@ -98,13 +99,12 @@ const hashPassword = async (req, res) => {
   };
   
   // Fonction pour mettre à jour un utilisateur existant
-const updateUser = async (req, res) => {
+  const updateUser = async (req, res) => {
     console.log("update :", req.body, req.params);
     try {
-      const { firm_name } = req.body;
-
+      const { firm_name, generate_password } = req.body;
        // Ajouter une vérification du rôle de l'utilisateur
-
+      let updatePassword;
        if (!req.admin) {
            return res.status(403).json({ message: 'Vous n\'êtes pas autorisé à effectuer cette opération.' });
        }
@@ -113,14 +113,29 @@ const updateUser = async (req, res) => {
       if (!existingUser) {
         return res.status(404).json({ message: 'Utilisateur non trouvé.' });
       }
-  
+      if(generate_password){
+        updatePassword = await generatePassword();
+        console.log(updatePassword);
+      }
+
+      const hashedPassword = await bcrypt.hash(updatePassword, 10); // Hachage du mot de passe
+      
       await existingUser.update({
         first_name: req.body.first_name ?? existingUser.first_name,
-        last_name: req.body.last_name || existingUser.last_name,
-        email: req.body.email || existingUser.email,
-        phone_number: req.body.phone_number || existingUser.phone_number,
+        last_name: req.body.last_name ?? existingUser.last_name,
+        email: req.body.email ?? existingUser.email,
+        phone_number: req.body.phone_number ?? existingUser.phone_number,
+        password: hashedPassword ?? existingUser.password,
       });
-  
+      if(generate_password){
+        transporter.sendMail({
+          from: process.env.ADMIN_MAIL,
+          to: existingUser.email,
+          subject: 'Votre mot de passse',
+          text:`Votre mot de passe est ${updatePassword}`
+        })
+      }
+      
       res.json({ message: 'Utilisateur mis à jour avec succès.' });
     } catch (error) {
       console.error(error);
@@ -325,6 +340,20 @@ const getAllFirmName = async (req, res) => {
       res.status(500).json({ message: 'Erreur serveur lors de la récupération des noms d\'entreprise.' });
   }
 };
+
+const generatePassword = async () =>{
+  try {
+    let newPassword;
+    do {
+      // Génération d'un nombre aléatoire entre 000000 et 999999, conversion en chaîne de caractères
+      newPassword = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+    } while (await User.findOne({where: {password: newPassword } })); // Vérification de l'unicité du mot de passe dans la base de données
+    return newPassword;
+  } catch (error) {
+    console.error(error); // Affichage de l'erreur dans la console en cas d'échec
+    res.status(500).json({ message: 'Erreur lors de la génération du mot de passe.' }); // Réponse JSON en cas d'erreur serveur lors de la création de l'utilisateur
+  }
+};  
 
 // Exportation de la fonction
 module.exports = {
