@@ -59,7 +59,6 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
     try {
       const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
-     
         headers: {
           'Content-Type': 'application/json',
         },
@@ -73,7 +72,6 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
       if (response.ok) {
         const user = await response.json();
         localStorage.setItem('token', user.token);
-        console.log(token)
         localStorage.setItem('firmName', user.user.firm_name);
         localStorage.setItem('isAdmin', user.user.is_admin);
 

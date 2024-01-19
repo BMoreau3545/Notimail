@@ -43,6 +43,8 @@ function App(cardData) {
         <Route path="/admin" element={<AccueilAdmin dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/entreprise" element={<AccueilEntreprise dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />} />
         <Route path="/adminDetails" element={<FormDetails cardData={cardData} dataFirmName={dataFirmName} />} />
+        <Route path="/adminDetails/:firm_name" element={<FormDetails dataFirmName={dataFirmName} />} />
+
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>

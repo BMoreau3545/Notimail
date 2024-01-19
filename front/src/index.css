@@ -316,3 +316,33 @@ button:active{
   font-size: 18px;
   
 }
+@media screen and (max-width: 800px) {
+  .inputForm{
+    background-color: rgb(240, 240, 240);
+    border-radius: 1rem;
+    padding-left: 1vw;
+    height: 24px;
+    width : 100%;
+    word-wrap: break-word;
+  }
+  .Formulaire{
+    overflow:initial;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 3vw;
+    color: var(--Bleu);
+    background-color: var(--Gris);
+    border-radius: 1rem;
+    padding: 5vw;
+    width: 50vw;
+  }
+  .deleteBtn{
+    width: 100%;
+    word-wrap: break-word;
+  }
+  .submitForm{
+    width : 100%;
+    word-wrap: break-word;
+  }
+}
