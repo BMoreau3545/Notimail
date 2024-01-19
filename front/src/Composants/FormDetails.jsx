@@ -9,6 +9,52 @@ export const FormDetails = ({ dataFirmName }) => {
     event.preventDefault();
   }
 
+  
+  //Delete une entreprise
+  const handleDeleteFirm = () => {
+    // Ajoutez ici la logique pour supprimer l'entreprise
+    console.log("Supprimer l'entreprise");
+    }
+  
+    //Ajouter une entreprise
+    const handleAddFirm = () => {
+      // Les données du formulaire à envoyer
+      const formData = {
+        firm_name: document.getElementById('entreprise').value,
+        first_name: document.getElementById('contactNom').value,
+        last_name: document.getElementById('contactPrenom').value,
+        phone_number: document.getElementById('tel').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('identifiant').value,
+        isAdmin: document.getElementById('isAdmin').checked,
+      };
+    
+      // Configuration de la requête fetch
+      fetch('http://localhost:3000/users/create_user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Erreur lors de la création de l\'entreprise');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Réponse du backend après la création réussie
+        console.log('Entreprise créée avec succès:', data);
+        // Ajoutez ici la logique pour rediriger ou effectuer d'autres actions nécessaires
+      })
+      .catch((error) => {
+        console.error('Erreur lors de la création de l\'entreprise:', error);
+        // Ajoutez ici la logique pour gérer les erreurs
+      });
+    };
+    
+
   return (
     <>
       <section className='SectionForm'>
@@ -57,8 +103,8 @@ export const FormDetails = ({ dataFirmName }) => {
 
           <div className='row'>
             <div className='row'>
-              <button type="button" className='deleteBtn'>Supprimer</button>
-              <button type="submit" className='submitForm'>Terminer</button>
+              <button onClick={handleDeleteFirm} type="button" className='deleteBtn'>Supprimer</button>
+              <button onClick={handleAddFirm} type="submit" className='submitForm'>Terminer</button>
             </div>
           </div>
         </form>
