@@ -20,18 +20,6 @@ function App(cardData) {
   // const [loginFirm, setLoginFirm] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  
-// fetch('http://localhost:3000/auth/login', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     firm_name: loginFirm,
-//     password: loginPassword,
-//   }),
-// })
-
 
   // Fetch base de données 
   useEffect(() => {

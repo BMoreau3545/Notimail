@@ -5,15 +5,15 @@ import FlecheLog from '../assets/flecheLogin.svg';
 import CadenaFermer from '../assets/fermer.png';
 import CadenaOuvert from '../assets/ouvert.png';
 import { useNavigate } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 
 
-// eslint-disable-next-line react/prop-types
 export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
   const [selectedUser, setSelectedUser] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [loginFirm, setLoginFirm] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  
+
 
   const [isMouseOver, setIsMouseOver] = useState(false);
   const navigate = useNavigate();
@@ -24,6 +24,7 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
     setSelectedUser(selectedValue);
     console.log(`Option sélectionnée : ${selectedValue}`);
   };
+
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -45,34 +46,41 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
     setLoginPassword(event.target.value);
   };
 
-
+  const token = localStorage.getItem('token');
   const handleMouseEnter = () => {
     setIsMouseOver(true);
   };
 
   const handleMouseLeave = () => {
     setIsMouseOver(false);
-  };
-
+  };  
 
   const handleLogin = async () => {
     try {
       const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
+     
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           firm_name: selectedUser,
           password: loginPassword,
+          isAdmin: selectedUser === 'admin'
         }),
       });
 
       if (response.ok) {
         const user = await response.json();
+        localStorage.setItem('token', user.token);
+        console.log(token)
+        localStorage.setItem('firmName', user.user.firm_name);
+        localStorage.setItem('isAdmin', user.user.is_admin);
+
 
         // Mise à jour de l'état dans le composant parent
         updateLoggedInFirmName(user.user.firm_name);
+
 
         // Navigation vers la page appropriée
         navigate(user.user.is_admin ? '/admin' : '/entreprise');
