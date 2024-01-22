@@ -21,7 +21,6 @@ function App() {
       .then((res) => res.json())
       .then((dataFirmName) => {
         setDataFirmName(dataFirmName);
-        console.log(dataFirmName);
       })
       .catch((err) => {
         console.error('Erreur de requête fetch :', err);

@@ -1,4 +1,4 @@
-  import { useNavigate } from 'react-router-dom';
+  import { NavLink, useNavigate } from 'react-router-dom';
   import Mailto from '../assets/LogoNotimail.png';
   import { IoMailOpen ,  IoCloseCircle } from "react-icons/io5";
   import { FaCheckCircle } from "react-icons/fa";
@@ -19,27 +19,32 @@
     const handleLogout = async () => {
       try {
         console.log('Tentative de déconnexion...');
-    
+  
+        const token = localStorage.getItem('token');
+        console.log('verif token' , token)
+  
+        if (!token) {
+          // Si le token n'est pas présent, l'utilisateur est probablement déjà déconnecté
+          console.log('Utilisateur déjà déconnecté');
+          return;
+        }
+        console.log('envoie de la requete en POST');
         const response = await fetch('http://localhost:3000/auth/logout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+          //  'Authorization': `Bearer ${token}`, // Ajoutez le JWT dans l'en-tête Authorization
           },
-          body: JSON.stringify({
-            firm_name: loggedInFirmName,
-            password: loginPassword,
-            is_admin: selectedUser === 'admin'
-          }),
         });
-    
+
+        console.log('response: ', response.body , response.params)
+  
         if (response.ok) {
           console.log('Utilisateur déconnecté avec succès');
           // Nettoyez le localStorage
           localStorage.removeItem('token');
           localStorage.removeItem('firmName');
           localStorage.removeItem('is_admin');
-          // localStorage.clear('token');
-          console.log('Après la déconnexion :', localStorage.getItem('token'));
           // Redirection vers la page de connexion
           navigate('/');
         } else {
@@ -48,7 +53,7 @@
       } catch (error) {
         console.error('Erreur lors de la requête de déconnexion :', error);
       }
-    };
+    }
 
     return (
       <>
