@@ -92,13 +92,14 @@ GET http://localhost:3000/users/get_all_users
 
 ###
 PUT http://localhost:3000/users/update_user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTkxMDYyMSwiZXhwIjoxNzEzNjg2NjIxfQ.BGekadgOMfFUR2lFipcYktfnjA5IfKPStuPvfrUzxro
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTkxNDcyOSwiZXhwIjoxNzEzNjkwNzI5fQ.v-cr9LnrRISj56EUkdHnjo2yhPVDVoLYae5yAbNjf8A
 Content-Type: application/json
 
 {
   "firm_name": "Entreprise2",
   "email": "benrei@hotmail.fr",
-  "phone_number": "0762556465"
+  "phone_number": "0762556465",
+  "generate_password": true
 }
 
 ###
@@ -107,7 +108,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise1"
+  "firm_name": "Entreprise2"
 }
 
 ###
@@ -115,7 +116,8 @@ GET http://localhost:3000/users/get_all_firm_name
 Content-Type: application/json
 
 ###
-PUT http://localhost:3000/users/recup_mail?firm_name=Entreprise1
+PUT http://localhost:3000/users/recup_mail?firm_name=Entreprise2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ
 Content-Type: application/json
 
 ### 
@@ -125,6 +127,15 @@ Content-Type: application/json
 {
     "firm_name": "admin",
     "password": "MDPadmin"
+}
+
+### 
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "firm_name": "Entreprise2",
+    "password": "410811"
 }
 
 ###

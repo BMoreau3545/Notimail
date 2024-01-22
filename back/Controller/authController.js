@@ -27,6 +27,8 @@ async function login (req, res) {
         console.log(user)
         // Comparaison du mot de passe fourni avec le mot de passe haché stocké dans la base de données
         const passwordMatch = await bcrypt.compare(password, user.password);
+        console.log("Mot de passe stocké dans la base de données:", user.password);
+        console.log("Mot de passe fourni par l'utilisateur:", password);
         console.log(password, passwordMatch);
         if (user && passwordMatch) {
             // Si les mots de passe correspondent, génération d'un token JWT avec des informations spécifiques

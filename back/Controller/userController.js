@@ -115,10 +115,10 @@ const hashPassword = async (req, res) => {
       if (!existingUser) {
         return res.status(404).json({ message: 'Utilisateur non trouvé.' });
       }
-      if(generate_password){
-        const { clearPassword, hashedPassword } = await generatePassword();
-        console.log(clearPassword);
-        console.log(hashedPassword);
+      if (generate_password) {
+        const passwordData = await generatePassword();
+        clearPassword = passwordData.clearPassword;
+        hashedPassword = passwordData.hashedPassword;
       }
 
       await existingUser.update({
@@ -127,6 +127,7 @@ const hashPassword = async (req, res) => {
         email: req.body.email ?? existingUser.email,
         phone_number: req.body.phone_number ?? existingUser.phone_number,
         password: hashedPassword ?? existingUser.password,
+        is_admin: existingUser.isAdmin,
       });
       if(generate_password){
         transporter.sendMail({
@@ -230,6 +231,7 @@ const has_mail = async (req, res) => {
     // Envoyer des SMS aux utilisateurs nonifiés
     const smsPromises = usersToSendMail.map(async user => {
       const formattedPhoneNumber = `+33${user.phone_number.slice(1)}`;
+      console.log("userController :", formattedPhoneNumber);
       try {
         // Appel de la fonction sensSMS du module smsSender
         await smsSender.sendSMS(formattedPhoneNumber, 'Vous avez du courrier à récupérer. Consultez votre boîte aux lettres.');

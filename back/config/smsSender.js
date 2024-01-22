@@ -1,8 +1,9 @@
 const axios = require('axios');
 
-const sendSMS = async (phoneNumber, message) => {
+const sendSMS = async (formattedPhoneNumber, message) => {
   try {
-    const formattedPhoneNumber = `+33${phoneNumber.slice(1)}`;
+    // const formattedPhoneNumber = `+33${phoneNumber.slice(1)}`;
+    console.log(formattedPhoneNumber);
 
     const smsOptions = {
       method: 'POST',
