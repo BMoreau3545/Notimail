@@ -108,7 +108,7 @@ const hashPassword = async (req, res) => {
     console.log("update :", req.body, req.params);
     try {
       // Extraction des données nécessaires de la requête
-      const { generate_password } = req.body;
+      const { generate_password, is_admin } = req.body;
       const { firm_name } = req.params;
       let clearPassword;
       let hashedPassword;
@@ -124,8 +124,20 @@ const hashPassword = async (req, res) => {
         // Si l'utilisateur n'est pas trouvé, renvoyer une erreur 404
         return res.status(404).json({ message: 'Utilisateur non trouvé.' });
       }
+
+      // Vérification si l'utilisateur à mettre à jour est le seul administrateur
+    const isAdminUpdate = is_admin !== undefined && existingUser.is_admin !== is_admin;
+
+    // Vérification si l'utilisateur est le seul administrateur
+    if (isAdminUpdate) {
+      const adminCount = await User.count({ where: { is_admin: true } });
+      if (adminCount === 1) {
+        return res.status(400).json({ message: 'Il doit toujours y avoir au moins un administrateur.' });
+      }
+    }
+
       // Génération d'un mot de passe si l'option generate_password est activée
-      if(generate_password){
+    if(generate_password){
         // Appel de la fonction generatePassword pour obtenir un nouveau mot de passe
         const { clearPassword, hashedPassword } = await generatePassword();
         console.log(clearPassword);
@@ -139,7 +151,7 @@ const hashPassword = async (req, res) => {
         email: req.body.email ?? existingUser.email,
         phone_number: req.body.phone_number ?? existingUser.phone_number,
         password: hashedPassword ?? existingUser.password,
-        is_admin: existingUser.isAdmin,
+        is_admin: isAdminUpdate ? is_admin : existingUser.isAdmin,
       });
       // Envoi du nouveau mot de passe par courrier électronique si l'option generate_password est activée
       if(generate_password){

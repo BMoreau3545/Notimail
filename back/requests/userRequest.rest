@@ -89,14 +89,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 GET http://localhost:3000/users/get_all_users
 
 ###
-PUT http://localhost:3000/users/update_user/Entreprise2
+PUT http://localhost:3000/users/update_user/admin
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTkyMDAzOSwiZXhwIjoxNzEzNjk2MDM5fQ.rAXI6O99hgQMj395zFuFG_FesOURlLL_wW0AguhszBk
 Content-Type: application/json
 
 {
-  "email": "benrei@hotmail.fr",
-  "phone_number": "0762556465",
-  "generate_password": true
+  "is_admin" : false
 }
 
 ###
