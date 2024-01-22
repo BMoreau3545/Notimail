@@ -110,10 +110,7 @@ Content-Type: application/json
 GET http://localhost:3000/users/get_all_firm_name
 Content-Type: application/json
 
-###
-PUT http://localhost:3000/users/recup_mail?firm_name=Entreprise2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ
-Content-Type: application/json
+
 
 ### 
 POST http://localhost:3000/auth/login
@@ -135,4 +132,9 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3000/auth/logout
+Content-Type: application/json
+
+###
+PUT http://localhost:3000/client/recup_mail?firm_name=Entreprise2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ
 Content-Type: application/json

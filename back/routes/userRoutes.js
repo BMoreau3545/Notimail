@@ -22,12 +22,6 @@ router.use(express.json());
 // Création d'un nouvel utilisateur, accessible uniquement par un administrateur authentifié
 router.post('/create_user', authMiddleware.authenticateAdmin, UserController.createUser);
 
-// Création d'un nouvel administrateur
-router.post('/create_admin', UserController.createAdmin);
-
-// Mise à jour du mot de passe d'un utilisateur, accessible uniquement par un administrateur authentifié
-router.put('/hashPassword', authMiddleware.authenticateAdmin, UserController.hashPassword);
-
 // Mise à jour des informations d'un utilisateur, accessible uniquement par un administrateur authentifié
 router.put('/update_user/:firm_name', authMiddleware.authenticateAdmin, UserController.updateUser);
 
@@ -46,11 +40,7 @@ router.get('/get_all_firm_name', UserController.getAllFirmName);
 // Notification de tous les utilisateurs par un administrateur authentifié par envoi d un mail à chaque utilisateur
 router.post('/notify', authMiddleware.authenticateAdmin, UserController.has_mail);
 
-// Récupération du courrier par un utilisateur authentifié
-router.put('/recup_mail', authMiddleware.authenticateUser, UserController.recupCourrier);
 
-// Mise à jour du rôle d'un utilisateur, accessible uniquement par un administrateur authentifié
-router.put('/update_user_role', authMiddleware.authenticateAdmin, UserController.updateUserRole);
 
 // Exportation du routeur pour qu'il puisse être utilisé dans d'autres parties de l'application
 module.exports = router;

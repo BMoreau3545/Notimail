@@ -1,5 +1,4 @@
 const db = require('../models/index');// Importation du module de base de données (sequelize) pour accéder aux modèles
-const axios = require('axios'); // Importation du module axios pour effectuer des requêtes HTTP
 const User = db.User; // Importation du modèle User à partir du module sequelize
 const bcrypt = require('bcrypt'); // Importation du module bcrypt pour le hachage des mots de passe
 const transporter= require('../config/mailer'); // Importation du module nodemailer pour l'envoi d'e-mails
@@ -11,7 +10,7 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
     console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params));
   
     try {
-      const { firm_name, first_name, last_name, email, phone_number } = req.body;
+      const { firm_name, first_name, last_name, email, phone_number, is_admin } = req.body;
   
       // Utiliser la fonction generatePassword pour générer un mot de passe aléatoire
       const { clearPassword, hashedPassword } = await generatePassword();
@@ -23,6 +22,7 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
         email,
         phone_number,
         password: hashedPassword,
+        is_admin,
       });
   
       transporter.sendMail({
@@ -39,70 +39,6 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
     }
   };
 
-
-// Fonction pour créer un nouvel utilisateur qui est admin
-const createAdmin = async (req, res) => {
-  // Affichage d'un message dans la console indiquant que la route createAdmin a été atteinte
-  console.log('createAdmin route reached');
-  // Affichage des données de la requête et des paramètres dans la console
-  console.log('createAdmin', JSON.stringify(req.body), JSON.stringify(res.params));
-
-    try {
-      // Extraction des données nécessaires de la requête
-      const { firm_name, first_name, last_name, email, phone_number, password, is_admin } = req.body;
-      
-      // Recherche d'un utilisateur existant avec le même nom d'entreprise
-      const existingUser = await User.findOne({ where: { firm_name } });
-      // Vérification de l'existence de l'utilisateur
-      if (existingUser) {
-        // Si un utilisateur avec le même nom d'entreprise existe, renvoyer une erreur
-        return res.status(400).json({ message: 'Un utilisateur avec ce nom d\'entreprise existe déjà.' });
-      }
-      
-      // Hachage du mot de passe fourni
-      const hashedPassword = await bcrypt.hash(password, 10);
-      
-      // Création d'un nouvel utilisateur avec les informations fournies avec is_admin à true
-      await User.create({
-        firm_name,
-        first_name,
-        last_name,
-        email,
-        phone_number,
-        password: hashedPassword,
-        is_admin: true,
-      });
-      // Réponse JSON indiquant que l'utilisateur a été créé avec succès
-      res.status(201).json({ message: 'Utilisateur créé avec succès.' });
-    } catch (error) {
-      // En cas d'erreur pendant le processus, affichage de l'erreur dans la console
-      console.error(error);
-      // Réponse JSON en cas d'erreur serveur lors de la création de l'utilisateur
-      res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' });
-    }
-  };
-
-  // Fonction pour hacher le mot de passe
-const hashPassword = async (req, res) => {
-    try {
-      const { firm_name, password } = req.body;
-  
-      const existingUser = await User.findOne({ where: { firm_name } });
-      if (!existingUser) {
-        return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-      }
-  
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      await existingUser.update({ password: hashedPassword });
-  
-      res.json({ message: 'Mot de passe mis à jour avec succès.' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Erreur serveur lors de la mise à jour du mot de passe.' });
-    }
-  };
-  
   // Fonction pour mettre à jour un utilisateur existant
   const updateUser = async (req, res) => {
     console.log("update :", req.body, req.params);
@@ -225,7 +161,7 @@ const getUserByFirmName = async (req, res) => {
   };
 
   // Fonction pour obtenir la liste de tous les utilisateurs
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (_, res) => {
     try {
       // Recherche de tous les utilisateurs dans la base de données
       const users = await User.findAll();
@@ -309,91 +245,8 @@ const has_mail = async (req, res) => {
   }
 };
 
-// Fonction asynchrone pour valider la récupération du courrier par un utilisateur
-const recupCourrier = async (req, res) => {
-  try {
-    // Extraction du nom de l'entreprise à partir des paramètres de requête
-    const { firm_name } = req.query;
-
-    // Recherche de l'utilisateur dans la base de données en utilisant le nom de l'entreprise
-    const user = await User.findOne({ where: { firm_name } });
-    // Vérification si l'utilisateur a été trouvé
-    if (!user) {
-      // Si l'utilisateur n'est pas trouvé, renvoyer une erreur 404
-      return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-    }
-
-    // Vérification si l'utilisateur a déjà validé la récupération du courrier
-    if (user.has_mail) {
-      // Mise à jour des champs dans la base de données après validation de la récupération du courrier
-      await user.update({
-        has_mail: false, // has_mail devient false après la validation
-        last_picked_up: new Date(), // Enregistrement de la date et de l'heure de la validation
-      });
-
-      
-      // Réponse JSON indiquant que la récupération du courrier a été validée avec succès
-      res.json({ message: 'Récupération du courrier validée avec succès.' });
-    } else {
-      // Si l'utilisateur n'a pas de courrier à récupérer, renvoyer une erreur 400
-      res.status(400).json({ message: 'Le courrier a déjà été récupéré ou n\'existe pas.' });
-    }
-  } catch (error) {
-    // Gestion des erreurs générales de la fonction
-    console.error(error);
-    // Réponse JSON en cas d'erreur serveur lors de la validation de la récupération du courrier
-    res.status(500).json({ message: 'Erreur serveur lors de la validation de la récupération du courrier.' });
-  }
-};
-// Fonction asynchrone pour mettre à jour le rôle d'un utilisateur
-const updateUserRole = async (req, res) => {
-  try {
-    // Extraction des données de la requête, y compris le nom de l'entreprise (firm_name) et le nouveau rôle administrateur (is_admin)
-    const { firm_name, is_admin } = req.body;
-
-    // Recherche de l'utilisateur actuellement connecté dans la base de données en utilisant le rôle administrateur de la requête
-    const loggedInUser = await User.findOne({ where: { is_admin: req.params.is_admin === 'true' } });
-
-    // Vérification si l'utilisateur actuellement connecté a le rôle administrateur
-    if (!loggedInUser.is_admin) {
-      // Si l'utilisateur actuellement connecté n'a pas le rôle administrateur, renvoyer une erreur 403
-        return res.status(403).json({ message: 'Vous n\'êtes pas autorisé à effectuer cette opération.' });
-    }
-
-    // Empêcher la modification du rôle si cela entraîne une absence d'administrateur
-    if (is_admin) {
-      // Compter le nombre d'utilisateurs ayant le rôle administrateur dans la base de données
-      const adminCount = await User.count({ where: { is_admin: true } });
-
-      // Vérification si la modification du rôle entraînerait une absence d'administrateur
-      if (adminCount === 1) {
-        // Si la modification entraîne une absence d'administrateur, renvoyer une erreur 400
-        return res.status(400).json({ message: 'Il doit toujours y avoir au moins un administrateur.' });
-      }
-    }
-
-    // Recherche de l'utilisateur à mettre à jour en utilisant le nom de l'entreprise
-    const existingUser = await User.findOne({ where: { firm_name } });
-    // Vérification si l'utilisateur à mettre à jour existe
-    if (!existingUser) {
-      // Si l'utilisateur n'est pas trouvé, renvoyer une erreur 404
-      return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-    }
-
-     // Mise à jour du rôle de l'utilisateur dans la base de données
-    await existingUser.update({ is_admin });
-    // Réponse JSON indiquant que le rôle de l'utilisateur a été mis à jour avec succès
-    res.json({ message: 'Rôle utilisateur mis à jour avec succès.' });
-  } catch (error) {
-    // Gestion des erreurs générales de la fonction
-    console.error(error);
-    // Réponse JSON en cas d'erreur serveur lors de la mise à jour du rôle utilisateur
-    res.status(500).json({ message: 'Erreur serveur lors de la mise à jour du rôle utilisateur.' });
-  }
-};
-
 // Fonction pour obtenir tous les noms d'entreprise de tous les utilisateurs
-const getAllFirmName = async (req, res) => {
+const getAllFirmName = async (_, res) => {
   try {
       // Récupération de tous les utilisateurs depuis la base de données
       const users = await User.findAll();
@@ -430,14 +283,10 @@ const generatePassword = async () =>{
 // Exportation de la fonction
 module.exports = {
   createUser,
-  createAdmin,
-  hashPassword,
   updateUser,
   deleteUser,
   getUserByFirmName,
   getAllUsers,
   has_mail, // Ajout de la fonction has_mail à l'exportation
-  recupCourrier,
-  updateUserRole,
   getAllFirmName,
 };
