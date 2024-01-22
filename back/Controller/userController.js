@@ -116,7 +116,8 @@ const hashPassword = async (req, res) => {
     try {
       // Extraction des données nécessaires de la requête
       const { firm_name, generate_password } = req.body;
-      let updatePassword;
+      let clearPassword;
+      let hashedPassword;
       // Ajout d'une vérification du rôle de l'utilisateur
        if (!req.admin) {
           // Si l'utilisateur n'a pas le rôle d'administrateur, renvoyer une erreur 403
@@ -132,11 +133,10 @@ const hashPassword = async (req, res) => {
       // Génération d'un mot de passe si l'option generate_password est activée
       if(generate_password){
         // Appel de la fonction generatePassword pour obtenir un nouveau mot de passe
-        updatePassword = await generatePassword();
-        console.log(updatePassword);
+        const { clearPassword, hashedPassword } = await generatePassword();
+        console.log(clearPassword);
+        console.log(hashedPassword);
       }
-      // Hachage du mot de passe généré
-      const hashedPassword = await bcrypt.hash(updatePassword, 10); // Hachage du mot de passe
 
       // Mise à jour des informations de l'utilisateur dans la base de données
       await existingUser.update({
@@ -152,7 +152,7 @@ const hashPassword = async (req, res) => {
           from: process.env.ADMIN_MAIL,
           to: existingUser.email,
           subject: 'Votre mot de passse',
-          text:`Votre mot de passe est ${updatePassword}`
+          text:`Votre mot de passe est ${clearPassword}`
         })
       }
       // Réponse JSON indiquant que l'utilisateur a été mis à jour avec succès
@@ -408,8 +408,11 @@ const generatePassword = async () =>{
       // Génération d'un nombre aléatoire entre 000000 et 999999, conversion en chaîne de caractères
       newPassword = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
     } while (await User.findOne({where: {password: newPassword } })); // Vérification de l'unicité du mot de passe dans la base de données
-     // Retourne le mot de passe généré
-    return newPassword;
+    if (!newPassword) {
+      throw new Error('Mot de passe généré est vide.');
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    return { clearPassword: newPassword, hashedPassword };
   } catch (error) {
     console.error(error); // Affichage de l'erreur dans la console en cas d'échec
     res.status(500).json({ message: 'Erreur lors de la génération du mot de passe.' }); // Réponse JSON en cas d'erreur serveur lors de la création de l'utilisateur

@@ -56,11 +56,12 @@ Content-Type: application/json
 ###
 #Mettre à jour le mot de passe d'un utilisateur existant
 PUT http://localhost:3000/users/hashPassword
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTY3NjM2MywiZXhwIjoxNzEzNDUyMzYzfQ.jswgQhW1Cr4uGI4n3kj_nbosNC18LxKjg7GfOSXC_3s
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise5",
-  "password": "newsecurepassword"
+  "firm_name": "Entreprise",
+  "phone_number": "0762556465"
 }
 
 ###
@@ -91,17 +92,18 @@ GET http://localhost:3000/users/get_all_users
 
 ###
 PUT http://localhost:3000/users/update_user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTUwMDQ3MCwiZXhwIjoxNzEzMjc2NDcwfQ.DNztKCui6iIQSNCDVoQ4V8dFAz8nfq9vM8Ar3hC-pz0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTkxMDYyMSwiZXhwIjoxNzEzNjg2NjIxfQ.BGekadgOMfFUR2lFipcYktfnjA5IfKPStuPvfrUzxro
 Content-Type: application/json
 
 {
   "firm_name": "Entreprise2",
   "email": "benrei@hotmail.fr",
-  "generate_password": true
+  "phone_number": "0762556465"
 }
 
 ###
 POST http://localhost:3000/users/notify
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTY3NjM2MywiZXhwIjoxNzEzNDUyMzYzfQ.jswgQhW1Cr4uGI4n3kj_nbosNC18LxKjg7GfOSXC_3s
 Content-Type: application/json
 
 {
