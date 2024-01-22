@@ -27,6 +27,8 @@ async function login (req, res) {
         console.log(user)
         // Comparaison du mot de passe fourni avec le mot de passe haché stocké dans la base de données
         const passwordMatch = await bcrypt.compare(password, user.password);
+        console.log("Mot de passe stocké dans la base de données:", user.password);
+        console.log("Mot de passe fourni par l'utilisateur:", password);
         console.log(password, passwordMatch);
         if (user && passwordMatch) {
             // Si les mots de passe correspondent, génération d'un token JWT avec des informations spécifiques
@@ -49,15 +51,15 @@ async function login (req, res) {
         // En cas d'erreur pendant le processus d'authentification, renvoyer une erreur interne du serveur
         res.status(500).json({ error: error.message });
     }
-}
-// fonction logout servant à déconnecter l utilisateur en supprimant les coockie et le notifiant par json
-async function logout (res) {
-        // Suppression du cookie de session
-        res.clearCookie('token');
+};
 
-        // Réponse indiquant la déconnexion réussie
-        res.json({ message: 'Déconnexion réussie.' });
-}
+// Fonction de gestion de la déconnexion
+function logout(_, res) {
+    // Suppression du cookie en définissant une date d'expiration passée
+    res.cookie('token', '', { expires: new Date(0), httpOnly: true, secure: true });
+    // Réponse indiquant que la déconnexion est réussie
+    res.json({ message: 'Déconnexion réussie' });
+};
 
 // Exportation de la fonction de connexion pour qu'elle puisse être utilisée ailleurs
 module.exports = {

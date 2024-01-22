@@ -18,11 +18,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise5",
-  "first_name": "Contact5",
-  "last_name": "Nom5",
+  "firm_name": "Entreprise6",
+  "first_name": "Contact6",
+  "last_name": "Nom6",
   "email": "benrei@hotmail.fr",
-  "phone_number": "1234567890"
+  "phone_number": "1234567891"
 }
 
 ###
@@ -45,35 +45,27 @@ POST http://localhost:3000/users/create_user
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise3",
-  "first_name": "Contact3",
-  "last_name": "Nom3",
-  "email": "contact3@example.com",
-  "phone_number": "5551234567",
-  "password": "motDePasse3"
-}
-
-###
-#Mettre à jour le mot de passe d'un utilisateur existant
-PUT http://localhost:3000/users/hashPassword
-Content-Type: application/json
-
-{
-  "firm_name": "Entreprise5",
-  "password": "newsecurepassword"
-}
-
-###
-# Mettre à jour un utilisateur existant
-PUT http://localhost:3000/users/update_user
-Content-Type: application/json
-
-{
   "firm_name": "Entreprise5",
   "first_name": "Contact5",
   "last_name": "Nom5",
   "email": "contact5@example.com",
-  "phone_number": "1112223333"
+  "phone_number": "6551234567",
+}
+
+
+
+###
+# Mettre à jour un utilisateur existant
+PUT http://localhost:3000/users/update_user/Entreprise5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTkzNDk0MywiZXhwIjoxNzEzNzEwOTQzfQ.mCGQXMr9L-EAprjYGRH_xZ5j_PC8vMrQSVKs5wmdOxM
+Content-Type: application/json
+
+{
+  "first_name": "Contact5",
+  "last_name": "Nom5",
+  "email": "benrei@hotmail.fr",
+  "phone_number": "1112223333",
+  "generate_password": true
 }
 
 ###
@@ -90,31 +82,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 GET http://localhost:3000/users/get_all_users
 
 ###
-PUT http://localhost:3000/users/update_user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTUwMDQ3MCwiZXhwIjoxNzEzMjc2NDcwfQ.DNztKCui6iIQSNCDVoQ4V8dFAz8nfq9vM8Ar3hC-pz0
+PUT http://localhost:3000/users/update_user/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTkyMDAzOSwiZXhwIjoxNzEzNjk2MDM5fQ.rAXI6O99hgQMj395zFuFG_FesOURlLL_wW0AguhszBk
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise2",
-  "email": "benrei@hotmail.fr",
-  "generate_password": true
+  "is_admin" : false
 }
 
 ###
 POST http://localhost:3000/users/notify
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTY3NjM2MywiZXhwIjoxNzEzNDUyMzYzfQ.jswgQhW1Cr4uGI4n3kj_nbosNC18LxKjg7GfOSXC_3s
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise1"
+  "firm_name": "Entreprise2"
 }
 
 ###
 GET http://localhost:3000/users/get_all_firm_name
 Content-Type: application/json
 
-###
-PUT http://localhost:3000/users/recup_mail?firm_name=Entreprise1
-Content-Type: application/json
+
 
 ### 
 POST http://localhost:3000/auth/login
@@ -125,6 +114,20 @@ Content-Type: application/json
     "password": "MDPadmin"
 }
 
+### 
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "firm_name": "Entreprise2",
+    "password": "410811"
+}
+
 ###
 POST http://localhost:3000/auth/logout
+Content-Type: application/json
+
+###
+PUT http://localhost:3000/client/recup_mail?firm_name=Entreprise2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ
 Content-Type: application/json
