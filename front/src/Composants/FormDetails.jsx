@@ -5,16 +5,23 @@ import '../index.css';
 import { NavLink, useParams } from 'react-router-dom';
 
 export const FormDetails = ({ dataFirmName }) => {
-  const { firmNameParam } = useParams();
+  const { firm_name: firmNameParam } = useParams();
+
   const token = localStorage.getItem('token');
 
   // Fetch the details of the selected company using firmNameParam
   useEffect(() => {
-    fetch(`http://localhost:3000/users/update_user?firm_name=${firmNameParam}`)
+    fetch(`http://localhost:3000/users/update_user?firm_name=${firmNameParam}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    })
       .then((res) => res.json())
       .then((companyDetails) => {
         console.log(companyDetails);
       })
+
       .catch((err) => console.error(err));
   }, [firmNameParam]);
 
@@ -32,39 +39,40 @@ export const FormDetails = ({ dataFirmName }) => {
     fetch(`http://localhost:3000/users/delete_user/${firmName}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${token}`, // Assurez-vous d'envoyer le jeton d'authentification si nécessaire
+        Authorization: `Bearer ${token}`, 
       },
     })
       .then((response) => {
         if (!response.ok) {
           console.error('Erreur lors de la suppression de l\'entreprise');
-          // Ajoutez ici la logique pour gérer les erreurs
           return;
         }
         // Suppression réussie
         console.log('Entreprise supprimée avec succès');
-        // Ajoutez ici la logique pour rediriger ou effectuer d'autres actions nécessaires
       })
       .catch((error) => {
         console.error('Erreur lors de la suppression de l\'entreprise:', error);
-        // Ajoutez ici la logique pour gérer les erreurs
       });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here
   };
-
-  // Récupérer l'id pour l'édition
-  useEffect(() => {
-    fetch(`http://localhost:3000/users/update_user?firm_name=${firmNameParam}`)
-      .then((res) => res.json())
-      .then((companyDetails) => {
-        console.log(companyDetails);
-      })
-      .catch((err) => console.error(err));
-  }, [firmNameParam]);
+ //   
+ useEffect(() => {
+  fetch(`http://localhost:3000/users/get_user/${firmNameParam}`, {
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`, 
+  },
+})
+    .then((res) => res.json())
+    .then((firmNameParam) => {
+      console.log(firmNameParam)
+      ;
+    })
+    .catch((err) => console.error(err));
+}, [firmNameParam]);
 
   // Ajouter une entreprise
   const handleAddFirm = () => {
@@ -89,7 +97,6 @@ export const FormDetails = ({ dataFirmName }) => {
     })
       .then((response) => {
         if (!response.ok) {
-          console.log(token);
           throw new Error("Erreur lors de la création de l'entreprise");
         }
         return response.json();
@@ -97,11 +104,9 @@ export const FormDetails = ({ dataFirmName }) => {
       .then((data) => {
         // Réponse du backend après la création réussie
         console.log('Entreprise créée avec succès:', data);
-        // Ajoutez ici la logique pour rediriger ou effectuer d'autres actions nécessaires
       })
       .catch((error) => {
         console.error("Erreur lors de la création de l'entreprise:", error);
-        // Ajoutez ici la logique pour gérer les erreurs
       });
   };
 
