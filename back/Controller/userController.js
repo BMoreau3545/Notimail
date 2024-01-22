@@ -105,7 +105,8 @@ const hashPassword = async (req, res) => {
     try {
       const { firm_name, generate_password } = req.body;
        // Ajouter une vérification du rôle de l'utilisateur
-      let updatePassword;
+      let clearPassword;
+      let hashedPassword;
        if (!req.admin) {
            return res.status(403).json({ message: 'Vous n\'êtes pas autorisé à effectuer cette opération.' });
        }
@@ -115,11 +116,10 @@ const hashPassword = async (req, res) => {
         return res.status(404).json({ message: 'Utilisateur non trouvé.' });
       }
       if(generate_password){
-        updatePassword = await generatePassword();
-        console.log(updatePassword);
+        const { clearPassword, hashedPassword } = await generatePassword();
+        console.log(clearPassword);
+        console.log(hashedPassword);
       }
-
-      const hashedPassword = await bcrypt.hash(updatePassword, 10); // Hachage du mot de passe
 
       await existingUser.update({
         first_name: req.body.first_name ?? existingUser.first_name,
@@ -133,7 +133,7 @@ const hashPassword = async (req, res) => {
           from: process.env.ADMIN_MAIL,
           to: existingUser.email,
           subject: 'Votre mot de passse',
-          text:`Votre mot de passe est ${updatePassword}`
+          text:`Votre mot de passe est ${clearPassword}`
         })
       }
       
@@ -334,7 +334,11 @@ const generatePassword = async () =>{
       // Génération d'un nombre aléatoire entre 000000 et 999999, conversion en chaîne de caractères
       newPassword = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
     } while (await User.findOne({where: {password: newPassword } })); // Vérification de l'unicité du mot de passe dans la base de données
-    return newPassword;
+    if (!newPassword) {
+      throw new Error('Mot de passe généré est vide.');
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    return { clearPassword: newPassword, hashedPassword };
   } catch (error) {
     console.error(error); // Affichage de l'erreur dans la console en cas d'échec
     res.status(500).json({ message: 'Erreur lors de la génération du mot de passe.' }); // Réponse JSON en cas d'erreur serveur lors de la création de l'utilisateur
