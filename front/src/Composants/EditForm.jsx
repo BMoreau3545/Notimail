@@ -126,16 +126,8 @@ export const EditForm = () => {
                     <h2 className='NameEntr'>Entreprise</h2>
                 </div>
                 <form className='Formulaire' onSubmit={handleSubmit}>
-                    <div className='row spaceBeetw'>
-                        <label htmlFor="entreprise">Entreprise:</label>
-                        <input
-                            className='inputForm'
-                            type="text"
-                            id="entreprise"
-                            name="firm_name"
-                            value={formData.firm_name}
-                            onChange={(e) => setFormData({ ...formData, firm_name: e.target.value })}
-                        />
+                    <div className='row center'>
+                    <p><strong>{formData.firm_name}</strong></p>
                     </div>
                     <div className='row spaceBeetw'>
                         <label htmlFor="contactNom">Contact:</label>
@@ -185,15 +177,15 @@ export const EditForm = () => {
                         />
                     </div>
 
-                    <div className='row spaceBeetw'>
-                        <label htmlFor="identifiant">Identifiant:</label>
+                    <div className='row '>
+                        <label htmlFor="identifiant">Reset du mot de passe:</label>
                         <input
                             className='inputForm'
-                            type="text"
+                            type="checkbox"
                             id="identifiant"
                             name="password"
                             value={formData.password}
-                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.checked })}
                         />
                     </div>
 

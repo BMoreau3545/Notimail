@@ -82,7 +82,6 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
 
         // Navigation vers la page appropriée
         navigate(user.user.is_admin ? '/admin' : '/entreprise');
-        console.log(user.user.is_admin)
       } else {
         setErrorMessage('Nom d\'entreprise ou mot de passe incorrect');
       }
