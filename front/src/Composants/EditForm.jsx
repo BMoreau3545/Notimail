@@ -1,4 +1,3 @@
-// Importez les dépendances nécessaires
 import React, { useState, useEffect } from 'react';
 import Mailto from '../assets/LogoNotimail.png';
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -6,7 +5,7 @@ import '../index.css';
 import { NavLink, useParams } from 'react-router-dom';
 
 
-export const EditForm = ({ loggedInFirmName }) => {
+export const EditForm = () => {
     const { firm_name: firmNameParam } = useParams();
     const token = localStorage.getItem('token');
     const [formData, setFormData] = useState({
@@ -29,6 +28,7 @@ export const EditForm = ({ loggedInFirmName }) => {
         })
             .then((res) => res.json())
             .then((companyDetails) => {
+                console.log('test', companyDetails.is_admin)
                 setFormData({
                     firm_name: companyDetails.firm_name,
                     first_name: companyDetails.first_name,
@@ -36,7 +36,7 @@ export const EditForm = ({ loggedInFirmName }) => {
                     phone_number: companyDetails.phone_number,
                     email: companyDetails.email,
                     password: companyDetails.password,
-                    isAdmin: companyDetails.isAdmin,
+                    isAdmin: companyDetails.is_admin,
                 });
             })
             .catch((err) => console.error(err));
