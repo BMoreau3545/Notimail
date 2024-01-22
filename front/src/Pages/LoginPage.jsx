@@ -65,7 +65,7 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
         body: JSON.stringify({
           firm_name: selectedUser,
           password: loginPassword,
-          isAdmin: selectedUser === 'admin'
+          is_admin: selectedUser === 'admin'
         }),
       });
 
