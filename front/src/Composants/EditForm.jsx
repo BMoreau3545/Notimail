@@ -71,26 +71,30 @@ export const EditForm = ({ loggedInFirmName }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        fetch(`http://localhost:3000/users/update_user/${firmNameParam}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(formData),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    console.error('Erreur lors de la mise à jour de l\'entreprise');
-                    return;
-                }
-                console.log('Entreprise mise à jour avec succès');
-                // Utilisez la prop history pour la redirection
-                props.history.push(`/company/${firmNameParam}`);
-            })
-            .catch((error) => {
-                console.error('Erreur lors de la mise à jour de l\'entreprise:', error);
+        try {
+                console.log('form' , formData);
+                console.log('firm' , firmNameParam);
+            const response = await fetch(`http://localhost:3000/users/update_user/${firmNameParam}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(formData),
             });
+    
+            console.log('Response status:', response.status);
+    
+            if (!response.ok) {
+                console.error('Erreur lors de la mise à jour de l\'entreprise');
+                return;
+            }
+    
+            console.log('Entreprise mise à jour avec succès');
+            props.history.push(`/company/${firmNameParam}`);
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour de l\'entreprise:', error);
+        }
     };
 
     // Supprimez la fonction EditEntreprise si elle n'est pas nécessaire
