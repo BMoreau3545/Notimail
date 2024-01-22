@@ -52,27 +52,20 @@ Content-Type: application/json
   "phone_number": "6551234567",
 }
 
-###
-#Mettre à jour le mot de passe d'un utilisateur existant
-PUT http://localhost:3000/users/hashPassword
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTY3NjM2MywiZXhwIjoxNzEzNDUyMzYzfQ.jswgQhW1Cr4uGI4n3kj_nbosNC18LxKjg7GfOSXC_3s
-Content-Type: application/json
 
-{
-  "firm_name": "Entreprise",
-  "phone_number": "0762556465"
-}
 
 ###
 # Mettre à jour un utilisateur existant
 PUT http://localhost:3000/users/update_user/Entreprise5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTkzNDk0MywiZXhwIjoxNzEzNzEwOTQzfQ.mCGQXMr9L-EAprjYGRH_xZ5j_PC8vMrQSVKs5wmdOxM
 Content-Type: application/json
 
 {
   "first_name": "Contact5",
   "last_name": "Nom5",
-  "email": "contact5@example.com",
-  "phone_number": "1112223333"
+  "email": "benrei@hotmail.fr",
+  "phone_number": "1112223333",
+  "generate_password": true
 }
 
 ###

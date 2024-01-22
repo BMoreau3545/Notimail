@@ -72,13 +72,16 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
       }
     }
 
-      // Génération d'un mot de passe si l'option generate_password est activée
-    if(generate_password){
-        // Appel de la fonction generatePassword pour obtenir un nouveau mot de passe
-        const { clearPassword, hashedPassword } = await generatePassword();
-        console.log(clearPassword);
-        console.log(hashedPassword);
-      }
+// Génération d'un mot de passe si l'option generate_password est activée
+if (generate_password) {
+  // Appel de la fonction generatePassword pour obtenir un nouveau mot de passe
+  const { clearPassword: generatedClearPassword, hashedPassword: generatedHashedPassword } = await generatePassword();
+  console.log(generatedClearPassword);
+  console.log(generatedHashedPassword);
+
+  clearPassword = generatedClearPassword;
+  hashedPassword = generatedHashedPassword;
+}
 
       // Mise à jour des informations de l'utilisateur dans la base de données
       await existingUser.update({
