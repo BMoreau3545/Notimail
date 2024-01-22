@@ -18,11 +18,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise5",
-  "first_name": "Contact5",
-  "last_name": "Nom5",
+  "firm_name": "Entreprise6",
+  "first_name": "Contact6",
+  "last_name": "Nom6",
   "email": "benrei@hotmail.fr",
-  "phone_number": "1234567890"
+  "phone_number": "1234567891"
 }
 
 ###

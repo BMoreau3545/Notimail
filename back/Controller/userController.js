@@ -4,10 +4,6 @@ const User = db.User; // Importation du modèle User à partir du module sequeli
 const bcrypt = require('bcrypt'); // Importation du module bcrypt pour le hachage des mots de passe
 const transporter= require('../config/mailer'); // Importation du module nodemailer pour l'envoi d'e-mails
 const smsSender = require('../config/smsSender'); // Importation du module smsSender pour l'envoi de SMS
-//console.log('createUser route reached'); // Affiche un message dans la console pour indiquer que la route createUser a été atteinte
-//  console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params)); // Affiche les données de la requête et des paramètres dans la console
-// Fonction pour créer un nouvel utilisateur
-const createUser = async (req, res) => {
 
   // Fonction pour créer un nouvel utilisateur
   const createUser = async (req, res) => {
@@ -29,7 +25,7 @@ const createUser = async (req, res) => {
         password: hashedPassword,
       });
   
-      await transporter.sendMail({
+      transporter.sendMail({
         from: process.env.ADMIN_MAIL,
         to: newUser.email,
         subject: 'Votre mot de passe',
@@ -41,8 +37,8 @@ const createUser = async (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' });
     }
-  }
-};
+  };
+
 
 // Fonction pour créer un nouvel utilisateur qui est admin
 const createAdmin = async (req, res) => {
