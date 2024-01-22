@@ -4,46 +4,43 @@ const User = db.User; // Importation du modèle User à partir du module sequeli
 const bcrypt = require('bcrypt'); // Importation du module bcrypt pour le hachage des mots de passe
 const transporter= require('../config/mailer'); // Importation du module nodemailer pour l'envoi d'e-mails
 const smsSender = require('../config/smsSender'); // Importation du module smsSender pour l'envoi de SMS
-
+//console.log('createUser route reached'); // Affiche un message dans la console pour indiquer que la route createUser a été atteinte
+//  console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params)); // Affiche les données de la requête et des paramètres dans la console
 // Fonction pour créer un nouvel utilisateur
 const createUser = async (req, res) => {
-  console.log('createUser route reached'); // Affiche un message dans la console pour indiquer que la route createUser a été atteinte
-  console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params)); // Affiche les données de la requête et des paramètres dans la console
 
-  try {
-    const { firm_name, first_name, last_name, email, phone_number } = req.body; // Extraction des données de la requête
-
-    // Génération d'un mot de passe aléatoire de 4 chiffres
-    let password;
-    do {
-      // Génération d'un nombre aléatoire entre 0000 et 9999, conversion en chaîne de caractères
-      password = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-    } while (await User.findOne({ where: { password } })); // Vérification de l'unicité du mot de passe dans la base de données
-
-    const hashedPassword = await bcrypt.hash(password, 10); // Hachage du mot de passe
-
-    // Création de l'utilisateur dans la base de données
-    const newUser = await User.create({
-      firm_name,
-      first_name,
-      last_name,
-      email,
-      phone_number,
-      password: hashedPassword, // Stockage du mot de passe haché
-    });
-    
-    await transporter.sendMail({
-      from: process.env.ADMIN_MAIL,
-      to: newUser.email,
-      subject: 'Votre mot de passse',
-      text:`Votre mot de passe est ${password}`
-    })
-
-    res.status(201).json({ message: 'Utilisateur créé avec succès.' }); // Réponse JSON indiquant que l'utilisateur a été créé avec succès
-  } catch (error) {
-    console.error(error); // Affichage de l'erreur dans la console en cas d'échec
-    res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' }); // Réponse JSON en cas d'erreur serveur lors de la création de l'utilisateur
+  // Fonction pour créer un nouvel utilisateur
+  const createUser = async (req, res) => {
+    console.log('createUser route reached');
+    console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params));
   
+    try {
+      const { firm_name, first_name, last_name, email, phone_number } = req.body;
+  
+      // Utiliser la fonction generatePassword pour générer un mot de passe aléatoire
+      const { clearPassword, hashedPassword } = await generatePassword();
+  
+      const newUser = await User.create({
+        firm_name,
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        password: hashedPassword,
+      });
+  
+      await transporter.sendMail({
+        from: process.env.ADMIN_MAIL,
+        to: newUser.email,
+        subject: 'Votre mot de passe',
+        text: `Votre mot de passe est ${clearPassword}`
+      });
+  
+      res.status(201).json({ message: 'Utilisateur créé avec succès.' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' });
+    }
   }
 };
 
@@ -115,7 +112,8 @@ const hashPassword = async (req, res) => {
     console.log("update :", req.body, req.params);
     try {
       // Extraction des données nécessaires de la requête
-      const { firm_name, generate_password } = req.body;
+      const { generate_password } = req.body;
+      const { firm_name } = req.params;
       let clearPassword;
       let hashedPassword;
       // Ajout d'une vérification du rôle de l'utilisateur

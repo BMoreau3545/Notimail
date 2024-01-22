@@ -29,7 +29,7 @@ router.post('/create_admin', UserController.createAdmin);
 router.put('/hashPassword', authMiddleware.authenticateAdmin, UserController.hashPassword);
 
 // Mise à jour des informations d'un utilisateur, accessible uniquement par un administrateur authentifié
-router.put('/update_user', authMiddleware.authenticateAdmin, UserController.updateUser);
+router.put('/update_user/:firm_name', authMiddleware.authenticateAdmin, UserController.updateUser);
 
 // Suppression d'un utilisateur par son nom de société, accessible uniquement par un administrateur authentifié
 router.delete('/delete_user/:firm_name', authMiddleware.authenticateAdmin, UserController.deleteUser);
