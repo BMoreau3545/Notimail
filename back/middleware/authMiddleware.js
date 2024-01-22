@@ -47,24 +47,25 @@ const authenticateAdmin = async (req, res, next) => {
     }
 };
 
-// const authToken = (req, res, next) => {
-//     // Récupération du jeton d'authentification depuis l'en-tête de la requête
-//     const token = req.header('Authorization');
-
-//     // Vérification si le jeton d'authentification est présent
-//     if (!token) return res.status(401).json({ error: 'Accès non autorisé' });
-
-//     // Vérification de la validité du jeton d'authentification
+// const authenticateToken = (req, res, next) => {
+//     const token = req.cookies.token;
+  
+//     // Vérification si le token est révoqué
+//     if (revokedTokens.includes(token)) {
+//       return res.status(401).json({ error: 'Token révoqué. Veuillez vous reconnecter.' });
+//     }
+  
 //     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-//         // En cas d'erreur lors de la vérification du jeton
-//         if (err) return res.status(403).json({ error: 'Jetons d\'authentification non valide.' });
-
-//         // Si la vérification est réussie, l'utilisateur (payload du jeton) est attaché à l'objet de requête (req)
-//         req.user = user;
-
-//         // Appel à la fonction next() pour passer au middleware ou à la route suivante dans la chaîne
-//         next();
+//       if (err) {
+//         return res.status(403).json({ error: 'Token non valide. Veuillez vous reconnecter.' });
+//       }
+//       req.user = user;
+//       next();
 //     });
-// };
+//   };
+  
 
-module.exports = { authenticateUser, authenticateAdmin };
+module.exports = { 
+    authenticateUser, 
+    authenticateAdmin,
+ };
