@@ -51,7 +51,7 @@ export const CardEntreprise = () => {
           cardData.map((nom, index) => (
             <div key={nom.firm_name}>
               <section className={`cardPosition ${isOpenArray[index] ? 'openDropdown openDefault' : ''}`} onClick={() => toggleDropdown(index)}>
-                <div className="card" style={{ display: searchResult.includes(nom.firm_name) || searchResult.includes(nom.first_name) || searchResult.includes(nom.last_name) ? 'flex' : 'none' }}>
+                <div className="card" style={{ display: searchResult.includes(nom.firm_name) ? 'flex' : 'none' }}>
                   <div className="coordonees column">
                     <h4 className="firm_name">{`${nom.firm_name}`}</h4>
                     <p className="first_name">{`${nom.first_name}`}</p>

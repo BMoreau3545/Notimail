@@ -317,12 +317,13 @@ button:active{
   
 }
 @media screen and (max-width: 800px) {
+  
   .inputForm{
     background-color: rgb(240, 240, 240);
     border-radius: 1rem;
     padding-left: 1vw;
     height: 24px;
-    width : 100%;
+    width : 70%;
     word-wrap: break-word;
   }
   .Formulaire{
@@ -335,14 +336,37 @@ button:active{
     background-color: var(--Gris);
     border-radius: 1rem;
     padding: 5vw;
-    width: 50vw;
+    width: 75vw;
   }
   .deleteBtn{
     width: 100%;
-    box-sizing: border-box;
+    padding:5%;
+  
+
   }
   .submitForm{
     width: 100%;
-    box-sizing: border-box;
+    padding: 5%;
   }
+  .spaceBeetw{
+    display: flex;
+    justify-content: space-between;
+    }
+
+  .ColoneLabel{
+        align-self: center;
+    display: flex;
+    flex-direction: column;
+  }
+  #contactnom{
+    display: flex;
+    justify-content: flex-start;
+    width: 125%;
+    
+
+  }
+  #contactPrenom{
+    display: flex;
+    justify-content: flex-start;
+    width: 125%;     }
 }
