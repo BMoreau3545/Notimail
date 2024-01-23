@@ -78,6 +78,13 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
       if (passwordExists) {
         return res.status(400).json({ message: 'Le nouveau mot de passe existe déjà dans la base de données.' });
       }
+
+      // Vérifier que le mot de passe est composé de 6 chiffres
+      const isNumeric = /^\d{6}$/;
+      if (!isNumeric.test(manual_password)) {
+          return res.status(400).json({ message: 'Le mot de passe doit être composé de 6 chiffres.' });
+      }
+      
       hashedPassword = await bcrypt.hash(manual_password, 10);
     }
 
