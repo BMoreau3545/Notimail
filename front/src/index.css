@@ -317,7 +317,9 @@ button:active{
   
 }
 @media screen and (max-width: 800px) {
-  
+  input#contactPrenom {
+    width: 125%;
+}
   .inputForm{
     background-color: rgb(240, 240, 240);
     border-radius: 1rem;
@@ -381,5 +383,5 @@ width:135%;
   width: 100%;
   position: ob;
   bottom: 0;
-}
+  }
 }
