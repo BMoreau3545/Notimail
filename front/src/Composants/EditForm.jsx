@@ -157,12 +157,13 @@ export const EditForm = () => {
                         />
                     </div>
 
-                    <div className='row '>
-                        <label htmlFor="identifiant">Reset du mot de passe:</label>
+                    <div className='row spaceBeetw'>
+                        <label htmlFor="identifiant">Mot de passe:</label>
                         <input
                             className='inputForm'
                             type="text"
                             id="identifiant"
+                            placeholder='Code à 6 chiffres'
                             name="manual_password"
                             onChange={(e) => setFormData({ ...formData, manual_password: e.target.value})}
                         />
