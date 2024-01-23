@@ -180,11 +180,10 @@ export const EditForm = () => {
                         <label htmlFor="identifiant">Reset du mot de passe:</label>
                         <input
                             className='inputForm'
-                            type="checkbox"
+                            type="text"
                             id="identifiant"
                             name="generate_password"
-                            value={formData.password}
-                            onChange={(e) => setFormData({ ...formData, password: e.target.checked })}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value})}
                         />
                     </div>
 

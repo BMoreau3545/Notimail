@@ -6,8 +6,6 @@ import { AdminBoutons } from "../Composants/AdminBoutons";
 
 export const AccueilAdmin = ({ loggedInFirmName, cardData}) => {
 
-
-//  http://localhost:3000/users/notify
   return (
     <>
       <NavBar cardData={cardData} loggedInFirmName={loggedInFirmName}/>

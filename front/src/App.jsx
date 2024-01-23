@@ -51,7 +51,7 @@ function App() {
         />
         <Route
           path="/adminDetails"
-          element={<FormDetails dataFirmName={dataFirmName} />}
+          element={<FormDetails />}
         />
         <Route path="/adminDetails/:firm_name" element={<EditForm />} />
         <Route path='*' element={<Error />} />

@@ -4,7 +4,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import '../index.css';
 import { NavLink, useParams } from 'react-router-dom';
 
-export const FormDetails = ({ dataFirmName }) => {
+export const FormDetails = () => {
   const { firm_name: firmNameParam } = useParams();
 
   const token = localStorage.getItem('token');
