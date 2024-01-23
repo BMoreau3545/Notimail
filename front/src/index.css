@@ -366,8 +366,9 @@ width:135%;
 }
 
 #searchbar{
-  width: 75%;
-  padding-right: 15%;
+  width: 85%;
+  padding-right: 0%;
+  padding-left: 15%;
 }
 
 #badpage {
