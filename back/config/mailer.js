@@ -1,3 +1,6 @@
+// mailer.js
+// Configuration de l'envoi d'email en utilisant Nodemailer et Gmail
+
 require('dotenv').config({ // Utilisation du package dotenv pour charger les variables d'encironnement à partir d'un fichier spécifié
   path: '../.env',  // Chemin spécifié pour le fichier .env
 });
