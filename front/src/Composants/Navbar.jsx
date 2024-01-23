@@ -33,7 +33,6 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-          //  'Authorization': `Bearer ${token}`, // Ajoutez le JWT dans l'en-tête Authorization
           },
         });
 
