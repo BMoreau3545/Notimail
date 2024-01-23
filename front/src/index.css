@@ -200,7 +200,7 @@ select{ /* identifiants */
   justify-content: space-around;
   background-color: rgba(237, 232, 232, 0.83);
   height: 8vh;
-  width: 100vw;
+  width: 100%;
   position: fixed;
   bottom: 0;
 }
@@ -317,7 +317,9 @@ button:active{
   
 }
 @media screen and (max-width: 800px) {
-  
+  input#contactPrenom {
+    width: 125%;
+}
   .inputForm{
     background-color: rgb(240, 240, 240);
     border-radius: 1rem;
@@ -353,20 +355,33 @@ button:active{
     justify-content: space-between;
     }
 
-  .ColoneLabel{
-        align-self: center;
-    display: flex;
-    flex-direction: column;
-  }
-  #contactnom{
-    display: flex;
-    justify-content: flex-start;
-    width: 125%;
-    
 
+    .column{
+      justify-content: center;
+      flex-direction: column;
+      padding-right: 22%;
+}
+
+.contact{
+
+width:135%;
+}
+
+#searchbar{
+  width: 85%;
+  padding-right: 0%;
+  padding-left: 15%;
+}
+
+#badpage {
+  display: flex;
+  flex-direction: row;
+  align-items: center ;
+  justify-content: space-around;
+  background-color: rgba(237, 232, 232, 0.83);
+  height: 8vh;
+  width: 100%;
+  position: ob;
+  bottom: 0;
   }
-  #contactPrenom{
-    display: flex;
-    justify-content: flex-start;
-    width: 125%;     }
 }

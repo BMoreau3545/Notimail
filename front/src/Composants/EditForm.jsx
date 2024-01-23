@@ -14,11 +14,11 @@ export const EditForm = () => {
         last_name: '',
         phone_number: '',
         email: '',
-        password: '',
+        manual_password: '',
         isAdmin: false,
     });
 
-    // Fetch company details on component mount
+    // Récupération des données de l'utilisateur
     useEffect(() => {
         fetch(`http://localhost:3000/users/get_user/${firmNameParam}`, {
             method: 'GET',
@@ -28,7 +28,6 @@ export const EditForm = () => {
         })
             .then((res) => res.json())
             .then((companyDetails) => {
-                console.log('test', companyDetails.is_admin)
                 setFormData({
                     firm_name: companyDetails.firm_name,
                     first_name: companyDetails.first_name,
@@ -72,8 +71,6 @@ export const EditForm = () => {
         event.preventDefault();
 
         try {
-                console.log('form' , formData);
-                console.log('firm' , firmNameParam);
             const response = await fetch(`http://localhost:3000/users/update_user/${firmNameParam}`, {
                 method: 'PUT',
                 headers: {
@@ -82,36 +79,19 @@ export const EditForm = () => {
                 },
                 body: JSON.stringify(formData),
             });
-    
+
             console.log('Response status:', response.status);
-    
+
             if (!response.ok) {
                 console.error('Erreur lors de la mise à jour de l\'entreprise');
                 return;
             }
-    
+
             console.log('Entreprise mise à jour avec succès');
-            props.history.push(`/company/${firmNameParam}`);
         } catch (error) {
             console.error('Erreur lors de la mise à jour de l\'entreprise:', error);
         }
     };
-
-    // Supprimez la fonction EditEntreprise si elle n'est pas nécessaire
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/users/get_user/${firmNameParam}`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-            .then((res) => res.json())
-            .then((firmNameParam) => {
-                console.log(firmNameParam);
-            })
-            .catch((err) => console.error(err));
-    }, [firmNameParam]);
 
     return (
         <>
@@ -177,15 +157,15 @@ export const EditForm = () => {
                         />
                     </div>
 
-                    <div className='row '>
-                        <label htmlFor="identifiant">Reset du mot de passe:</label>
+                    <div className='row spaceBeetw'>
+                        <label htmlFor="identifiant">Mot de passe:</label>
                         <input
                             className='inputForm'
-                            type="checkbox"
+                            type="text"
                             id="identifiant"
-                            name="password"
-                            value={formData.password}
-                            onChange={(e) => setFormData({ ...formData, password: e.target.checked })}
+                            placeholder='Code à 6 chiffres'
+                            name="manual_password"
+                            onChange={(e) => setFormData({ ...formData, manual_password: e.target.value})}
                         />
                     </div>
 

@@ -35,7 +35,7 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
       res.status(201).json({ message: 'Utilisateur créé avec succès.' });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.' });
+      res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur.', error: error.message  });
     }
   };
 
@@ -44,9 +44,8 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
     console.log("update :", req.body, req.params);
     try {
       // Extraction des données nécessaires de la requête
-      const { generate_password, is_admin } = req.body;
+      const { manual_password, is_admin } = req.body;
       const { firm_name } = req.params;
-      let clearPassword;
       let hashedPassword;
       // Ajout d'une vérification du rôle de l'utilisateur
        if (!req.admin) {
@@ -72,16 +71,22 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
       }
     }
 
-// Génération d'un mot de passe si l'option generate_password est activée
-if (generate_password) {
-  // Appel de la fonction generatePassword pour obtenir un nouveau mot de passe
-  const { clearPassword: generatedClearPassword, hashedPassword: generatedHashedPassword } = await generatePassword();
-  console.log(generatedClearPassword);
-  console.log(generatedHashedPassword);
+    if (manual_password) {
+      // Vérifier si le nouveau mot de passe existe déjà dans la base de données
+      const passwordExists = await User.findOne({ where: { password: manual_password } });
+      
+      if (passwordExists) {
+        return res.status(400).json({ message: 'Le nouveau mot de passe existe déjà dans la base de données.' });
+      }
 
-  clearPassword = generatedClearPassword;
-  hashedPassword = generatedHashedPassword;
-}
+      // Vérifier que le mot de passe est composé de 6 chiffres
+      const isNumeric = /^\d{6}$/;
+      if (!isNumeric.test(manual_password)) {
+          return res.status(400).json({ message: 'Le mot de passe doit être composé de 6 chiffres.' });
+      }
+      
+      hashedPassword = await bcrypt.hash(manual_password, 10);
+    }
 
       // Mise à jour des informations de l'utilisateur dans la base de données
       await existingUser.update({
@@ -92,13 +97,15 @@ if (generate_password) {
         password: hashedPassword ?? existingUser.password,
         is_admin: isAdminUpdate ? is_admin : existingUser.isAdmin,
       });
+
+      console.log("manual : ", manual_password);
       // Envoi du nouveau mot de passe par courrier électronique si l'option generate_password est activée
-      if(generate_password){
+      if(manual_password){
         transporter.sendMail({
           from: process.env.ADMIN_MAIL,
           to: existingUser.email,
           subject: 'Votre mot de passse',
-          text:`Votre mot de passe est ${clearPassword}`
+          text:`Votre mot de passe est ${manual_password}`
         })
       }
       // Réponse JSON indiquant que l'utilisateur a été mis à jour avec succès
@@ -107,7 +114,7 @@ if (generate_password) {
       // En cas d'erreur pendant le processus, affichage de l'erreur dans la console
       console.error(error);
        // Réponse JSON en cas d'erreur serveur lors de la mise à jour de l'utilisateur
-      res.status(500).json({ message: 'Erreur serveur lors de la mise à jour de l\'utilisateur.' });
+      res.status(500).json({ message: 'Erreur serveur lors de la mise à jour de l\'utilisateur.'});
     }
   };
 
@@ -174,7 +181,7 @@ const getAllUsers = async (_, res) => {
       // En cas d'erreur pendant le processus, affichage de l'erreur dans la console
       console.error(error);
       // Réponse JSON en cas d'erreur serveur lors de la récupération des utilisateurs
-      res.status(500).json({ message: 'Erreur serveur lors de la récupération des utilisateurs.' });
+      res.status(500).json({ message: 'Erreur serveur lors de la récupération des utilisateurs.'});
     }
   };
 
@@ -182,15 +189,15 @@ const getAllUsers = async (_, res) => {
 const has_mail = async (req, res) => {
   try {
     // Extraction du nom d'entreprise à partir du corps de la requête
-    const { firm_name } = req.body;
+    const { firm_names } = req.body;
     // Recherche de tous les utilisateurs dans la base de données avec le même nom d'entreprise
-    const users = await User.findAll({ where: { firm_name } });
+    const users = await User.findAll({ where: { firm_name: firm_names } });
     // Vérification si des utilisateurs ont été trouvés
     if (!users || users.length === 0) {
       // Si aucun utilisateur n'est trouvé, renvoyer une erreur 404
       return res.status(404).json({ message: 'Aucun utilisateur trouvé.' });
     }
-
+    console.log(users);
     // Filtrer les utilisateurs dont has_mail est false
     const usersToSendMail = users.filter(user => !user.has_mail);
 
@@ -209,6 +216,7 @@ const has_mail = async (req, res) => {
 
     // Configuration des destinataires en utilisant les adresses e-mail des utilisateurs à notifier
     mailOptions.to = usersToSendMail.map(user => user.email).join(',');
+    console.log(mailOptions.to);
 
     // Envoi du courrier électronique en une seule fois avec tous les destinataires
     await transporter.sendMail(mailOptions);

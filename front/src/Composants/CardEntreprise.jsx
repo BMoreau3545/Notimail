@@ -68,7 +68,9 @@ export const CardEntreprise = () => {
                       <div className="slider"></div>
                     </label>
                     <NavLink to={`/adminDetails/${nom.firm_name}`}>
+                      <div className='edition-button'>
                       <FaRegEdit style={{ fontSize: '35px', color: '#025892' }} />
+                      </div>
                     </NavLink>
                   </div>
                 </div>

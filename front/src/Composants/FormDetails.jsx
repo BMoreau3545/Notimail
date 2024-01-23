@@ -4,7 +4,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import '../index.css';
 import { NavLink, useParams } from 'react-router-dom';
 
-export const FormDetails = ({ dataFirmName }) => {
+export const FormDetails = () => {
   const { firm_name: firmNameParam } = useParams();
 
   const token = localStorage.getItem('token');
@@ -127,14 +127,14 @@ export const FormDetails = ({ dataFirmName }) => {
 
           <div className='row spaceBeetw'>
             <label htmlFor="entreprise">Entreprise:</label>
-            <input className='inputForm' type="text" id="entreprise" name="firm_name" />
+            <input className='inputForm' type="text" id="entreprise" name="firm_name" placeholder='25 caractère maximum'/>
           </div>
 
           <div className='row spaceBeetw'>
             <label htmlFor="contactNom">Contact:</label>
             <div className='column'>
-              <input className='inputForm' type="text" id="contactNom" name="first_name" placeholder='Nom' />
-              <input className='inputForm' type="text" id="contactPrenom" name="last_name" placeholder='Prénom' />
+              <input className='inputForm contact' type="text" id="contactNom" name="first_name" placeholder='Nom' />
+              <input className='inputForm contact' type="text" id="contactPrenom" name="last_name" placeholder='Prénom' />
             </div>
           </div>
 
@@ -150,7 +150,7 @@ export const FormDetails = ({ dataFirmName }) => {
 
           <div className='row spaceBeetw'>
             <label htmlFor="identifiant">Identifiant:</label>
-            <input className='inputForm' type="text" id="identifiant" name="password" />
+            <input className='inputForm' type="text" id="identifiant" name="manual_password" />
           </div>
 
           <div className='row'>
