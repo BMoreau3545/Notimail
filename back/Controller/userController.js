@@ -90,8 +90,10 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
         password: hashedPassword ?? existingUser.password,
         is_admin: isAdminUpdate ? is_admin : existingUser.isAdmin,
       });
+
+      console.log("manual : ", manual_password);
       // Envoi du nouveau mot de passe par courrier électronique si l'option generate_password est activée
-      if(generate_password){
+      if(manual_password){
         transporter.sendMail({
           from: process.env.ADMIN_MAIL,
           to: existingUser.email,
