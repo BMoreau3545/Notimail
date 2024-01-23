@@ -56,7 +56,8 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
   };  
 
   const handleLogin = async () => {
-    try {
+    
+    try { console.log(password)
       const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: {
@@ -68,7 +69,7 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
           is_admin: selectedUser === 'admin'
         }),
       });
-
+      console.log(loginPassword);
       if (response.ok) {
         const user = await response.json();
         localStorage.setItem('token', user.token);

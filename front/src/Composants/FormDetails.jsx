@@ -148,10 +148,10 @@ export const FormDetails = () => {
             <input className='inputForm' type="email" id="email" name="email" />
           </div>
 
-          {/* <div className='row spaceBeetw'>
+          <div className='row spaceBeetw'>
             <label htmlFor="identifiant">Identifiant:</label>
-            <input className='inputForm' type="text" id="identifiant" name="password" />
-          </div> */}
+            <input className='inputForm' type="text" id="identifiant" name="manual_password" />
+          </div>
 
           <div className='row'>
             <label htmlFor="isAdmin">Admin:</label>
