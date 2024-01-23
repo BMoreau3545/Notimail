@@ -14,7 +14,7 @@ export const EditForm = () => {
         last_name: '',
         phone_number: '',
         email: '',
-        password: '',
+        generate_password: '',
         isAdmin: false,
     });
 
@@ -28,7 +28,6 @@ export const EditForm = () => {
         })
             .then((res) => res.json())
             .then((companyDetails) => {
-                console.log('test', companyDetails.is_admin)
                 setFormData({
                     firm_name: companyDetails.firm_name,
                     first_name: companyDetails.first_name,
@@ -91,7 +90,7 @@ export const EditForm = () => {
             }
     
             console.log('Entreprise mise à jour avec succès');
-            props.history.push(`/company/${firmNameParam}`);
+           // props.history.push(`/company/${firmNameParam}`);
         } catch (error) {
             console.error('Erreur lors de la mise à jour de l\'entreprise:', error);
         }
@@ -183,7 +182,7 @@ export const EditForm = () => {
                             className='inputForm'
                             type="checkbox"
                             id="identifiant"
-                            name="password"
+                            name="generate_password"
                             value={formData.password}
                             onChange={(e) => setFormData({ ...formData, password: e.target.checked })}
                         />
