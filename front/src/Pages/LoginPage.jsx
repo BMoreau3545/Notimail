@@ -1,20 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Mailto from '../assets/LogoNotimail.png';
 import FlecheLog from '../assets/flecheLogin.svg';
 import CadenaFermer from '../assets/fermer.png';
 import CadenaOuvert from '../assets/ouvert.png';
 import { useNavigate } from 'react-router-dom';
-import { Route, Navigate } from 'react-router-dom';
-
 
 export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
   const [selectedUser, setSelectedUser] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [loginFirm, setLoginFirm] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-
-
   const [isMouseOver, setIsMouseOver] = useState(false);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
@@ -24,7 +18,6 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
     setSelectedUser(selectedValue);
     console.log(`Option sélectionnée : ${selectedValue}`);
   };
-
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -36,28 +29,22 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
     }
   }
 
-  const handleFirmChange = (event) => {
-    //Login envoyer au serv
-    setLoginFirm(event.target.value);
-  };
-
   const handlePasswordChange = (event) => {
     //login mdp envoyer au serv
     setLoginPassword(event.target.value);
   };
 
-  const token = localStorage.getItem('token');
   const handleMouseEnter = () => {
     setIsMouseOver(true);
   };
 
   const handleMouseLeave = () => {
     setIsMouseOver(false);
-  };  
+  };
 
   const handleLogin = async () => {
-    
-    try { console.log(password)
+    try {
+      console.log(password)
       const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: {
@@ -76,10 +63,8 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
         localStorage.setItem('firmName', user.user.firm_name);
         localStorage.setItem('isAdmin', user.user.is_admin);
 
-
         // Mise à jour de l'état dans le composant parent
         updateLoggedInFirmName(user.user.firm_name);
-
 
         // Navigation vers la page appropriée
         navigate(user.user.is_admin ? '/admin' : '/entreprise');
