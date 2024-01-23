@@ -200,7 +200,7 @@ select{ /* identifiants */
   justify-content: space-around;
   background-color: rgba(237, 232, 232, 0.83);
   height: 8vh;
-  width: 100vw;
+  width: 100%;
   position: fixed;
   bottom: 0;
 }
@@ -363,5 +363,22 @@ button:active{
 .contact{
 
 width:135%;
+}
+
+#searchbar{
+  width: 75%;
+  padding-right: 15%;
+}
+
+#badpage {
+  display: flex;
+  flex-direction: row;
+  align-items: center ;
+  justify-content: space-around;
+  background-color: rgba(237, 232, 232, 0.83);
+  height: 8vh;
+  width: 100%;
+  position: ob;
+  bottom: 0;
 }
 }
