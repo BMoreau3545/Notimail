@@ -1,5 +1,7 @@
 // authController.js
-// Importation de modules nécessaires
+// Gestion de la connexion des utilisateurs
+
+// Utilisation du package dotenv pour charger les variables d'encironnement à partir d'un fichier spécifié
 require('dotenv').config({
     path: '../.env',  // Chemin spécifié pour le fichier .env
 });
@@ -9,19 +11,16 @@ const db = require('../models/index'); // importation du model index avec l'obje
                                        // et permet de la réutiliser sans faire la configuration a chaque fois
 
 
-// Fonction de gestion de la connexion
+// Fonction asynchrone qui gère la connexion des utilisateurs
 async function login (req, res) {
     try {
         // Extraction des données du corps de la requête
         const { firm_name, password } = req.body;
         console.log("login_body: ", req.body, "login_params: ", req.params); 
-        
-        // Récupération des informations de l'utilisateur à partir de la base de données en utilisant le nom de la société
-        // Utilisation du modèle User (défini dans le fichier User.js) pour rechercher un enregistrement dans la table des utilisateurs.
-        // La méthode findOne est utilisée pour trouver un seul enregistrement qui correspond aux critères spécifiés.
 
+        
+        const user = await db.User.findOne({where: {firm_name: firm_name}});    // Utilisation de Sequelize via la méthode findOne pour trouver un utilisateur 
         // Utilisation de l'opération asynchrone avec le mot-clé 'await' pour attendre que la requête se termine.
-        const user = await db.User.findOne({where: {firm_name: firm_name}}); 
         // Spécification des critères de recherche (utilisation de where). 
         // Dans ce cas, on cherche un utilisateur dont la valeur dans la colonne 'firm_name' correspond à la variable 'firm_name'.
         console.log(user)
@@ -35,11 +34,11 @@ async function login (req, res) {
             const token = jwt.sign(
                 { firm_name: user.firm_name },
                 process.env.JWT_SECRET,  // Utilisation d'une clé secrète qui sert à crypter le token provenant de variables d'environnement
-                { expiresIn: process.env.JWT_EXPIRES_IN }  // Spécification de la durée de validité du token (1 heure dans cet exemple)
+                { expiresIn: process.env.JWT_EXPIRES_IN }  // Spécification de la durée de validité du token (24 heure dans cet exemple)
             );
            
             // Définir le cookie avec le nom "token"
-            res.cookie('token', token, { httpOnly: true, secure: true, expires: new Date(Date.now() + 3600000) });
+            res.cookie('token', token, { httpOnly: true, secure: true, expires: new Date(Date.now() + 86400000) });
             console.log(res.cookie);
             // Réponse indiquant que la connexion est réussie
             res.json({message: 'Connexion réussie', token, user})    

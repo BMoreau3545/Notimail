@@ -5,7 +5,7 @@ require('dotenv').config({
 });
 
 // Importation du module Sequelize depuis la bibliothèque sequelize
-// Sequelise est une classe qu'on extrait du module et qu on stocke dans une variable du meme nom
+// Sequelize est une classe qu'on extrait du module et qu on stocke dans une variable du meme nom
 const { Sequelize } = require('sequelize');
 
 // Importation de la configuration Sequelize depuis le fichier config.js
@@ -15,7 +15,7 @@ const config = require('../config/config');
 console.log('Configuration Sequelize:', config.development);
 // Création d'une instance Sequelize en utilisant la configuration spécifiée dans config.development
 const sequelize = new Sequelize(config.development);
-// on fait la configuration qu on stocke dans l objet db
+// on fait la configuration qu on stocke dans l'objet db
 const db = {
   Sequelize: Sequelize,
   sequelize: sequelize
