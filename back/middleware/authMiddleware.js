@@ -1,7 +1,11 @@
 // middleware/authMiddleware.js
+
+// Importation du module JSON Web Token (JWT) pour travailler avec les tokens JWT
 const jwt = require('jsonwebtoken');
+// Importation de l'objet 'db' qui représente la configuration Sequelize et permet d'intéragir avec la bdd
 const db = require('../models/index');
 
+// Définition du middleware 'authenticateUser' qui prend en charge la vérification de l'authentification des utilisateurs non admin
 const authenticateUser = async (req, res, next) => {
     try {
         const token = req.headers['authorization'];
