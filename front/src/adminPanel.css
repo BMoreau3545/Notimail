@@ -1,5 +1,6 @@
 /* Card entreprise  */
-p, h4 {
+p,
+h4 {
   margin: 0
 }
 
@@ -26,7 +27,7 @@ p, h4 {
 
 .coordonees {
   width: 40%;
-  max-height: 18vh ;
+  max-height: 18vh;
   gap: 15px;
 }
 
@@ -50,14 +51,16 @@ p, h4 {
   padding: 5px 0;
 }
 
-h4, p {
+h4,
+p {
   color: #025892;
 }
 
 .slider {
   margin-bottom: 15px;
 }
-.center{
+
+.center {
   display: flex;
   align-items: center;
 }
@@ -125,51 +128,58 @@ h4, p {
 .checkbox:active~.slider::before {
   transform: translate(0);
 }
+
 @media screen and (max-width: 800px) {
 
-.cardPosition{
- margin-left: 10%;
-}
-.firm_name{
-  margin-left: 10%;
-}
-.first_name{
-  margin-left: 10%;
-}
-.received_mail{
-  margin-left: 10%;
-}
-.openDropdown {
-  background-color: #e7e6e6;
-  width: 50%;
-  min-width: 460px;
-  border-top-right-radius: 4rem;
-  border-top-left-radius: 4rem;
-  height: 25vh;
-  border-bottom-left-radius: 3rem;
-  border-bottom-right-radius: 3rem;
-}
-nav{
-  width: 121%;
-}
-.card {
-  background-color: rgb(240, 240, 240);
-  padding: 1vh;
-  width: 60vw;
-  min-width: 440px;
-  height: 12vh;
-  display: flex;
-  flex-direction: row;
-  border-radius: 5rem;
-  justify-content: space-around;
-  align-items: center;
-}
-.slider{
-  margin-left: 100%;
-}
-.edition-button{
+  .cardPosition {
+    margin-left: 10%;
+  }
+
+  .firm_name {
+    margin-left: 10%;
+  }
+
+  .first_name {
+    margin-left: 10%;
+  }
+
+  .received_mail {
+    margin-left: 10%;
+  }
+
+  .openDropdown {
+    background-color: #e7e6e6;
+    width: 50%;
+    min-width: 460px;
+    border-top-right-radius: 4rem;
+    border-top-left-radius: 4rem;
+    height: 25vh;
+    border-bottom-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+  }
+
+  nav {
+    width: 121%;
+  }
+
+  .card {
+    background-color: rgb(240, 240, 240);
+    padding: 1vh;
+    width: 60vw;
+    min-width: 440px;
+    height: 12vh;
+    display: flex;
+    flex-direction: row;
+    border-radius: 5rem;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .slider {
+    margin-left: 100%;
+  }
+
+  .edition-button {
     margin-left: 200%;
+  }
 }
-}
-
-

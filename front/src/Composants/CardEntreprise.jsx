@@ -54,7 +54,7 @@ export const CardEntreprise = () => {
                 <div className="card" style={{ display: searchResult.includes(nom.firm_name) ? 'flex' : 'none' }}>
                   <div className="coordonees column">
                     <h4 className="firm_name">{`${nom.firm_name}`}</h4>
-                    <p className="first_name">{`${nom.first_name}`}</p>
+                    <p className="first_name">{`${nom.last_name+' '+nom.first_name}`}</p>
                     <p className="received_mail">{`${nom.last_received_mail}`}</p>
                   </div>
                   <div className="column center">
