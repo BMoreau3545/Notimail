@@ -72,6 +72,12 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
     }
 
     if (manual_password) {
+      // Vérifier si le nouveau mot de passe existe déjà dans la base de données
+      const passwordExists = await User.findOne({ where: { password: manual_password } });
+      
+      if (passwordExists) {
+        return res.status(400).json({ message: 'Le nouveau mot de passe existe déjà dans la base de données.' });
+      }
       hashedPassword = await bcrypt.hash(manual_password, 10);
     }
 
