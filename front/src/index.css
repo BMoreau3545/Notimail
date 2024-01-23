@@ -353,20 +353,15 @@ button:active{
     justify-content: space-between;
     }
 
-  .ColoneLabel{
-        align-self: center;
-    display: flex;
-    flex-direction: column;
-  }
-  #contactnom{
-    display: flex;
-    justify-content: flex-start;
-    width: 125%;
-    
 
-  }
-  #contactPrenom{
-    display: flex;
-    justify-content: flex-start;
-    width: 125%;     }
+    .column{
+      justify-content: center;
+      flex-direction: column;
+      padding-right: 22%;
+}
+
+.contact{
+
+width:135%;
+}
 }
