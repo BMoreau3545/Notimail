@@ -60,7 +60,7 @@
           <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
           <div className='center column'>
             <h3>{loggedInFirmName}</h3>
-            <button onClick={onOpenModal}>Déconnexion</button>
+            <button className='deconnexion' onClick={onOpenModal}>Déconnexion</button>
             <Modal open={open} onClose={onCloseModal} center closeIcon=" ">
               <p>
                 Confirmer la déconnexion ?
