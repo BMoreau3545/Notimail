@@ -44,9 +44,8 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
     console.log("update :", req.body, req.params);
     try {
       // Extraction des données nécessaires de la requête
-      const { generate_password, is_admin } = req.body;
+      const { manual_password, is_admin } = req.body;
       const { firm_name } = req.params;
-      let clearPassword;
       let hashedPassword;
       // Ajout d'une vérification du rôle de l'utilisateur
        if (!req.admin) {
@@ -72,16 +71,15 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
       }
     }
 
-// Génération d'un mot de passe si l'option generate_password est activée
-if (generate_password) {
-  // Appel de la fonction generatePassword pour obtenir un nouveau mot de passe
-  const { clearPassword: generatedClearPassword, hashedPassword: generatedHashedPassword } = await generatePassword();
-  console.log(generatedClearPassword);
-  console.log(generatedHashedPassword);
-
-  clearPassword = generatedClearPassword;
-  hashedPassword = generatedHashedPassword;
-}
+    if (manual_password) {
+      // Vérifier si le nouveau mot de passe existe déjà dans la base de données
+      const passwordExists = await User.findOne({ where: { password: manual_password } });
+      
+      if (passwordExists) {
+        return res.status(400).json({ message: 'Le nouveau mot de passe existe déjà dans la base de données.' });
+      }
+      hashedPassword = await bcrypt.hash(manual_password, 10);
+    }
 
       // Mise à jour des informations de l'utilisateur dans la base de données
       await existingUser.update({
@@ -92,13 +90,15 @@ if (generate_password) {
         password: hashedPassword ?? existingUser.password,
         is_admin: isAdminUpdate ? is_admin : existingUser.isAdmin,
       });
+
+      console.log("manual : ", manual_password);
       // Envoi du nouveau mot de passe par courrier électronique si l'option generate_password est activée
-      if(generate_password){
+      if(manual_password){
         transporter.sendMail({
           from: process.env.ADMIN_MAIL,
           to: existingUser.email,
           subject: 'Votre mot de passse',
-          text:`Votre mot de passe est ${clearPassword}`
+          text:`Votre mot de passe est ${manual_password}`
         })
       }
       // Réponse JSON indiquant que l'utilisateur a été mis à jour avec succès

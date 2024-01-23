@@ -26,7 +26,7 @@ const port = 3000;
 // Importation du middleware CORS
 const cors = require('cors');
 
-// Configuration des middlewares pour permettre à Express de traiter les requêtes JSON, gérer s
+// Configuration des middlewares pour permettre à Express de traiter les requêtes JSON, gérer CORS et traiter les requêtes url-encoded
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
@@ -44,7 +44,7 @@ db.sequelize.sync({force: false})
     console.error('Erreur de connexion à la base de données :', err);
   });
 
-// Montage des routes pour les opérations CRUD liées à l'utilisateur sous le préfixe '/users'
+// Montage des routes pour les opérations CRUD liées à l'utilisateur sous le préfixe '/users', '/auth', '/client'.
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/client', clientRoutes);

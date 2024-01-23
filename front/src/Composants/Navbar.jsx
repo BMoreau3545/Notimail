@@ -59,7 +59,7 @@
         <nav className='logo'>
           <img src={Mailto} id='NotimailLogo' alt="Logo du site" />
           <div className='center column'>
-            <h3>{loggedInFirmName}</h3>
+            <h3 className='nomConnexion'>{loggedInFirmName}</h3>
             <button className='deconnexion' onClick={onOpenModal}>Déconnexion</button>
             <Modal open={open} onClose={onCloseModal} center closeIcon=" ">
               <p>

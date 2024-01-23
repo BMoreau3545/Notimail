@@ -65,7 +65,7 @@ Content-Type: application/json
   "last_name": "Nom5",
   "email": "benrei@hotmail.fr",
   "phone_number": "1112223333",
-  "generate_password": true
+  "manual_password": "612248"
 }
 
 ###
