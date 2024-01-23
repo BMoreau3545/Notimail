@@ -150,7 +150,7 @@ h4, p {
   border-bottom-right-radius: 3rem;
 }
 nav{
-  width: 125%;
+  width: 121%;
 }
 .card {
   background-color: rgb(240, 240, 240);
@@ -163,5 +163,11 @@ nav{
   border-radius: 5rem;
   justify-content: space-around;
   align-items: center;
+}
+.slider{
+  margin-left: 100%;
+}
+svg{
+    margin-left: 200%;
 }
 }
