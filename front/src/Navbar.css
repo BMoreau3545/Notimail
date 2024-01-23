@@ -20,13 +20,3 @@ nav button{
     padding: 1rem 2rem;
     cursor: pointer;
 }
-@media screen and (max-width: 800px) {
-.deconnexion{
-    margin-left: 75%;
-    margin-bottom: 15%;
-}
-.nomConnexion{
-    margin-left: 75%;
-    margin-bottom: 15%;
-}
-}

@@ -8,8 +8,8 @@ h4 {
   background-color: rgb(240, 240, 240);
   padding: 1vh;
   width: 60vw;
-  min-width: 440px;
-  height: 12vh;
+  min-width: 400px;
+  height: 10vh;
   display: flex;
   flex-direction: row;
   border-radius: 5rem;
@@ -21,14 +21,13 @@ h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
-  margin: 80px;
+  gap: 20px;
 }
 
 .coordonees {
   width: 40%;
   max-height: 18vh;
-  gap: 15px;
+  gap: 10px;
 }
 
 .column {
@@ -73,11 +72,11 @@ p {
 
 .openDropdown {
   background-color: #e7e6e6;
-  width: 60.9vw;
-  min-width: 460px;
+  width: 61.2vw;
+  min-width: 420px;
   border-top-right-radius: 4rem;
   border-top-left-radius: 4rem;
-  height: 25vh;
+  height: 22vh;
   border-bottom-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
 }
@@ -129,7 +128,7 @@ p {
   transform: translate(0);
 }
 
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
 
   .cardPosition {
     margin-left: 10%;
@@ -182,4 +181,4 @@ p {
   .edition-button {
     margin-left: 200%;
   }
-}
+} */

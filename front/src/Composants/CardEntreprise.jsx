@@ -45,8 +45,8 @@ export const CardEntreprise = () => {
 
   return (
     <>
-      <SearchBar dataFirmName={cardData.map((nom) => nom.firm_name)} onSearchResultChange={handleSearchResultChange} />
       <div className="wrapper">
+        <SearchBar dataFirmName={cardData.map((nom) => nom.firm_name)} onSearchResultChange={handleSearchResultChange} />
         {cardData && cardData ? (
           cardData.map((nom, index) => (
             <div key={nom.firm_name}>
@@ -54,7 +54,7 @@ export const CardEntreprise = () => {
                 <div className="card" style={{ display: searchResult.includes(nom.firm_name) ? 'flex' : 'none' }}>
                   <div className="coordonees column">
                     <h4 className="firm_name">{`${nom.firm_name}`}</h4>
-                    <p className="first_name">{`${nom.last_name+' '+nom.first_name}`}</p>
+                    <p className="first_name">{`${nom.last_name + ' ' + nom.first_name}`}</p>
                     <p className="received_mail">{`${nom.last_received_mail}`}</p>
                   </div>
                   <div className="column center">
@@ -69,7 +69,7 @@ export const CardEntreprise = () => {
                     </label>
                     <NavLink to={`/adminDetails/${nom.firm_name}`}>
                       <div className='edition-button'>
-                      <FaRegEdit style={{ fontSize: '35px', color: '#025892' }} />
+                        <FaRegEdit style={{ fontSize: '35px', color: '#025892' }} />
                       </div>
                     </NavLink>
                   </div>

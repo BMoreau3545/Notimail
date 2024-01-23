@@ -58,6 +58,7 @@ body{
   background-color: rgb(240, 240, 240);
   border-radius: 1rem;
   padding-left: 1vw;
+  width: 25vh;
 }
 
 img {
@@ -107,7 +108,7 @@ form{
   flex-direction: column;
 }
 
-.spaceBeetw{
+.spaceBeetw {
 display: flex;
 justify-content: space-between;
 }
@@ -177,7 +178,7 @@ select{ /* identifiants */
   justify-content: center;
 }
 
-#login{
+#login {
   height: 100%;
   background-color:rgb(225, 225, 225);
   padding: 9px;
@@ -227,52 +228,53 @@ select{ /* identifiants */
   border-left: solid 1px rgb(159, 158, 158);
   padding: 5px;
   margin-top: -26px;
-
 }
+
 .icon{
   height: 46px;
   width: auto;
 }
+
 .icon:hover{
   filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
 }
+
 button:hover{
   filter: hue-rotate(0deg) saturate(90%) brightness(150%);
-
 }
+
 button:active{
   filter: hue-rotate(0deg) saturate(80%) brightness(220%);
-
 }
+
 .button-react{
   border-radius: 90px;
 }
+
 .button-react:hover{
   filter: hue-rotate(0deg) saturate(90%) brightness(150%);
-
 }
+
 .button-react:active{
   filter: hue-rotate(0deg) saturate(80%) brightness(220%);
-
 }
 
 #loupe_button{
-
   background-color: #E3E3E3;
   border-top-left-radius: 80.5px;
   border-bottom-left-radius: 80.5px;
   border: none;
 }
+
 #loupe_button:hover{
   background-color: #6f7e7d;
   filter: hue-rotate(0deg) saturate(120%) brightness(120%);
-
 }
+
 #loupe_button:active{
   background-color: #0084ff;
-    filter: hue-rotate(0deg) saturate(120%) brightness(150%);
+  filter: hue-rotate(0deg) saturate(120%) brightness(150%);
 }
-
 
 #loupe_img{
   display: flex;
@@ -285,7 +287,6 @@ button:active{
   display: flex;
   flex-direction: row;
   justify-content:center ;
-  padding-right: 140px;
   background-color: white;
 }
 #search{
@@ -317,16 +318,13 @@ button:active{
   
 }
 @media screen and (max-width: 800px) {
-  input#contactPrenom {
-    width: 125%;
-}
+
   .inputForm{
     background-color: rgb(240, 240, 240);
     border-radius: 1rem;
     padding-left: 1vw;
     height: 24px;
-    width : 70%;
-    word-wrap: break-word;
+    /* width : 70%;  */
   }
   .Formulaire{
     overflow:initial;
@@ -338,39 +336,11 @@ button:active{
     background-color: var(--Gris);
     border-radius: 1rem;
     padding: 5vw;
-    width: 75vw;
+    width: 80vw;
   }
-  .deleteBtn{
-    width: 100%;
-    padding:5%;
-  
-
-  }
-  .submitForm{
-    width: 100%;
-    padding: 5%;
-  }
-  .spaceBeetw{
-    display: flex;
-    justify-content: space-between;
-    }
-
-
-    .column{
-      justify-content: center;
-      flex-direction: column;
-      padding-right: 22%;
-}
-
-.contact{
-
-width:135%;
-}
 
 #searchbar{
   width: 85%;
-  padding-right: 0%;
-  padding-left: 15%;
 }
 
 #badpage {
@@ -381,7 +351,10 @@ width:135%;
   background-color: rgba(237, 232, 232, 0.83);
   height: 8vh;
   width: 100%;
-  position: ob;
   bottom: 0;
   }
+}
+
+.flexStart{
+  justify-content: flex-start;
 }
