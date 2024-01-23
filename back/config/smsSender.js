@@ -1,4 +1,7 @@
-const axios = require('axios');
+// smsSender.js
+// Cofiguration de l'API AllMySMS via Axios
+
+const axios = require('axios'); // Importation du module Axios, qui est une bibliothèque HTTP permettant d'effectuer des requêtes HTTP vers AllMySMS.
 
 const sendSMS = async (formattedPhoneNumber, message) => {
   try {

@@ -96,7 +96,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise2"
+  "firm_names": ["Entreprise5", "Entreprise3"]
 }
 
 ###
@@ -131,3 +131,17 @@ Content-Type: application/json
 PUT http://localhost:3000/client/recup_mail?firm_name=Entreprise2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ
 Content-Type: application/json
+
+###
+# Créer un nouvel utilisateur
+POST http://localhost:3000/users/create_user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTk5OTc5NCwiZXhwIjoxNzEzNzc1Nzk0fQ.cHqPNUf4tXeuRqi87ib-3M7qhYTIyYDaRiJ-jpy_dk8
+Content-Type: application/json
+
+{
+  "firm_name": "Entreprise bien trop de caractères aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "first_name": "Contact6",
+  "last_name": "Nom6",
+  "email": "benrei@hotmail.fr",
+  "phone_number": "1234567891"
+}

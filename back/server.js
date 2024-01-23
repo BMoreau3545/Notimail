@@ -1,14 +1,15 @@
+//server.js
+
 // Importation du module Express
 const express = require('express');
 
-const cookieParser = require('cookie-parser');
-
+// Configuration des options pour gérer les requêtes CORS
 const corsOptions = {
   allowHeaders: ['authorization'],
   origin: '*',
 }
 
-// Importation des routes liées à l'utilisateur depuis le fichier userRoutes.js
+// Importation des modules de routes pour l'admin, l'authentification et les clients
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const clientRoutes = require('./routes/clientRoutes');
@@ -22,14 +23,12 @@ const app = express();
 // Définition du port sur lequel le serveur écoutera les requêtes
 const port = 3000;
 
+// Importation du middleware CORS
 const cors = require('cors');
 
-// Utilisation de middleware pour permettre à Express de traiter les requêtes au format JSON
+// Configuration des middlewares pour permettre à Express de traiter les requêtes JSON, gérer s
 app.use(express.json());
-
 app.use(cors(corsOptions));
-
-// Utilisation de middleware pour permettre à Express de traiter les requêtes au format URL-encoded
 app.use(express.urlencoded({ extended: true }));
 
 // Vérification de la connexion à la base de données et synchronisation du modèle
