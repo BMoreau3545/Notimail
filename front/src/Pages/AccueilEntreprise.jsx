@@ -12,6 +12,8 @@ export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
   const [open, setOpen] = useState(false);
   // Etat "has_mail", statut du courrier
   const [confirmReception, setConfirmReception] = useState(false); // Initialisez à false
+  // Nouvel état pour stocker le statut has_mail
+  const [hasMailStatus, setHasMailStatus] = useState(false);
 
   // Gestion de la modal
   const onOpenModal = () => setOpen(true);
@@ -21,8 +23,8 @@ export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
   useEffect(() => {
     const fetchMailStatus = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/client/recup_mail?firm_name=${loggedInFirmName}`, {
-          method: 'PUT',
+        const response = await fetch(`http://localhost:3000/client/get_user_has_mail/${loggedInFirmName}`, {
+          method: 'GET',
           headers: {
             Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ`,
             'Content-Type': 'application/json',
@@ -31,8 +33,10 @@ export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
 
         if (response.ok) {
           const data = await response.json();
-          // Mettez à jour l'état confirmReception en fonction du statut de la réponse
-          setConfirmReception(data.message);
+          // Mettez à jour l'état hasMailStatus avec le statut du courrier
+          setHasMailStatus(data.has_mail);
+          // Mettez à jour l'état confirmReception avec le statut initial du courrier
+          setConfirmReception(data.has_mail);
         } else {
           // Gérer les erreurs si nécessaire
           console.error('Échec de la récupération du statut du courrier');
@@ -50,6 +54,29 @@ export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
     try {
       // Mettez à jour l'état confirmReception à false lors de la confirmation
       setConfirmReception(false);
+
+      // Faites la requête fetch pour confirmer la réception du courrier (vous pouvez adapter l'URL selon votre backend)
+      const confirmMailResponse = await fetch(`http://localhost:3000/client/recup_mail?firm_name=${loggedInFirmName}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (confirmMailResponse.ok) {
+        // Gérer la confirmation réussie
+        console.log('Confirmation réussie');
+        // Mettez à jour l'état hasMailStatus avec le statut du courrier
+        setHasMailStatus(true);
+        // Fermer la modal
+        onCloseModal();
+        window.location.reload();
+
+      } else {
+        // Gérer les erreurs si nécessaire
+        console.error('Échec de la confirmation du courrier');
+      }
     } catch (error) {
       console.error('Erreur lors de la confirmation de la réception du courrier', error);
     }
@@ -58,7 +85,7 @@ export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
   return (
     <>
       <NavBar dataFirmName={dataFirmName} loggedInFirmName={loggedInFirmName} />
-      {confirmReception ? (
+      {hasMailStatus ? (
         <section className="AccueilMailRecu">
           <div className="IconeSuperposition">
             <img src={NewMail} alt="icone nouveau mail" id="iconeNewMail" />
