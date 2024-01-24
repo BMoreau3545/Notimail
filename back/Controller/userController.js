@@ -13,6 +13,8 @@ const initAdminUser = async (req, res) => {
     // Utiliser la fonction generatePassword pour générer un mot de passe aléatoire
     const { clearPassword, hashedPassword } = await generatePassword();
 
+    const currentDate = new Date(); // Obtenir la date actuelle
+
     const newAdminUser = await User.create({
       firm_name,
       first_name,
@@ -21,6 +23,7 @@ const initAdminUser = async (req, res) => {
       phone_number,
       password: hashedPassword,
       is_admin: true,
+      last_received_mail: currentDate,
     });
 
     transporter.sendMail({
@@ -48,6 +51,7 @@ const initAdminUser = async (req, res) => {
       // Utiliser la fonction generatePassword pour générer un mot de passe aléatoire
       const { clearPassword, hashedPassword } = await generatePassword();
   
+      const currentDate = new Date(); // Obtenir la date actuelle
 
       const newUser = await User.create({
         firm_name,
@@ -56,7 +60,7 @@ const initAdminUser = async (req, res) => {
         email,
         phone_number,
         password: hashedPassword,
-        is_admin: is_admin === true,
+        last_received_mail: currentDate,
       });
 
       transporter.sendMail({
