@@ -242,7 +242,6 @@ const has_mail = async (req, res) => {
       }
     });
     
-
     // Attendre la résolution de toutes les promesses
     await Promise.all(smsPromises);
 

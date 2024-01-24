@@ -34,7 +34,9 @@
 
     - Il vous faut aller sur vos variables d'environnement. Utilisez la barre de recherche de votre ordinateur pour les chercher: 
 
-    ![Variables d'environnement](./Images/)
+    ![Variables d'environnement](./Images/Variables-environnement.png)
+
+    -
 
 
 
