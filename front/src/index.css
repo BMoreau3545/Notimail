@@ -188,6 +188,16 @@ select{ /* identifiants */
   border-bottom-right-radius:3rem;
   cursor: pointer;
 }
+#login:hover{
+  cursor: pointer;
+  background-color: rgb(194, 214, 255);
+
+}
+#login:active{
+  cursor: pointer;
+  background-color: rgb(159, 199, 255);
+
+}
 
 /* Boutons administrateur , mail et ajouter une entreprise */
 #badpage {
@@ -384,16 +394,6 @@ button:active{
   border-bottom-right-radius: 3rem;
 }
 
-#login:hover{
-  cursor: pointer;
-  background-color: rgb(194, 214, 255);
-
-}
-#login:hover{
-  cursor: pointer;
-  background-color: rgb(119, 171, 255);
-
-}
 #password {
   font-size: 24px;
     height: 43px;
