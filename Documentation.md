@@ -36,7 +36,19 @@
 
     ![Variables d'environnement](./Images/Variables-environnement.png)
 
-    - 
+    - Ensuite cliquer sur "variables d'environnement" sur la fenêtre qui est apparu
+
+    ![Bouton Variable](./Images/Accès_variable.png)
+
+    - Dans la nouvelle fenêtre cliquer sur la ligne Path en haut de la fenêtre, puis sur modifier
+
+    ![Bouton modifier](./Images/Variables_modif.png)
+
+    -Enfin dans la dernière fenêtre apparu cliquer en haut à droite sur nouveau et ajouter dans la ligne qui apparait le chemin précédemment obtenu de postgresql
+
+    ![Bouton nouveau](./Images/Variable_ajout.png)
+
+    -Finalement fermer les 3 fenêtres en cliquant sur ok sur chacune d'elle
 
 
 

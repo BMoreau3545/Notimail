@@ -70,7 +70,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 
 ###
 # Obtenir le status has_mail d'un utilisateur par son nom d'entreprise
-GET http://localhost:3000/client/get_user_has_mail/Entreprise
+GET http://localhost:3000/client/get_user_has_mail/Entreprise5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlNSIsImlhdCI6MTcwNjEwMTY0NiwiZXhwIjoxNzA2MTg4MDQ2fQ.9Rpc8i94HWfYL6wsFFlWJY_gaCeIZYNEBGCUsJSu7pU
 Content-Type: application/json
 
 ###
