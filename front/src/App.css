@@ -7,7 +7,7 @@
 --Rouge: #010101;
 }
 
-
+/*Gestion erreur de page*/
 .erreur {
     display: flex;
     justify-content: center;

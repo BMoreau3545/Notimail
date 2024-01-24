@@ -153,7 +153,7 @@ export const FormDetails = () => {
             <input className='inputForm' type="text" id="identifiant" name="manual_password" />
           </div>
 
-          <div className='row'>
+          <div className='row flexStart'>
             <label htmlFor="isAdmin">Admin:</label>
             <input className='inputForm' type="checkbox" id="isAdmin" name="isAdmin" />
           </div>
