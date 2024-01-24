@@ -30,7 +30,11 @@
 
 ![Postgresql](./Images/Laragon_Postgresql.png)
 
-- Une fois l'installation de postgresql réalisé il va falloir indiqué à votre ordinateur son chemin d'accés. Si vous avez suivi l'installation, ce chemin est: ==C:\laragon\bin\postgresql\postgresql-14.5-1\bin==
+- Une fois l'installation de postgresql réalisé il va falloir indiqué à votre ordinateur son chemin d'accés. Si vous avez suivi l'installation, ce chemin est: **C:\laragon\bin\postgresql\postgresql-14.5-1\bin**
+
+    - Il vous faut aller sur vos variables d'environnement. Utilisez la barre de recherche de votre ordinateur pour les chercher: 
+
+    ![Variables d'environnement](./Images/)
 
 
 

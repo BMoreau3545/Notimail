@@ -7,12 +7,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise11",
+  "firm_name": "Entreprise13",
   "first_name": "Contact6",
   "last_name": "Nom6",
   "email": "benrei@hotmail.fr",
   "phone_number": "1234567891",
-  "is_admin": true
+  "has_mail": true
 }
 
 ###
@@ -86,7 +86,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 Content-Type: application/json
 
 {
-  "firm_names": ["Entreprise5", "Entreprise3"]
+  "firm_names": ["Entreprise5", "Entreprise3", "Entreprise13"]
 }
 
 ###
