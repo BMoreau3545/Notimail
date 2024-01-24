@@ -17,12 +17,16 @@ const recupMail = async (req, res) => {
   
       // Vérification si l'utilisateur a déjà validé la récupération du courrier
       if (user.has_mail) {
+        const currentDate = new Date;
+
+        const formattedDate = currentDate.getDate().toString().padStart(2, '0') + '-' +
+        (currentDate.getMonth() + 1).toString().padStart(2, '0') + '-' +
+        currentDate.getFullYear();
         // Mise à jour des champs dans la base de données après validation de la récupération du courrier
         await user.update({
           has_mail: false, // has_mail devient false après la validation
-          last_picked_up: new Date(), // Enregistrement de la date et de l'heure de la validation
+          last_picked_up: formattedDate, // Enregistrement de la date et de l'heure de la validation
         });
-  
         
         // Réponse JSON indiquant que la récupération du courrier a été validée avec succès
         res.json({ message: 'Récupération du courrier validée avec succès.' });
