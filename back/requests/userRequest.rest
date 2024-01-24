@@ -118,7 +118,7 @@ POST http://localhost:3000/auth/logout
 Content-Type: application/json
 
 ###
-PUT http://localhost:3000/client/recup_mail?firm_name=Entreprise3
+PUT http://localhost:3000/client/recup_mail?firm_name=Entreprise2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ
 Content-Type: application/json
 

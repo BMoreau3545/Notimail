@@ -8,15 +8,20 @@ import { FormDetails } from './Composants/FormDetails.jsx';
 import { EditForm } from './Composants/EditForm.jsx';
 
 function App() {
+  //liste des users
   const [dataFirmName, setDataFirmName] = useState([]); 
+  //donnée des champs du loggin renvoyer au back
   const [loggedInFirmName, setLoggedInFirmName] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
+
+  //fonction pour recuperer le nom d'utilisateur utilisé 
   const updateLoggedInFirmName = (firmName) => {
     setLoggedInFirmName(firmName);
   };
 
-  useEffect(() => {
+  //fetch des utilisateur existant ( choix deroulant )
+  useEffect(() => { 
     fetch('http://localhost:3000/users/get_all_firm_name')
       .then((res) => res.json())
       .then((dataFirmName) => {
@@ -29,7 +34,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
+      <Routes> 
         <Route path="/" element={ <LoginPage
               loginPassword={loginPassword}
               dataFirmName={dataFirmName}

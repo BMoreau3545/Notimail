@@ -13,51 +13,58 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
 
+
+  //fonction qui recupere l'option choisi dans la liste d'utlisateur ( via la fleche de selection)
   const handleOptionChange = (event) => {
     const selectedValue = event.target.value;
     setSelectedUser(selectedValue);
     console.log(`Option sélectionnée : ${selectedValue}`);
   };
 
+  //ouverture de la liste deroulante
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
+  //gestion du submit si touche entrer appuyer
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleLogin();
     }
   }
-
+ // stock l'information du champs MDP
   const handlePasswordChange = (event) => {
     //login mdp envoyer au serv
     setLoginPassword(event.target.value);
   };
 
+  // changement d'etat et d'image du cadenas a la page connexion lors d'un hover
   const handleMouseEnter = () => {
     setIsMouseOver(true);
   };
-
+  // meme chose , lorsque le hover n'est pu actif
   const handleMouseLeave = () => {
     setIsMouseOver(false);
   };
-
+  //Gestion de la connexion
   const handleLogin = async () => {
     try {
-      console.log(password)
+      //fetch de la requete de log in
       const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
+        //methode post pour envoyer au serveur les informations entrées (user + mdp )
         headers: {
           'Content-Type': 'application/json',
         },
+        // Info envoyer au serv sous la forme d'un JSON
         body: JSON.stringify({
           firm_name: selectedUser,
           password: loginPassword,
           is_admin: selectedUser === 'admin'
         }),
       });
-      console.log(loginPassword);
+      // Si la reponse du serveur est valide
       if (response.ok) {
+        //gestion du token utilisateur sauvegarder en localstorage
         const user = await response.json();
         localStorage.setItem('token', user.token);
         localStorage.setItem('firmName', user.user.firm_name);
@@ -66,7 +73,7 @@ export const LoginPage = ({ dataFirmName, updateLoggedInFirmName }) => {
         // Mise à jour de l'état dans le composant parent
         updateLoggedInFirmName(user.user.firm_name);
 
-        // Navigation vers la page appropriée
+        // Navigation vers la page appropriée par defaut entreprise, mais admin si l'user a le statut admin
         navigate(user.user.is_admin ? '/admin' : '/entreprise');
       } else {
         setErrorMessage('Nom d\'entreprise ou mot de passe incorrect');
