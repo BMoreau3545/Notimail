@@ -8,15 +8,17 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { NavBar } from '../Composants/Navbar';
 
 export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
+  // Etat de la modal
   const [open, setOpen] = useState(false);
-  const [confirmReception, setConfirmReception] = useState('');
+  // Etat "has_mail", statut du courrier
+  const [confirmReception, setConfirmReception] = useState(false); // Initialisez à false
 
   // Gestion de la modal
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
-  // Mail reçu ? - Récupération du statut depuis l'API
-useEffect(() => {
+  // Mail reçu ? - Récupération du statut depuis le serveur
+  useEffect(() => {
     const fetchMailStatus = async () => {
       try {
         const response = await fetch(`http://localhost:3000/client/recup_mail?firm_name=${loggedInFirmName}`, {
@@ -26,13 +28,11 @@ useEffect(() => {
             'Content-Type': 'application/json',
           },
         });
-  
+
         if (response.ok) {
           const data = await response.json();
-          console.log('1',data)
           // Mettez à jour l'état confirmReception en fonction du statut de la réponse
           setConfirmReception(data.message);
-          console.log('2',data.message)
         } else {
           // Gérer les erreurs si nécessaire
           console.error('Échec de la récupération du statut du courrier');
@@ -41,14 +41,18 @@ useEffect(() => {
         console.error('Erreur lors de la récupération du statut du courrier', error);
       }
     };
-  
+
     fetchMailStatus();
   }, [loggedInFirmName]);
 
-
   // Confirmation de la réception
-  const handleConfirmation = () => {
-    setConfirmReception(false);
+  const handleConfirmation = async () => {
+    try {
+      // Mettez à jour l'état confirmReception à false lors de la confirmation
+      setConfirmReception(false);
+    } catch (error) {
+      console.error('Erreur lors de la confirmation de la réception du courrier', error);
+    }
   };
 
   return (
@@ -65,7 +69,6 @@ useEffect(() => {
               Réceptionner
             </button>
             <Modal open={open} onClose={onCloseModal} center closeIcon=" ">
-              {/* Le close item est vide pour enlever son affichage par défaut du CSS importé par l'installation de react modal */}
               <p>Confirmer la réception du courrier :</p>
               <div className="centerIcons">
                 <IoCloseCircle
