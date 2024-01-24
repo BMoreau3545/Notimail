@@ -7,7 +7,7 @@
   import "../index.css"
   import { useState } from 'react';
 
-  export const NavBar = ({ loggedInFirmName, loginPassword, selectedUser}) => {
+  export const NavBar = ({ loggedInFirmName}) => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -20,8 +20,8 @@
       try {
         console.log('Tentative de déconnexion...');
   
+        //supprimer le token
         const token = localStorage.getItem('token');
-        console.log('verif token' , token)
   
         if (!token) {
           // Si le token n'est pas présent, l'utilisateur est probablement déjà déconnecté
@@ -35,8 +35,6 @@
             'Content-Type': 'application/json',
           },
         });
-
-        console.log('response: ', response.body , response.params)
   
         if (response.ok) {
           console.log('Utilisateur déconnecté avec succès');

@@ -46,3 +46,4 @@ module.exports = (sequelize, Sequelize) => {
   // Ligne servant à exporter le modèle User
   return User;
 }
+

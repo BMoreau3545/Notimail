@@ -30,15 +30,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <LoginPage
+        <Route path="/" element={ <LoginPage
               loginPassword={loginPassword}
               dataFirmName={dataFirmName}
               updateLoggedInFirmName={updateLoggedInFirmName}
-              loggedInFirmName={loggedInFirmName}
-            />
+              loggedInFirmName={loggedInFirmName} />
           }
         />
         <Route
