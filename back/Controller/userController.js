@@ -24,14 +24,12 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
         password: hashedPassword,
         is_admin,
       });
-  
       transporter.sendMail({
         from: process.env.ADMIN_MAIL,
         to: newUser.email,
-        subject: 'Votre mot de passe',
-        text: `Votre mot de passe est ${clearPassword}`
+        subject: 'Mot de passe pour votre compte Notimail',
+        text: `Bonjour Madame, Monsieur,\n\nNous vous informons que votre compte a été crée.\n\nAfin de vous connecter vous pouvez utiliser\n\nIdentifiant : ${newUser.firm_name}.\n\nMot de passe : ${clearPassword}.`
       });
-  
       res.status(201).json({ message: 'Utilisateur créé avec succès.' });
     } catch (error) {
       console.error(error);
@@ -104,8 +102,8 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
         transporter.sendMail({
           from: process.env.ADMIN_MAIL,
           to: existingUser.email,
-          subject: 'Votre mot de passse',
-          text:`Votre mot de passe est ${manual_password}`
+          subject: `Nouveau mot de passe pour votre compte ${existingUser.firm_name}`,
+          text:`Bonjour Madame, Monsieur,\n\nJe vous informe de votre nouveau mot de passe : ${manual_password}.`
         })
       }
       // Réponse JSON indiquant que l'utilisateur a été mis à jour avec succès
@@ -210,8 +208,8 @@ const has_mail = async (req, res) => {
     // Configuration du courrier électronique une seule fois en utilisant le transporteur
     const mailOptions = {
       from: process.env.ADMIN_MAIL, // Adresse e-mail de l'expéditeur
-      subject: 'Nouveau courrier reçu', // Sujet du courrier électronique
-      text: 'Vous avez du courrier. Consultez votre boîte aux lettres.', // Corps du courrier électronique
+      subject: 'Vous avez du courrier dans votre boîte aux lettres', // Sujet du courrier électronique
+      text: 'Nous vous informons que vous avez du courrier, vous pouvez le récupérer dès que vous le souhaitez.', // Corps du courrier électronique
     };
 
     // Configuration des destinataires en utilisant les adresses e-mail des utilisateurs à notifier
@@ -233,7 +231,7 @@ const has_mail = async (req, res) => {
       console.log("userController :", formattedPhoneNumber);
       try {
         // Appel de la fonction sensSMS du module smsSender
-        await smsSender.sendSMS(formattedPhoneNumber, 'Vous avez du courrier à récupérer. Consultez votre boîte aux lettres.');
+        await smsSender.sendSMS(formattedPhoneNumber, 'Nous vous informons que vous avez du courrier, vous pouvez le récupérer dès que vous le souhaitez.');
         // Mise à jour de la propriété has_mail à true et last_received_mail à la date actuelle pour les utilisateurs notifiés par SMS
         await user.update({ has_mail: true, last_received_mail: new DataTransfer() });
       } catch (error) {
