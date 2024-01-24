@@ -179,7 +179,7 @@ select{ /* identifiants */
   align-items: center;
   justify-content: center;
 }
-
+/*effet visuelle du bouton Login*/
 #login {
   height: 100%;
   background-color:rgb(225, 225, 225);
@@ -237,7 +237,7 @@ select{ /* identifiants */
   padding: 5px;
   margin-top: -26px;
 }
-
+/*effet visuelle sur l'icon*/
 .icon{
   height: 46px;
   width: auto;
@@ -246,6 +246,7 @@ select{ /* identifiants */
 .icon:hover{
   filter: hue-rotate(-15deg) saturate(150%) brightness(120%);
 }
+/*effet visuelle des bouton classic*/
 
 button:hover{
   filter: hue-rotate(0deg) saturate(90%) brightness(150%);
@@ -254,7 +255,7 @@ button:hover{
 button:active{
   filter: hue-rotate(0deg) saturate(80%) brightness(220%);
 }
-
+/*effet visuelle des bouton fait avec des icone React*/
 .button-react{
   border-radius: 90px;
 }
@@ -267,7 +268,7 @@ button:active{
 .button-react:active{
   filter: hue-rotate(0deg) saturate(80%) brightness(220%);
 }
-
+/*bouton de la loupe*/
 #loupe_button{
   background-color: #E3E3E3;
   border-top-left-radius: 80.5px;
@@ -285,20 +286,22 @@ button:active{
   background-color: #0084ff;
   filter: hue-rotate(0deg) saturate(120%) brightness(150%);
 }
-
+/*image de la loupe du bouton de recherche*/
 #loupe_img{
   display: flex;
   align-items: center;
   width: 29px;
   height: 29px;
 }
-
+/*Barre de recheche pour la position*/
 #searchbar{
   display: flex;
   flex-direction: row;
   justify-content:center ;
   background-color: white;
 }
+
+/*Barre de recherche : Ensemble */
 #search{
   background-color: white;
   display: flex;
@@ -306,7 +309,7 @@ button:active{
   flex-direction: row;
   justify-content:center ;
 }
-
+/*Barre de recherche : zone texte*/
 #recherche{
   border-top-right-radius: 80.5px;
   border-bottom-right-radius: 80.5px;
@@ -321,16 +324,18 @@ button:active{
   font-size: 18px;
 
 }
-
+/*le placeholder de la barre de recherche*/
 #recherche::placeholder{
   color: white;
   font-size: 18px;
   
 }
-
+/*Class du bouton pour confirmer la reception quand il n'est pas utilisable et qu'on passe au dessus pour éviter l'interaction visuelle des boutons*/
 .noReceptionner:hover{
   filter: none;
 }
+
+/* CSS Mobile*/
 @media screen and (max-width: 800px) {
 
   .inputForm{
