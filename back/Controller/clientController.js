@@ -38,6 +38,33 @@ const recupMail = async (req, res) => {
     }
   };
 
+  // Fonction pour obtenir le statut has_mail d'un utilisateur par son nom d'entreprise
+const getHasMailByFirmName = async (req, res) => {
+  try {
+      // Extraction du nom d'entreprise à partir des paramètres de la requête
+      const { firm_name } = req.params;
+
+      // Recherche de l'utilisateur dans la base de données en fonction du nom d'entreprise
+      const user = await User.findOne({ where: { firm_name } });
+
+      // Vérification de l'existence de l'utilisateur
+      if (!user) {
+          // Si l'utilisateur n'est pas trouvé, renvoyer une erreur 404
+          return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+      }
+
+      // Réponse JSON avec le statut has_mail de l'utilisateur
+      res.json({ has_mail: user ? user.has_mail : false });
+  } catch (error) {
+      // En cas d'erreur pendant le processus, affichage de l'erreur dans la console
+      console.error(error);
+      // Réponse JSON en cas d'erreur serveur lors de la récupération de l'utilisateur
+      res.status(500).json({ message: 'Erreur serveur lors de la récupération du statut has_mail de l\'utilisateur.' });
+  }
+};
+
+
   module.exports = {
-    recupMail
+    recupMail,
+    getHasMailByFirmName
   } 

@@ -67,6 +67,12 @@ DELETE http://localhost:3000/users/delete_user/Entreprise2
 GET http://localhost:3000/users/get_user/Entreprise2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTY3MTg3NywiZXhwIjoxNzEzNDQ3ODc3fQ.PMOGNubmucY-FSMsPE4b_AKqcMBjQriinZ8VvMqRAj0
 
+
+###
+# Obtenir le status has_mail d'un utilisateur par son nom d'entreprise
+GET http://localhost:3000/client/get_user_has_mail/Entreprise
+Content-Type: application/json
+
 ###
 # Obtenir la liste de tous les utilisateurs
 GET http://localhost:3000/users/get_all_users

@@ -15,4 +15,6 @@ router.use(express.json());
 // Récupération du courrier par un utilisateur authentifié
 router.put('/recup_mail', authMiddleware.authenticateUser, clientController.recupMail);
 
+router.get('/get_user_has_mail/:firm_name', authMiddleware.authenticateUser, clientController.getHasMailByFirmName)
+
 module.exports = router;
