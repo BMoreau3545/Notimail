@@ -154,6 +154,7 @@ const getUserByFirmName = async (req, res) => {
       
       // Recherche de l'utilisateur dans la base de données en fonction du nom d'entreprise
       const user = await User.findOne({ where: { firm_name } });
+      console.log("user", user);
 
       // Vérification de l'existence de l'utilisateur
       if (!user) {
