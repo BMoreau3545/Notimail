@@ -42,6 +42,17 @@ export const CardEntreprise = () => {
     setIsOpenArray(new Array(result.length).fill(false));
   };
 
+  const fonctDate = (nom) => {
+    console.log( nom.last_received_mail )
+    const date = new Date(nom.last_received_mail);
+    const jour = date.getDate();
+    const mois = date.getMonth() + 1; // demarre à 0,+1 pour commencer a janvier
+    const annee = date.getFullYear();
+    const heures = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    return `${jour}/${mois}/${annee} ${heures}:${minutes}:${seconds}`;
+  };
 
   return (
     <>
@@ -55,7 +66,7 @@ export const CardEntreprise = () => {
                   <div className="coordonees column">
                     <h4 className="firm_name">{`${nom.firm_name}`}</h4>
                     <p className="first_name">{`${nom.last_name + ' ' + nom.first_name}`}</p>
-                    <p className="received_mail">{`${nom.last_received_mail}`}</p>
+                    <p className="received_mail">{fonctDate(nom)}</p>
                   </div>
                   <div className="column center">
                     <label className="switch">
