@@ -1,15 +1,4 @@
-###
-POST http://localhost:3000/users/create_admin
-Content-Type: application/json
 
-{
-  "firm_name": "admin",
-  "first_name": "admin",
-  "last_name": "istrateur",
-  "email": "contactadmin@example.com",
-  "phone_number": "0000000000",
-  "password": "MDPadmin"
-}
 
 ###
 # Créer un nouvel utilisateur
@@ -18,7 +7,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZ
 Content-Type: application/json
 
 {
-  "firm_name": "Entreprise9",
+  "firm_name": "Entreprise11",
   "first_name": "Contact6",
   "last_name": "Nom6",
   "email": "benrei@hotmail.fr",
@@ -75,7 +64,7 @@ DELETE http://localhost:3000/users/delete_user/Entreprise2
 
 ###
 # Obtenir un utilisateur par son nom d'entreprise
-GET http://localhost:3000/users/get_user/Entreprise5
+GET http://localhost:3000/users/get_user/admin
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTY3MTg3NywiZXhwIjoxNzEzNDQ3ODc3fQ.PMOGNubmucY-FSMsPE4b_AKqcMBjQriinZ8VvMqRAj0
 
 ###
