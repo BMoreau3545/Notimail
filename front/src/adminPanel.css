@@ -57,7 +57,7 @@ p {
 }
 
 .slider {
-  margin-bottom: 15px;
+  margin-bottom: 3px;
 }
 
 .center {
@@ -182,3 +182,9 @@ p {
     margin-left: 200%;
   }
 } */
+
+
+.flexStart {
+  display: flex;
+  justify-content: flex-start;
+}
