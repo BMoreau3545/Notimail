@@ -15,6 +15,7 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
       // Utiliser la fonction generatePassword pour générer un mot de passe aléatoire
       const { clearPassword, hashedPassword } = await generatePassword();
   
+
       const newUser = await User.create({
         firm_name,
         first_name,
@@ -22,9 +23,9 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
         email,
         phone_number,
         password: hashedPassword,
-        is_admin,
+        is_admin: is_admin === true,
       });
-  
+
       transporter.sendMail({
         from: process.env.ADMIN_MAIL,
         to: newUser.email,
