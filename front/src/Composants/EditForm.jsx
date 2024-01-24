@@ -107,7 +107,7 @@ export const EditForm = () => {
                 </div>
                 <form className='Formulaire' onSubmit={handleSubmit}>
                     <div className='row center'>
-                    <p><strong>{formData.firm_name}</strong></p>
+                        <p><strong>{formData.firm_name}</strong></p>
                     </div>
                     <div className='row spaceBeetw'>
                         <label htmlFor="contactNom">Contact:</label>
@@ -165,7 +165,7 @@ export const EditForm = () => {
                             id="identifiant"
                             placeholder='Code à 6 chiffres'
                             name="manual_password"
-                            onChange={(e) => setFormData({ ...formData, manual_password: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, manual_password: e.target.value })}
                         />
                     </div>
 

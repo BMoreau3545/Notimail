@@ -189,10 +189,6 @@ select{ /* identifiants */
   cursor: pointer;
 }
 
-
-
-
-
 /* Boutons administrateur , mail et ajouter une entreprise */
 #badpage {
   display: flex;
@@ -353,8 +349,63 @@ button:active{
   width: 100%;
   bottom: 0;
   }
+
+  select {
+    font-size: 24px;
+    height: 43px;
+    border-style: none;
+    min-width: 198px;
+    border-radius: 80.5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-left: 50px;
+    margin-bottom: 25px;
+    background-color: #E3E3E3;
 }
 
-.flexStart{
-  justify-content: flex-start;
+#flechelog {
+  background-color: rgb(225, 225, 225);
+  height: 32px;
+  border-radius: 5rem;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-left: solid 1px rgb(159, 158, 158);
+  padding: 5px;
+  margin-top: -26px;
+}
+
+#login {
+  height: 27px;
+  background-color: rgb(225, 225, 225);
+  padding: 9px;
+  border-style: none;
+  border-left: solid 1px rgb(159, 158, 158);
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+}
+
+#login:hover{
+  cursor: pointer;
+  background-color: rgb(194, 214, 255);
+
+}
+#login:hover{
+  cursor: pointer;
+  background-color: rgb(119, 171, 255);
+
+}
+#password {
+  font-size: 24px;
+    height: 43px;
+    border-style: none;
+    width: 146px;
+    border-radius: 80.5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-left: 50px;
+    background-color: #E3E3E3;
+    min-width: 1px;
+    font-size: 15px;
+}
+
 }
