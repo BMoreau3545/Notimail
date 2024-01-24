@@ -72,7 +72,9 @@ img {
   padding: 0.2rem 4rem;
   height: 3rem;
 }
-
+.backBtn:hover{
+  cursor: pointer;
+}
 .row {
   display: flex;
   flex-direction: row;
@@ -188,6 +190,16 @@ select{ /* identifiants */
   border-bottom-right-radius:3rem;
   cursor: pointer;
 }
+#login:hover{
+  cursor: pointer;
+  background-color: rgb(194, 214, 255);
+
+}
+#login:active{
+  cursor: pointer;
+  background-color: rgb(159, 199, 255);
+
+}
 
 /* Boutons administrateur , mail et ajouter une entreprise */
 #badpage {
@@ -249,6 +261,7 @@ button:active{
 
 .button-react:hover{
   filter: hue-rotate(0deg) saturate(90%) brightness(150%);
+  cursor: pointer;
 }
 
 .button-react:active{
@@ -263,6 +276,7 @@ button:active{
 }
 
 #loupe_button:hover{
+  cursor: pointer;
   background-color: #6f7e7d;
   filter: hue-rotate(0deg) saturate(120%) brightness(120%);
 }
@@ -313,6 +327,10 @@ button:active{
   font-size: 18px;
   
 }
+
+.noReceptionner:hover{
+  filter: none;
+}
 @media screen and (max-width: 800px) {
 
   .inputForm{
@@ -362,6 +380,9 @@ button:active{
     margin-bottom: 25px;
     background-color: #E3E3E3;
 }
+select:hover{
+  cursor: pointer;
+}
 
 #flechelog {
   background-color: rgb(225, 225, 225);
@@ -384,16 +405,6 @@ button:active{
   border-bottom-right-radius: 3rem;
 }
 
-#login:hover{
-  cursor: pointer;
-  background-color: rgb(194, 214, 255);
-
-}
-#login:hover{
-  cursor: pointer;
-  background-color: rgb(119, 171, 255);
-
-}
 #password {
   font-size: 24px;
     height: 43px;
