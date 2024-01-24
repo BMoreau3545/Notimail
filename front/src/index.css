@@ -189,10 +189,6 @@ select{ /* identifiants */
   cursor: pointer;
 }
 
-
-
-
-
 /* Boutons administrateur , mail et ajouter une entreprise */
 #badpage {
   display: flex;

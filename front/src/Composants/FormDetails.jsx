@@ -9,7 +9,7 @@ export const FormDetails = () => {
 
   const token = localStorage.getItem('token');
 
-  // Fetch the details of the selected company using firmNameParam
+  // Fetch de l'update d'un utilisateur
   useEffect(() => {
     fetch(`http://localhost:3000/users/update_user?firm_name=${firmNameParam}`, {
       method: 'PUT',
@@ -148,10 +148,10 @@ export const FormDetails = () => {
             <input className='inputForm' type="email" id="email" name="email" />
           </div>
 
-          <div className='row spaceBeetw'>
+          {/* <div className='row spaceBeetw'>
             <label htmlFor="identifiant">Identifiant:</label>
             <input className='inputForm' type="text" id="identifiant" name="manual_password" />
-          </div>
+          </div> */}
 
           <div className='row flexStart'>
             <label htmlFor="isAdmin">Admin:</label>
