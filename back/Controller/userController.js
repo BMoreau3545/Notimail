@@ -4,7 +4,40 @@ const bcrypt = require('bcrypt'); // Importation du module bcrypt pour le hachag
 const transporter= require('../config/mailer'); // Importation du module nodemailer pour l'envoi d'e-mails
 const smsSender = require('../config/smsSender'); // Importation du module smsSender pour l'envoi de SMS
 
-  // Fonction pour créer un nouvel utilisateur
+// Fonction pour créer un utilisateur administrateur initial
+const initAdminUser = async (req, res) => {
+  try {
+    const { firm_name, first_name, last_name, email, phone_number } = req.body;
+
+
+    // Utiliser la fonction generatePassword pour générer un mot de passe aléatoire
+    const { clearPassword, hashedPassword } = await generatePassword();
+
+    const newAdminUser = await User.create({
+      firm_name,
+      first_name,
+      last_name,
+      email,
+      phone_number,
+      password: hashedPassword,
+      is_admin: true,
+    });
+
+    transporter.sendMail({
+      from: process.env.ADMIN_MAIL,
+      to: newAdminUser.email,
+      subject: 'Mot de passe pour votre compte administrateur',
+      text: `Bonjour,\n\nVotre compte administrateur a été créé avec succès.\n\nIdentifiant : ${newAdminUser.firm_name}\n\nMot de passe : ${clearPassword}`,
+    });
+
+    res.status(201).json({ message: 'Utilisateur administrateur créé avec succès.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur lors de la création de l\'utilisateur administrateur.', error: error.message });
+  }
+};  
+
+// Fonction pour créer un nouvel utilisateur
   const createUser = async (req, res) => {
     console.log('createUser route reached');
     console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params));
@@ -300,4 +333,5 @@ module.exports = {
   getAllUsers,
   has_mail, // Ajout de la fonction has_mail à l'exportation
   getAllFirmName,
+  initAdminUser,
 };

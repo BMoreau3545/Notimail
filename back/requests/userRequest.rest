@@ -1,4 +1,15 @@
+###
+# Créer un admin initial
+POST http://localhost:3000/users/init_admin_user
+Content-Type: application/json
 
+{
+  "firm_name": "admin1",
+  "first_name": "Admin",
+  "last_name": "Istrateur",
+  "email": "benrei@hotmail.fr",
+  "phone_number": "1234567890"
+}
 
 ###
 # Créer un nouvel utilisateur
@@ -88,12 +99,12 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/users/notify
+PUT http://localhost:3000/users/notify
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTY3NjM2MywiZXhwIjoxNzEzNDUyMzYzfQ.jswgQhW1Cr4uGI4n3kj_nbosNC18LxKjg7GfOSXC_3s
 Content-Type: application/json
 
 {
-  "firm_names": ["Entreprise5", "Entreprise3", "Entreprise13"]
+  "firm_names": ["Entreprise1"]
 }
 
 ###

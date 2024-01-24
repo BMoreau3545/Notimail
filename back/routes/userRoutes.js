@@ -38,9 +38,10 @@ router.get('/get_all_users', UserController.getAllUsers);
 router.get('/get_all_firm_name', UserController.getAllFirmName);
 
 // Notification de tous les utilisateurs par un administrateur authentifié par envoi d un mail à chaque utilisateur
-router.post('/notify', authMiddleware.authenticateAdmin, UserController.has_mail);
+router.put('/notify', authMiddleware.authenticateAdmin, UserController.has_mail);
 
-
+// Nouvelle route pour l'initialisation de l'utilisateur admin
+router.post('/init_admin_user', UserController.initAdminUser);
 
 // Exportation du routeur pour qu'il puisse être utilisé dans d'autres parties de l'application
 module.exports = router;

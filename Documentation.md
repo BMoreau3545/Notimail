@@ -2,7 +2,7 @@
 
 ## Installation de Laragon
 
-### Il faut tout d'abord télecharger Laragon sur: [Laragon](https://laragon.org/download/):
+### Il faut tout d'abord télecharger Laragon sur [Laragon](https://laragon.org/download/):
 
 ![Téléchargement Laragon](./Images/laragon.png)
 
@@ -49,6 +49,16 @@
     ![Bouton nouveau](./Images/Variable_ajout.png)
 
     -Finalement fermer les 3 fenêtres en cliquant sur ok sur chacune d'elle
+
+### Création de la base de données
+
+- Il va vous falloir ouvrir VScode et ouvrir le dossier du projet 
+
+- Ensuite ouvrez votre terminal 
+
+![Terminal](./Images/image_terminal_1.png)
+
+- puis 
 
 
 
