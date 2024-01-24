@@ -30,7 +30,7 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
         from: process.env.ADMIN_MAIL,
         to: newUser.email,
         subject: 'Mot de passe pour votre compte Notimail',
-        text: `Bonjour Madame, Monsieur,\n\nNous vous informons que votre compte a été crée.\n\nAfin de vous connecter vous pouvez utiliser\n\nIdentifiant : ${newUser.firm_name}.\n\nMot de passe : ${clearPassword}.`
+        text: `Bonjour Madame, Monsieur,\n\nNous vous informons que votre compte a été crée.\n\nAfin de vous connecter vous pouvez utiliser\n\nIdentifiant : ${newUser.firm_name}\n\nMot de passe : ${clearPassword}`
       });
       res.status(201).json({ message: 'Utilisateur créé avec succès.' });
     } catch (error) {
@@ -105,7 +105,7 @@ const smsSender = require('../config/smsSender'); // Importation du module smsSe
           from: process.env.ADMIN_MAIL,
           to: existingUser.email,
           subject: `Nouveau mot de passe pour votre compte ${existingUser.firm_name}`,
-          text:`Bonjour Madame, Monsieur,\n\nJe vous informe de votre nouveau mot de passe : ${manual_password}.`
+          text:`Bonjour Madame, Monsieur,\n\nJe vous informe de votre nouveau mot de passe : ${manual_password}`
         })
       }
       // Réponse JSON indiquant que l'utilisateur a été mis à jour avec succès
