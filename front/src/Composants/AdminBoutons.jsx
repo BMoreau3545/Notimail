@@ -35,7 +35,7 @@ export const AdminBoutons = ({ cardData, newANotif }) => {
       const response = await fetch('http://localhost:3000/users/notify', {
         method: 'PUT',
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJhZG1pbiIsImlhdCI6MTcwNTY3NjM2MywiZXhwIjoxNzEzNDUyMzYzfQ.jswgQhW1Cr4uGI4n3kj_nbosNC18LxKjg7GfOSXC_3s`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({

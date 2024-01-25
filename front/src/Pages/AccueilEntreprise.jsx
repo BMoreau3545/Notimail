@@ -26,7 +26,7 @@ export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
         const response = await fetch(`http://localhost:3000/client/get_user_has_mail/${loggedInFirmName}`, {
           method: 'GET',
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json',
           },
         });
@@ -59,7 +59,7 @@ export const AccueilEntreprise = ({ loggedInFirmName, dataFirmName }) => {
       const confirmMailResponse = await fetch(`http://localhost:3000/client/recup_mail?firm_name=${loggedInFirmName}`, {
         method: 'PUT',
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJtX25hbWUiOiJFbnRyZXByaXNlMiIsImlhdCI6MTcwNTkxNDUyNSwiZXhwIjoxNzEzNjkwNTI1fQ.TC8D0XTm0NcwsOQzogjXdn-Z67WUMexMM26EPdlz8DQ`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json',
         },
       });
