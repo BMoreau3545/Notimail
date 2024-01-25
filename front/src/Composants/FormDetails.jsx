@@ -108,13 +108,13 @@ export const FormDetails = () => {
         // Ouvrir la modal
         onOpenModal();
 
-       // Fermer la modal après 2 secondes
-       setTimeout(() => {
-        onCloseModal();
-        // Rediriger vers "/admin"
-        navigate("/admin");
-      }, 2000);
-    })
+        // Fermer la modal après 2 secondes
+        setTimeout(() => {
+          onCloseModal();
+          // Rediriger vers "/admin"
+          navigate("/admin");
+        }, 2000);
+      })
       .catch((error) => {
         console.error("Erreur lors de la création de l'entreprise:", error);
       });
@@ -175,8 +175,9 @@ export const FormDetails = () => {
 
           <div className='row'>
             <div className='row'>
-              <button onClick={handleDeleteFirm} type="button" className='deleteBtn'>Supprimer</button>
-              
+              <NavLink to="/admin">
+                <button onClick={handleDeleteFirm} type="button" className='deleteBtn'>Supprimer</button>
+              </NavLink>
               <button type="submit" className='submitForm'>Terminer</button>
               <Modal open={open} onClose={onCloseModal} center closeIcon=" ">
                 <p>

@@ -3,11 +3,39 @@ import Mailto from '../assets/LogoNotimail.png';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import '../index.css';
 import { NavLink, useParams } from 'react-router-dom';
-
+import { FaCheckCircle } from "react-icons/fa";
+import { Modal } from 'react-responsive-modal';
 
 export const EditForm = () => {
     const { firm_name: firmNameParam } = useParams();
+
+    //modal user modifier
+    const [successModalOpen, setSuccessModalOpen] = useState(false);
+    //modal user effacer
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
     const token = localStorage.getItem('token');
+
+    // Gestion de la modal
+    const [open, setOpen] = useState(false);
+
+    const openSuccessModal = () => {
+        setSuccessModalOpen(true);
+        setTimeout(() => {
+            setSuccessModalOpen(false);
+            // redirige vers "/admin" après 2 secondes
+            window.location.href = '/admin';
+        }, 2000);
+    };
+
+    const openDeleteModal = () => {
+        setDeleteModalOpen(true);
+        setTimeout(() => {
+            setDeleteModalOpen(false);
+            window.location.href = '/admin';
+        }, 2000);
+    };
+
     const [formData, setFormData] = useState({
         firm_name: '',
         first_name: '',
@@ -61,6 +89,7 @@ export const EditForm = () => {
                     return;
                 }
                 console.log('Entreprise supprimée avec succès');
+                openDeleteModal(); // Ouvre la modal de suppression
             })
             .catch((error) => {
                 console.error('Erreur lors de la suppression de l\'entreprise:', error);
@@ -88,6 +117,7 @@ export const EditForm = () => {
             }
 
             console.log('Entreprise mise à jour avec succès');
+            openSuccessModal(); // Ouvre la modal de succès
         } catch (error) {
             console.error('Erreur lors de la mise à jour de l\'entreprise:', error);
         }
@@ -183,7 +213,23 @@ export const EditForm = () => {
                     <div className='row'>
                         <div className='row'>
                             <button onClick={handleDeleteFirm} type="button" className='deleteBtn'>Supprimer</button>
+
                             <button type="submit" className='submitForm'>Modifier</button>
+
+                            <Modal open={successModalOpen} onClose={() => setOpen(false)} center closeIcon=" ">
+                                <p>
+                                    Modifications effectuées
+                                </p>
+                                <div className='centerIcons'>
+                                    <FaCheckCircle className='button-react' style={{ fontSize: '50px', color: '#025892' }} />
+                                </div>
+                            </Modal>
+
+                            <Modal open={deleteModalOpen} onClose={() => setDeleteModalOpen(false)} center closeIcon=" ">
+                                <p>
+                                    Entreprise supprimée avec succès
+                                </p>
+                            </Modal>
                         </div>
                     </div>
                 </form>
