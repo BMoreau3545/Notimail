@@ -61,6 +61,7 @@ const initAdminUser = async (req, res) => {
         phone_number,
         password: hashedPassword,
         last_received_mail: currentDate,
+        is_admin
       });
 
       transporter.sendMail({
@@ -187,11 +188,10 @@ const getUserByFirmName = async (req, res) => {
     try {
       // Extraction du nom d'entreprise à partir des paramètres de la requête
       const { firm_name } = req.params;
-      console.log("ok");
+
       
       // Recherche de l'utilisateur dans la base de données en fonction du nom d'entreprise
       const user = await User.findOne({ where: { firm_name } });
-      console.log("user", user);
 
       // Vérification de l'existence de l'utilisateur
       if (!user) {

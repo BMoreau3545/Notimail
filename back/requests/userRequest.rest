@@ -7,7 +7,7 @@ Content-Type: application/json
   "firm_name": "admin1",
   "first_name": "Admin",
   "last_name": "Istrateur",
-  "email": "benrei@hotmail.fr",
+  "email": "b.moreau.aftec@gmail.com",
   "phone_number": "1234567890"
 }
 

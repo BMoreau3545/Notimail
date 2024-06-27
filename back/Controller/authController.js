@@ -16,19 +16,15 @@ async function login (req, res) {
     try {
         // Extraction des données du corps de la requête
         const { firm_name, password } = req.body;
-        console.log("login_body: ", req.body, "login_params: ", req.params); 
-
-        
-        const user = await db.User.findOne({where: {firm_name: firm_name}});    // Utilisation de Sequelize via la méthode findOne pour trouver un utilisateur 
+        // Utilisation de Sequelize via la méthode findOne pour trouver un utilisateur 
+        const user = await db.User.findOne({where: {firm_name: firm_name}});   
         // Utilisation de l'opération asynchrone avec le mot-clé 'await' pour attendre que la requête se termine.
         // Spécification des critères de recherche (utilisation de where). 
         // Dans ce cas, on cherche un utilisateur dont la valeur dans la colonne 'firm_name' correspond à la variable 'firm_name'.
-        console.log(user)
+        // console.log(user)
         // Comparaison du mot de passe fourni avec le mot de passe haché stocké dans la base de données
         const passwordMatch = await bcrypt.compare(password, user.password);
-        console.log("Mot de passe stocké dans la base de données:", user.password);
-        console.log("Mot de passe fourni par l'utilisateur:", password);
-        console.log(password, passwordMatch);
+
         if (user && passwordMatch) {
             // Si les mots de passe correspondent, génération d'un token JWT avec des informations spécifiques
             const token = jwt.sign(
