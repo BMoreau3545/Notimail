@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import { CardEntreprise } from "../Composants/CardEntreprise";
 import { NavBar } from "../Composants/Navbar";
 
 
-export const AccueilAdmin = ({ loggedInFirmName, cardData}) => {
+export const AccueilAdmin = ({ loggedInFirmName }) => {
 
   return (
     <>
-      <NavBar cardData={cardData} loggedInFirmName={loggedInFirmName}/>
+      <NavBar loggedInFirmName={loggedInFirmName}/>
       <CardEntreprise />
     </>
   );

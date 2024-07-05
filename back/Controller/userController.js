@@ -42,8 +42,6 @@ const initAdminUser = async (req, res) => {
 
 // Fonction pour créer un nouvel utilisateur
   const createUser = async (req, res) => {
-    console.log('createUser route reached');
-    console.log('createUser', JSON.stringify(req.body), JSON.stringify(res.params));
   
     try {
       const { firm_name, first_name, last_name, email, phone_number, is_admin } = req.body;

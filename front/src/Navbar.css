@@ -1,22 +1,25 @@
+/* Style pour l'élément de navigation (nav) */
 nav {
-    background-color: #E3E3E3;
-    height: 18vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    background-color: #E3E3E3; /* Définit une couleur de fond grise pour la barre de navigation */
+    height: 18vh; /* La hauteur de la barre de navigation est de 18% de la hauteur de la fenêtre */
+    width: 100vw; /* La largeur de la barre de navigation est de 100% de la largeur de la fenêtre */
+    display: flex; /* Utilise le modèle de boîte flexible pour la mise en page des enfants */
+    flex-direction: row; /* Aligne les enfants en ligne (horizontalement) */
+    justify-content: space-around; /* Distribue l'espace disponible entre les enfants, avec des espaces égaux autour de chaque enfant */
+    align-items: center; /* Centre les enfants verticalement dans la barre de navigation */
 }
 
+/* Style pour l'image du logo à l'intérieur de la classe .logo */
 .logo img {
-    height: 8rem;
+    height: 8rem; /* Définit une hauteur fixe de 8rem pour l'image du logo */
 }
 
+/* Style pour les boutons à l'intérieur de la barre de navigation */
 nav button{
-    border: none;
-    background-color: #FF3535;
-    color: white;
-    border-radius: 20px;
-    padding: 1rem 2rem;
-    cursor: pointer;
+    border: none; /* Supprime la bordure par défaut des boutons */
+    background-color: #FF3535; /* Définit une couleur de fond rouge pour les boutons */
+    color: white; /* Définit la couleur du texte des boutons en blanc */
+    border-radius: 20px; /* Arrondit les coins des boutons avec un rayon de 20px */
+    padding: 1rem 2rem; /* Ajoute un padding de 1rem en haut et en bas, et 2rem à gauche et à droite */
+    cursor: pointer; /* Change le curseur en une main pour indiquer que le bouton est cliquable */
 }

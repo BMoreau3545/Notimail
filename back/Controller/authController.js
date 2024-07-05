@@ -21,7 +21,7 @@ async function login (req, res) {
         // Utilisation de l'opération asynchrone avec le mot-clé 'await' pour attendre que la requête se termine.
         // Spécification des critères de recherche (utilisation de where). 
         // Dans ce cas, on cherche un utilisateur dont la valeur dans la colonne 'firm_name' correspond à la variable 'firm_name'.
-        // console.log(user)
+    
         // Comparaison du mot de passe fourni avec le mot de passe haché stocké dans la base de données
         const passwordMatch = await bcrypt.compare(password, user.password);
 
@@ -35,7 +35,7 @@ async function login (req, res) {
            
             // Définir le cookie avec le nom "token"
             res.cookie('token', token, { httpOnly: true, secure: true, expires: new Date(Date.now() + 86400000) });
-            console.log(res.cookie);
+            // Envoi de la réponse avec le token et les informations de l'utilisateur
             // Réponse indiquant que la connexion est réussie
             res.json({message: 'Connexion réussie', token, user})    
         } else {

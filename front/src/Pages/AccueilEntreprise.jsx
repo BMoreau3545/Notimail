@@ -1,6 +1,6 @@
 import NewMail from '../assets/mail_rouge.png';
 import '../index.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { IoMailOpen, IoCloseCircle } from 'react-icons/io5';

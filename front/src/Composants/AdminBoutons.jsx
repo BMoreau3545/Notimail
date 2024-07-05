@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import MailSelect from '../assets/envoie.png';
 import Newuser from '../assets/plus.png';
 import "../adminboutons.css";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'react-responsive-modal';
 import { NavLink } from 'react-router-dom';
 
@@ -53,7 +54,7 @@ export const AdminBoutons = ({ cardData, newANotif }) => {
         console.error('Erreur lors de l\'envoi de la notification', response);
       }
     } catch (error) {
-      console.error('Erreur lors de la notification', error, response);
+      console.error('Erreur lors de la notification', error);
     } finally {
       onCloseModal();
     }

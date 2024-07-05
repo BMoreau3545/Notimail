@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Mailto from '../assets/LogoNotimail.png';
-import { IoMailOpen, IoCloseCircle } from "react-icons/io5";
+import { IoCloseCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { Modal } from 'react-responsive-modal';
 import "../Navbar.css";

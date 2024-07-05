@@ -1,4 +1,4 @@
-//index.js
+//index.js configuer et initialise Sequelize
 // Importation du module 'dotenv' pour charger les variables d'environnement depuis un fichier .env
 require('dotenv').config({
     path: './.env',  // Chemin spécifié pour le fichier .env

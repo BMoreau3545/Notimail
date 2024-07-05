@@ -17,7 +17,7 @@ module.exports = {
         // Hôte de la base de données (par exemple, 'localhost' ou une adresse IP)
         host: process.env.DB_HOST,
 
-        // Port sur lequel la base de données écoute les connexions (par exemple, 3306 pour MySQL)
+        // Port sur lequel la base de données écoute les connexions (par exemple, 5432 pour postgreSQL)
         port: process.env.DB_PORT,
     }
 };
